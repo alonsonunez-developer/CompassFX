@@ -292,7 +292,7 @@ public class TableDemo extends Application {
         primaryStage.show();
     }
 
-    private CFXTable<User> createBasicTable() {
+    static CFXTable<User> createBasicTable() {
         CFXTable<User> table = new CFXTable<>();
 
         table.addColumn("Name", "name", 200);
@@ -305,7 +305,7 @@ public class TableDemo extends Application {
         return table;
     }
 
-    private CFXTable<User> createSmallTable() {
+    static CFXTable<User> createSmallTable() {
         CFXTable<User> table = new CFXTable<>();
 
         table.addColumn("Name", "name", 250);
@@ -317,7 +317,7 @@ public class TableDemo extends Application {
         return table;
     }
 
-    private List<User> getSampleData() {
+    static List<User> getSampleData() {
         List<User> users = new ArrayList<>();
         users.add(new User("John Doe", "john.doe@example.com", "Admin", "Active", 32));
         users.add(new User("Jane Smith", "jane.smith@example.com", "Editor", "Active", 28));
