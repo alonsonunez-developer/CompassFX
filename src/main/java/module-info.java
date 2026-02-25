@@ -1,6 +1,6 @@
 module com.compassfx.demo {
+    requires javafx.graphics;
     requires javafx.controls;
-    requires javafx.fxml;
 
     opens com.compassfx.controls to javafx.graphics, javafx.fxml;
 
