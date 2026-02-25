@@ -91,11 +91,14 @@ public class CompassFXPlayground extends Application {
 
         actionsDrawer = createActionsDrawer();
 
+        largeDrawer = createLargeDrawer();
+
         // Show welcome page
         showWelcomePage();
 
         // Root with drawer
-        StackPane rootWithDrawer = new StackPane(root, navigationDrawer, settingsDrawer, notificationsDrawer, actionsDrawer);
+        StackPane rootWithDrawer = new StackPane(root, navigationDrawer,
+                settingsDrawer, notificationsDrawer, actionsDrawer, largeDrawer);
 
         Scene scene = new Scene(rootWithDrawer, 1200, 800);
         CompassFX.applyLightTheme(scene);
@@ -172,7 +175,7 @@ public class CompassFXPlayground extends Application {
     private CFXDrawer createSettingsDrawer() {
         CFXDrawer drawer = new CFXDrawer();
         drawer.setPosition(DrawerPosition.RIGHT);
-        drawer.setSize(DrawerSize.SMALL);
+        drawer.setSize(DrawerSize.MEDIUM);
 
         VBox form = new VBox(20);
         form.setAlignment(Pos.TOP_LEFT);
@@ -289,6 +292,62 @@ public class CompassFXPlayground extends Application {
         actions.getChildren().addAll(shareBtn, downloadBtn, deleteBtn, moreBtn);
         drawer.setContent(actions);
 
+        return drawer;
+    }
+
+    private CFXDrawer createLargeDrawer() {
+        CFXDrawer drawer = new CFXDrawer();
+        drawer.setPosition(DrawerPosition.RIGHT);
+        drawer.setSize(DrawerSize.LARGE);
+
+        VBox content = new VBox(20);
+        content.setAlignment(Pos.TOP_LEFT);
+
+        Label docTitle = new Label("Document Editor");
+        docTitle.setFont(Font.font("System", FontWeight.BOLD, 24));
+
+        CFXTextField titleField = new CFXTextField();
+        titleField.setPromptText("Document title");
+
+        TextArea editor = new TextArea();
+        editor.setPromptText("Start writing...");
+        editor.setPrefRowCount(15);
+        VBox.setVgrow(editor, Priority.ALWAYS);
+
+        HBox toolbar = new HBox(10);
+        toolbar.setAlignment(Pos.CENTER_LEFT);
+
+        CFXButton boldBtn = new CFXButton("B");
+        CFXButton italicBtn = new CFXButton("I");
+        CFXButton underlineBtn = new CFXButton("U");
+
+        toolbar.getChildren().addAll(boldBtn, italicBtn, underlineBtn);
+
+        HBox buttons = new HBox(10);
+        buttons.setAlignment(Pos.CENTER_RIGHT);
+
+        CFXButton closeBtn = new CFXButton("Close");
+        closeBtn.setColor(ButtonColor.SECONDARY);
+        closeBtn.setOnAction(e -> drawer.close());
+
+        CFXButton saveDocBtn = new CFXButton("Save Document");
+        saveDocBtn.setColor(ButtonColor.PRIMARY);
+        saveDocBtn.setOnAction(e -> {
+            System.out.println("Document saved!");
+        });
+
+        buttons.getChildren().addAll(closeBtn, saveDocBtn);
+
+        content.getChildren().addAll(
+                docTitle,
+                new Separator(),
+                titleField,
+                toolbar,
+                editor,
+                buttons
+        );
+
+        drawer.setContent(content);
         return drawer;
     }
 
@@ -2695,16 +2754,29 @@ public class CompassFXPlayground extends Application {
         pageTitle.setText("Drawer");
         contentArea.getChildren().clear();
 
-        Label info = new Label("You're already using a drawer! Click the menu button (☰) at the top to see it in action.");
-        info.setStyle("-fx-font-size: 16px; -fx-text-fill: #666;");
-        info.setWrapText(true);
-        info.setMaxWidth(600);
+        VBox content = new VBox(30);
+        content.setPadding(new Insets(50));
+        content.setAlignment(Pos.TOP_CENTER);
+        content.setStyle("-fx-background-color: #F5F5F5;");
 
-        HBox buttons = new HBox(10);
-        buttons.setAlignment(Pos.CENTER);
+        Label title = new Label("CompassFX Drawer Demo");
+        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
 
-        CFXButton openBtn = new CFXButton("Open Navigation Drawer");
-        openBtn.setOnAction(e -> navigationDrawer.open());
+        Label subtitle = new Label("Click buttons to open drawers from different positions");
+        subtitle.setStyle("-fx-font-size: 16px; -fx-text-fill: #666;");
+
+        VBox leftSection = new VBox(10);
+        leftSection.setAlignment(Pos.CENTER);
+
+        Label leftLabel = new Label("Left Drawer - Navigation Menu");
+        leftLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
+
+        CFXButton openLeftBtn = new CFXButton("Open Left Drawer");
+        openLeftBtn.setColor(ButtonColor.PRIMARY);
+        openLeftBtn.setOnAction(e -> navigationDrawer.open());
+
+        leftSection.getChildren().addAll(leftLabel, openLeftBtn);
+
 
         VBox rightSection = new VBox(10);
         rightSection.setAlignment(Pos.CENTER);
@@ -2718,6 +2790,11 @@ public class CompassFXPlayground extends Application {
 
         rightSection.getChildren().addAll(rightLabel, openRightBtn);
 
+        // ====================================
+        // Top Drawer - Notifications
+        // ====================================
+
+
         VBox topSection = new VBox(10);
         topSection.setAlignment(Pos.CENTER);
 
@@ -2729,6 +2806,10 @@ public class CompassFXPlayground extends Application {
         openTopBtn.setOnAction(e -> notificationsDrawer.open());
 
         topSection.getChildren().addAll(topLabel, openTopBtn);
+
+        // ====================================
+        // Bottom Drawer - User Actions
+        // ====================================
 
         VBox bottomSection = new VBox(10);
         bottomSection.setAlignment(Pos.CENTER);
@@ -2742,9 +2823,43 @@ public class CompassFXPlayground extends Application {
 
         bottomSection.getChildren().addAll(bottomLabel, openBottomBtn);
 
-        buttons.getChildren().addAll(openBtn, openTopBtn, openRightBtn, openBottomBtn);
+        // ====================================
+        // Large Drawer Example
+        // ====================================
 
-        contentArea.getChildren().addAll(info, buttons);
+        VBox largeSection = new VBox(10);
+        largeSection.setAlignment(Pos.CENTER);
+
+        Label largeLabel = new Label("Large Drawer - Document Editor");
+        largeLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
+
+        CFXButton openLargeBtn = new CFXButton("Open Large Drawer");
+        openLargeBtn.setColor(ButtonColor.SECONDARY);
+        openLargeBtn.setOnAction(e -> largeDrawer.open());
+
+        largeSection.getChildren().addAll(largeLabel, openLargeBtn);
+
+        // Add all sections to content
+        HBox row1 = new HBox(40, leftSection, rightSection);
+        row1.setAlignment(Pos.CENTER);
+
+        HBox row2 = new HBox(40, topSection, bottomSection);
+        row2.setAlignment(Pos.CENTER);
+
+        content.getChildren().addAll(
+                title,
+                subtitle,
+                new Separator(),
+                row1,
+                new Separator(),
+                row2,
+                new Separator(),
+                largeSection
+        );
+
+        contentArea.getChildren().addAll(
+                content
+        );
     }
 
     private void showAllComponents() {
