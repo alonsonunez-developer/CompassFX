@@ -301,7 +301,7 @@ public class AvatarDemo extends Application {
         primaryStage.show();
     }
 
-    private VBox createLabeledAvatar(String label, String initials, AvatarSize size) {
+    static VBox createLabeledAvatar(String label, String initials, AvatarSize size) {
         VBox box = new VBox(10);
         box.setAlignment(Pos.CENTER);
 
@@ -315,7 +315,7 @@ public class AvatarDemo extends Application {
         return box;
     }
 
-    private HBox createUserItem(String name, String email, Color color, boolean online) {
+    static HBox createUserItem(String name, String email, Color color, boolean online) {
         HBox userItem = new HBox(15);
         userItem.setAlignment(Pos.CENTER_LEFT);
 

@@ -1,5 +1,5 @@
 // ============================================
-// CFXAvatar.java - Avatar Control
+// CFXAvatar.java - Avatar Control (FIXED)
 // src/main/java/com/compassfx/controls/CFXAvatar.java
 // ============================================
 package com.compassfx.controls;
@@ -20,7 +20,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * CompassFX Avatar - A versatile avatar component
+ * CompassFX Avatar - A versatile avatar component (FIXED VERSION)
  * Supports images, initials, icons, and colors
  */
 public class CFXAvatar extends StackPane {
@@ -70,7 +70,7 @@ public class CFXAvatar extends StackPane {
 
         // Create image view
         imageView = new ImageView();
-        imageView.setPreserveRatio(true);
+        imageView.setPreserveRatio(false); // CHANGED: Don't preserve ratio to fill avatar
         imageView.setSmooth(true);
         imageView.setVisible(false);
 
@@ -100,42 +100,36 @@ public class CFXAvatar extends StackPane {
             java.net.URL cssUrl = getClass().getResource(STYLESHEET);
             if (cssUrl != null) {
                 getStylesheets().add(cssUrl.toExternalForm());
-                System.out.println("INFO: Cargado stylesheet: " + STYLESHEET);
-            } else {
-                System.err.println("ERROR: No se pudo encontrar el recurso en: " + STYLESHEET);
             }
         } catch (Exception e) {
-            System.err.println("ERROR: Excepción al cargar stylesheet: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("ERROR: " + e.getMessage());
         }
 
         updateStyleClasses();
         updateSize();
         updateContent();
-        updateShape();
-        updateColors();
-        updateBorder();
-        updateStatus();
+        updateColorsAndShape(); // CHANGED: Combined to update both at once
 
         // Listeners
         size.addListener((obs, old, newVal) -> {
             updateStyleClasses();
             updateSize();
+            updateColorsAndShape();
         });
         shape.addListener((obs, old, newVal) -> {
             updateStyleClasses();
-            updateShape();
+            updateColorsAndShape();
         });
         variant.addListener((obs, old, newVal) -> {
             updateStyleClasses();
-            updateColors();
+            updateColorsAndShape();
         });
         image.addListener((obs, old, newVal) -> updateContent());
         initials.addListener((obs, old, newVal) -> updateContent());
-        color.addListener((obs, old, newVal) -> updateColors());
-        showBorder.addListener((obs, old, newVal) -> updateBorder());
-        borderColor.addListener((obs, old, newVal) -> updateBorder());
-        borderWidth.addListener((obs, old, newVal) -> updateBorder());
+        color.addListener((obs, old, newVal) -> updateColorsAndShape());
+        showBorder.addListener((obs, old, newVal) -> updateColorsAndShape());
+        borderColor.addListener((obs, old, newVal) -> updateColorsAndShape());
+        borderWidth.addListener((obs, old, newVal) -> updateColorsAndShape());
         showStatus.addListener((obs, old, newVal) -> updateStatus());
         statusColor.addListener((obs, old, newVal) -> updateStatus());
     }
@@ -159,14 +153,14 @@ public class CFXAvatar extends StackPane {
         imageView.setFitHeight(avatarSize);
 
         // Update font size based on avatar size
-        double fontSize = avatarSize * 0.4;
+        double fontSize = avatarSize * 0.35; // CHANGED: Slightly smaller
         initialsText.setFont(Font.font("System", FontWeight.BOLD, fontSize));
 
         // Update status indicator size
-        double statusSize = avatarSize * 0.15;
+        double statusSize = avatarSize * 0.12;
         statusIndicator.setRadius(statusSize);
-        statusIndicator.setTranslateX(avatarSize * 0.35);
-        statusIndicator.setTranslateY(avatarSize * 0.35);
+        statusIndicator.setTranslateX(avatarSize * 0.32);
+        statusIndicator.setTranslateY(avatarSize * 0.32);
     }
 
     private void updateContent() {
@@ -198,37 +192,17 @@ public class CFXAvatar extends StackPane {
         }
     }
 
-    private void updateShape() {
-        container.setClip(null);
-
+    // FIXED: Combined colors and shape update to prevent style conflicts
+    private void updateColorsAndShape() {
         double avatarSize = size.get().getSize();
-
-        switch (shape.get()) {
-            case CIRCLE:
-                Circle circle = new Circle(avatarSize / 2);
-                circle.setCenterX(avatarSize / 2);
-                circle.setCenterY(avatarSize / 2);
-                container.setClip(circle);
-                break;
-            case ROUNDED:
-                Rectangle rounded = new Rectangle(avatarSize, avatarSize);
-                rounded.setArcWidth(avatarSize * 0.25);
-                rounded.setArcHeight(avatarSize * 0.25);
-                container.setClip(rounded);
-                break;
-            case SQUARE:
-                Rectangle square = new Rectangle(avatarSize, avatarSize);
-                container.setClip(square);
-                break;
-        }
-    }
-
-    private void updateColors() {
         Color bgColor = color.get();
 
+        StringBuilder styleBuilder = new StringBuilder();
+
+        // Apply variant styles
         switch (variant.get()) {
             case FILLED:
-                container.setStyle(String.format(
+                styleBuilder.append(String.format(
                         "-fx-background-color: rgb(%d, %d, %d);",
                         (int)(bgColor.getRed() * 255),
                         (int)(bgColor.getGreen() * 255),
@@ -237,7 +211,7 @@ public class CFXAvatar extends StackPane {
                 initialsText.setFill(Color.WHITE);
                 break;
             case OUTLINED:
-                container.setStyle(String.format(
+                styleBuilder.append(String.format(
                         "-fx-background-color: transparent; " +
                                 "-fx-border-color: rgb(%d, %d, %d); " +
                                 "-fx-border-width: 2px;",
@@ -248,7 +222,7 @@ public class CFXAvatar extends StackPane {
                 initialsText.setFill(bgColor);
                 break;
             case LIGHT:
-                container.setStyle(String.format(
+                styleBuilder.append(String.format(
                         "-fx-background-color: rgba(%d, %d, %d, 0.1);",
                         (int)(bgColor.getRed() * 255),
                         (int)(bgColor.getGreen() * 255),
@@ -257,25 +231,76 @@ public class CFXAvatar extends StackPane {
                 initialsText.setFill(bgColor);
                 break;
         }
-    }
 
-    private void updateBorder() {
-        if (showBorder.get()) {
+        // Apply shape (border radius)
+        switch (shape.get()) {
+            case CIRCLE:
+                styleBuilder.append(String.format(" -fx-background-radius: %.0fpx;", avatarSize / 2));
+                if (variant.get() == AvatarVariant.OUTLINED) {
+                    styleBuilder.append(String.format(" -fx-border-radius: %.0fpx;", avatarSize / 2));
+                }
+                break;
+            case ROUNDED:
+                double arcSize = Math.min(avatarSize * 0.2, 12);
+                styleBuilder.append(String.format(" -fx-background-radius: %.0fpx;", arcSize));
+                if (variant.get() == AvatarVariant.OUTLINED) {
+                    styleBuilder.append(String.format(" -fx-border-radius: %.0fpx;", arcSize));
+                }
+                break;
+            case SQUARE:
+                styleBuilder.append(" -fx-background-radius: 0px;");
+                if (variant.get() == AvatarVariant.OUTLINED) {
+                    styleBuilder.append(" -fx-border-radius: 0px;");
+                }
+                break;
+        }
+
+        // Apply border if enabled
+        if (showBorder.get() && variant.get() != AvatarVariant.OUTLINED) {
             Color border = borderColor.get();
             double width = borderWidth.get();
-
-            String currentStyle = container.getStyle();
-            String borderStyle = String.format(
-                    "-fx-border-color: rgb(%d, %d, %d); -fx-border-width: %.1fpx;",
+            styleBuilder.append(String.format(
+                    " -fx-border-color: rgb(%d, %d, %d); -fx-border-width: %.1fpx;",
                     (int)(border.getRed() * 255),
                     (int)(border.getGreen() * 255),
                     (int)(border.getBlue() * 255),
                     width
-            );
-
-            if (!currentStyle.contains("-fx-border-color")) {
-                container.setStyle(currentStyle + " " + borderStyle);
+            ));
+            // Apply same border radius to border
+            switch (shape.get()) {
+                case CIRCLE:
+                    styleBuilder.append(String.format(" -fx-border-radius: %.0fpx;", avatarSize / 2));
+                    break;
+                case ROUNDED:
+                    double arcSize = Math.min(avatarSize * 0.2, 12);
+                    styleBuilder.append(String.format(" -fx-border-radius: %.0fpx;", arcSize));
+                    break;
             }
+        }
+
+        container.setStyle(styleBuilder.toString());
+
+        // Apply clipping for images
+        container.setClip(createClipShape(avatarSize));
+    }
+
+    // FIXED: Separate clip creation
+    private javafx.scene.shape.Shape createClipShape(double size) {
+        switch (shape.get()) {
+            case CIRCLE:
+                Circle circle = new Circle(size / 2);
+                circle.setCenterX(size / 2);
+                circle.setCenterY(size / 2);
+                return circle;
+            case ROUNDED:
+                Rectangle rounded = new Rectangle(size, size);
+                double arcSize = Math.min(size * 0.2, 12);
+                rounded.setArcWidth(arcSize);
+                rounded.setArcHeight(arcSize);
+                return rounded;
+            case SQUARE:
+            default:
+                return new Rectangle(size, size);
         }
     }
 
