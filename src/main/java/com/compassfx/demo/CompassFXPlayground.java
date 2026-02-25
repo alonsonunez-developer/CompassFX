@@ -41,6 +41,10 @@ public class CompassFXPlayground extends Application {
     private VBox contentArea;
     private ScrollPane contentScroll;
     private CFXDrawer navigationDrawer;
+    private CFXDrawer settingsDrawer;
+    private CFXDrawer notificationsDrawer;
+    private CFXDrawer actionsDrawer;
+    private CFXDrawer largeDrawer;
     private Label pageTitle;
 
     @Override
@@ -81,11 +85,13 @@ public class CompassFXPlayground extends Application {
         // ====================================
         navigationDrawer = createNavigationDrawer();
 
+        settingsDrawer = createSettingsDrawer();
+
         // Show welcome page
         showWelcomePage();
 
         // Root with drawer
-        StackPane rootWithDrawer = new StackPane(root, navigationDrawer);
+        StackPane rootWithDrawer = new StackPane(root, navigationDrawer, settingsDrawer);
 
         Scene scene = new Scene(rootWithDrawer, 1200, 800);
         CompassFX.applyLightTheme(scene);
@@ -155,6 +161,67 @@ public class CompassFXPlayground extends Application {
         );
 
         drawer.setContent(menu);
+
+        return drawer;
+    }
+
+    private CFXDrawer createSettingsDrawer() {
+        CFXDrawer drawer = new CFXDrawer();
+        drawer.setPosition(DrawerPosition.RIGHT);
+        drawer.setSize(DrawerSize.SMALL);
+
+        VBox form = new VBox(20);
+        form.setAlignment(Pos.TOP_LEFT);
+
+        Label formTitle = new Label("Settings");
+        formTitle.setFont(Font.font("System", FontWeight.BOLD, 24));
+
+        Label nameLabel = new Label("Name");
+        nameLabel.setFont(Font.font("System", FontWeight.MEDIUM, 14));
+        CFXTextField nameField = new CFXTextField();
+        nameField.setPromptText("Enter your name");
+
+        Label emailLabel = new Label("Email");
+        emailLabel.setFont(Font.font("System", FontWeight.MEDIUM, 14));
+        CFXTextField emailField = new CFXTextField();
+        emailField.setPromptText("Enter your email");
+
+        Label bioLabel = new Label("Bio");
+        bioLabel.setFont(Font.font("System", FontWeight.MEDIUM, 14));
+        TextArea bioArea = new TextArea();
+        bioArea.setPromptText("Tell us about yourself");
+        bioArea.setPrefRowCount(4);
+
+        HBox buttons = new HBox(10);
+        buttons.setAlignment(Pos.CENTER_RIGHT);
+
+        CFXButton cancelBtn = new CFXButton("Cancel");
+        cancelBtn.setColor(ButtonColor.SECONDARY);
+        cancelBtn.setOnAction(e -> drawer.close());
+
+        CFXButton saveBtn = new CFXButton("Save Changes");
+        saveBtn.setColor(ButtonColor.SUCCESS);
+        saveBtn.setOnAction(e -> {
+            System.out.println("Settings saved!");
+            drawer.close();
+        });
+
+        buttons.getChildren().addAll(cancelBtn, saveBtn);
+
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+
+        form.getChildren().addAll(
+                formTitle,
+                new Separator(),
+                nameLabel, nameField,
+                emailLabel, emailField,
+                bioLabel, bioArea,
+                spacer,
+                buttons
+        );
+
+        drawer.setContent(form);
 
         return drawer;
     }
@@ -2573,11 +2640,19 @@ public class CompassFXPlayground extends Application {
         CFXButton openBtn = new CFXButton("Open Navigation Drawer");
         openBtn.setOnAction(e -> navigationDrawer.open());
 
-        CFXButton closeBtn = new CFXButton("Close Navigation Drawer");
-        closeBtn.setColor(ButtonColor.SECONDARY);
-        closeBtn.setOnAction(e -> navigationDrawer.close());
+        VBox rightSection = new VBox(10);
+        rightSection.setAlignment(Pos.CENTER);
 
-        buttons.getChildren().addAll(openBtn, closeBtn);
+        Label rightLabel = new Label("Right Drawer - Settings Form");
+        rightLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
+
+        CFXButton openRightBtn = new CFXButton("Open Right Drawer");
+        openRightBtn.setColor(ButtonColor.SUCCESS);
+        openRightBtn.setOnAction(e -> settingsDrawer.open());
+
+        rightSection.getChildren().addAll(rightLabel, openRightBtn);
+
+        buttons.getChildren().addAll(openBtn, openRightBtn);
 
         contentArea.getChildren().addAll(info, buttons);
     }
