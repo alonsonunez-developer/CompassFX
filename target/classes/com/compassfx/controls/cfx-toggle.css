@@ -1,0 +1,86 @@
+/* ============================================ */
+/* CFX-TOGGLE.CSS - Toggle/Switch Styles */
+/* src/main/resources/com/compassfx/controls/cfx-toggle.css */
+/* ============================================ */
+
+.cfx-toggle {
+    -fx-cursor: hand;
+}
+
+/* Track container */
+.cfx-toggle-track-container {
+    -fx-background-color: transparent;
+}
+
+/* Track background */
+.cfx-toggle-track {
+    -fx-fill: rgba(0, 0, 0, 0.38);
+}
+
+/* Thumb */
+.cfx-toggle-thumb {
+    -fx-fill: #F5F5F5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0.3, 0, 1);
+}
+
+/* Selected state */
+.cfx-toggle.selected .cfx-toggle-track {
+    -fx-fill: rgba(33, 150, 243, 0.5);
+}
+
+.cfx-toggle.selected .cfx-toggle-thumb {
+    -fx-fill: #2196F3;
+}
+
+/* Hover state */
+.cfx-toggle:hover .cfx-toggle-track {
+    -fx-opacity: 0.9;
+}
+
+.cfx-toggle:hover .cfx-toggle-thumb {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0.4, 0, 1);
+}
+
+/* Disabled state */
+.cfx-toggle.disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+.cfx-toggle.disabled .cfx-toggle-track {
+    -fx-fill: rgba(0, 0, 0, 0.12);
+}
+
+.cfx-toggle.disabled .cfx-toggle-thumb {
+    -fx-fill: #BDBDBD;
+}
+
+.cfx-toggle.disabled.selected .cfx-toggle-track {
+    -fx-fill: rgba(33, 150, 243, 0.3);
+}
+
+.cfx-toggle.disabled.selected .cfx-toggle-thumb {
+    -fx-fill: rgba(33, 150, 243, 0.6);
+}
+
+/* Label */
+.cfx-toggle-label {
+    -fx-font-family: "System";
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-cursor: hand;
+}
+
+.cfx-toggle.disabled .cfx-toggle-label {
+    -fx-text-fill: rgba(0, 0, 0, 0.38);
+    -fx-cursor: default;
+}
+
+/* Size variants */
+.cfx-toggle.small .cfx-toggle-label {
+    -fx-font-size: 12px;
+}
+
+.cfx-toggle.large .cfx-toggle-label {
+    -fx-font-size: 16px;
+}

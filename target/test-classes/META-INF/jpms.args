@@ -1,0 +1,4 @@
+--patch-module
+com.compassfx.demo=_
+--add-reads
+com.compassfx.demo=ALL-UNNAMED

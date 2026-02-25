@@ -1,0 +1,128 @@
+/* ============================================ */
+/* CFX-PROGRESS.CSS - Progress Indicators Styles */
+/* src/main/resources/com/compassfx/controls/cfx-progress.css */
+/* ============================================ */
+
+/* ===== PROGRESS BAR ===== */
+
+.cfx-progressbar {
+    -fx-background-color: transparent;
+}
+
+/* Track (background) */
+.cfx-progressbar .track {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0;
+}
+
+/* Bar (filled portion) */
+.cfx-progressbar .bar {
+    -fx-background-color: #2196F3;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* Size Variants - ProgressBar */
+.cfx-progressbar.small {
+    -fx-pref-height: 4px;
+}
+
+.cfx-progressbar.medium {
+    -fx-pref-height: 8px;
+}
+
+.cfx-progressbar.large {
+    -fx-pref-height: 12px;
+}
+
+/* Color Variants - ProgressBar */
+.cfx-progressbar.primary .bar {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-progressbar.secondary .bar {
+    -fx-background-color: #9C27B0;
+}
+
+.cfx-progressbar.success .bar {
+    -fx-background-color: #4CAF50;
+}
+
+.cfx-progressbar.warning .bar {
+    -fx-background-color: #FF9800;
+}
+
+.cfx-progressbar.error .bar {
+    -fx-background-color: #F44336;
+}
+
+/* Indeterminate ProgressBar Animation */
+.cfx-progressbar:indeterminate .bar {
+    -fx-background-color: linear-gradient(
+            to right,
+            transparent 0%,
+            #2196F3 50%,
+            transparent 100%
+    );
+}
+
+/* ===== PROGRESS SPINNER ===== */
+
+.cfx-progressspinner {
+    -fx-background-color: transparent;
+}
+
+/* Track (background circle) - FIXED */
+.cfx-progress-track {
+    -fx-stroke: #E0E0E0;
+    -fx-fill: transparent;
+    -fx-stroke-width: 4;
+    -fx-stroke-line-cap: butt;
+}
+
+/* Progress arc - FIXED */
+.cfx-progress-arc {
+    -fx-fill: transparent;
+    -fx-stroke: #2196F3;
+    -fx-stroke-width: 4;
+    -fx-stroke-line-cap: round;
+}
+
+/* Size Variants - Spinner */
+.cfx-progressspinner.small .cfx-progress-track,
+.cfx-progressspinner.small .cfx-progress-arc {
+    -fx-stroke-width: 3;
+}
+
+.cfx-progressspinner.medium .cfx-progress-track,
+.cfx-progressspinner.medium .cfx-progress-arc {
+    -fx-stroke-width: 4;
+}
+
+.cfx-progressspinner.large .cfx-progress-track,
+.cfx-progressspinner.large .cfx-progress-arc {
+    -fx-stroke-width: 5;
+}
+
+/* Color Variants - Spinner */
+.cfx-progressspinner.primary .cfx-progress-arc {
+    -fx-stroke: #2196F3;
+}
+
+.cfx-progressspinner.secondary .cfx-progress-arc {
+    -fx-stroke: #9C27B0;
+}
+
+.cfx-progressspinner.success .cfx-progress-arc {
+    -fx-stroke: #4CAF50;
+}
+
+.cfx-progressspinner.warning .cfx-progress-arc {
+    -fx-stroke: #FF9800;
+}
+
+.cfx-progressspinner.error .cfx-progress-arc {
+    -fx-stroke: #F44336;
+}

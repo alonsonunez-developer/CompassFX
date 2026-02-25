@@ -1,0 +1,112 @@
+/* ============================================ */
+/* CFX-FILE-UPLOADER.CSS - File Uploader Styles */
+/* src/main/resources/com/compassfx/controls/cfx-file-uploader.css */
+/* ============================================ */
+
+/* Uploader Container */
+.cfx-file-uploader {
+    -fx-background-color: transparent;
+}
+
+.uploader-container {
+    -fx-background-color: transparent;
+}
+
+/* Drop Zone */
+.drop-zone {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 2px;
+    -fx-border-style: dashed;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+}
+
+.drop-zone.drag-over {
+    -fx-border-color: #2196F3;
+    -fx-background-color: rgba(33, 150, 243, 0.05);
+}
+
+.drag-text {
+    -fx-text-fill: #757575;
+    -fx-font-size: 14px;
+}
+
+/* File List Container */
+.file-list-container {
+    -fx-background-color: transparent;
+}
+
+/* File Item */
+.file-item {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0.2, 0, 2);
+}
+
+.file-size {
+    -fx-text-fill: #9E9E9E;
+    -fx-font-size: 12px;
+}
+
+.file-status {
+    -fx-text-fill: #616161;
+    -fx-font-size: 12px;
+}
+
+/* Remove Button */
+.remove-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #757575;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 0;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+}
+
+.remove-button:hover {
+    -fx-background-color: rgba(244, 67, 54, 0.1);
+    -fx-text-fill: #F44336;
+}
+
+/* Dark Theme */
+.dark-theme .drop-zone {
+    -fx-background-color: #2C2C2C;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .drop-zone.drag-over {
+    -fx-border-color: #2196F3;
+    -fx-background-color: rgba(33, 150, 243, 0.1);
+}
+
+.dark-theme .drag-text {
+    -fx-text-fill: rgba(255, 255, 255, 0.6);
+}
+
+.dark-theme .file-item {
+    -fx-background-color: #2C2C2C;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .file-size {
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+
+.dark-theme .file-status {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .remove-button {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .remove-button:hover {
+    -fx-background-color: rgba(244, 67, 54, 0.2);
+}

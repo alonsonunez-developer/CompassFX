@@ -1,0 +1,246 @@
+/* ============================================ */
+/* CFX-STEPPER.CSS - Stepper Styles */
+/* src/main/resources/com/compassfx/controls/cfx-stepper.css */
+/* ============================================ */
+
+/* Base Stepper */
+.cfx-stepper {
+    -fx-background-color: transparent;
+}
+
+.stepper-container {
+    -fx-padding: 20px;
+}
+
+/* Step Node */
+.step-node {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-background-radius: 8px;
+}
+
+.step-node.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.05);
+}
+
+/* Step Indicator */
+.step-indicator {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.2, 0, 2);
+}
+
+.step-circle {
+    -fx-fill: white;
+    -fx-stroke: #E0E0E0;
+    -fx-stroke-width: 2;
+}
+
+/* Pending State */
+.step-circle.pending {
+    -fx-fill: white;
+    -fx-stroke: #E0E0E0;
+}
+
+.step-node.pending .step-title {
+    -fx-text-fill: #9E9E9E;
+}
+
+.step-node.pending .step-label {
+    -fx-text-fill: #9E9E9E;
+}
+
+/* Active State */
+.step-circle.active {
+    -fx-fill: #2196F3;
+    -fx-stroke: #2196F3;
+}
+
+.step-node.active .step-title {
+    -fx-text-fill: #2196F3;
+    -fx-font-weight: bold;
+}
+
+.step-node.active .step-label {
+    -fx-text-fill: white;
+}
+
+/* Completed State */
+.step-circle.completed {
+    -fx-fill: #4CAF50;
+    -fx-stroke: #4CAF50;
+}
+
+.step-node.completed .step-title {
+    -fx-text-fill: #4CAF50;
+}
+
+.step-node.completed .step-label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+/* Error State */
+.step-circle.error {
+    -fx-fill: #F44336;
+    -fx-stroke: #F44336;
+}
+
+.step-node.error .step-title {
+    -fx-text-fill: #F44336;
+}
+
+.step-node.error .step-label {
+    -fx-text-fill: white;
+}
+
+/* Warning State */
+.step-circle.warning {
+    -fx-fill: #FF9800;
+    -fx-stroke: #FF9800;
+}
+
+.step-node.warning .step-title {
+    -fx-text-fill: #FF9800;
+}
+
+.step-node.warning .step-label {
+    -fx-text-fill: white;
+}
+
+/* Step Labels */
+.step-title {
+    -fx-text-fill: #424242;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.step-description {
+    -fx-text-fill: #757575;
+    -fx-font-size: 12px;
+}
+
+.step-optional {
+    -fx-text-fill: #9E9E9E;
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+}
+
+.step-label {
+    -fx-text-fill: #616161;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Connector Line */
+.step-connector {
+    -fx-background-color: transparent;
+}
+
+.connector-line {
+    -fx-stroke: #E0E0E0;
+    -fx-stroke-width: 2;
+}
+
+.connector-line.completed {
+    -fx-stroke: #4CAF50;
+}
+
+.connector-line.active {
+    -fx-stroke: #2196F3;
+}
+
+.connector-line.error {
+    -fx-stroke: #F44336;
+}
+
+.connector-line.warning {
+    -fx-stroke: #FF9800;
+}
+
+/* Content Container */
+.step-content-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 8, 0.2, 0, 2);
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+}
+
+/* ===== VARIANTS ===== */
+
+/* Outlined Variant */
+.cfx-stepper.outlined .step-circle {
+    -fx-fill: transparent;
+}
+
+.cfx-stepper.outlined .step-circle.active {
+    -fx-fill: transparent;
+    -fx-stroke-width: 3;
+}
+
+.cfx-stepper.outlined .step-circle.active .step-label {
+    -fx-text-fill: #2196F3;
+}
+
+.cfx-stepper.outlined .step-circle.completed {
+    -fx-fill: #4CAF50;
+}
+
+/* Dots Variant */
+.cfx-stepper.dots .step-indicator {
+    -fx-min-width: 12px;
+    -fx-pref-width: 12px;
+    -fx-max-width: 12px;
+    -fx-min-height: 12px;
+    -fx-pref-height: 12px;
+    -fx-max-height: 12px;
+}
+
+.cfx-stepper.dots .step-circle {
+    -fx-radius: 6;
+}
+
+.cfx-stepper.dots .step-label {
+    -fx-opacity: 0;
+}
+
+/* Vertical Orientation */
+.cfx-stepper.vertical .stepper-container {
+    -fx-padding: 20px 10px;
+}
+
+.cfx-stepper.vertical .step-node {
+    -fx-alignment: center-left;
+}
+
+/* ===== DARK THEME ===== */
+
+.dark-theme .step-circle.pending {
+    -fx-fill: transparent;
+    -fx-stroke: rgba(255, 255, 255, 0.3);
+}
+
+.dark-theme .step-node.pending .step-title {
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+
+.dark-theme .step-node.pending .step-label {
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+
+.dark-theme .step-title {
+    -fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.dark-theme .step-description {
+    -fx-text-fill: rgba(255, 255, 255, 0.6);
+}
+
+.dark-theme .connector-line {
+    -fx-stroke: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .step-content-container {
+    -fx-background-color: #2C2C2C;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}

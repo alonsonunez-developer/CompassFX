@@ -1,0 +1,154 @@
+/* ============================================ */
+/* CFX-TEXTFIELD.CSS - TextField Styles */
+/* src/main/resources/com/compassfx/controls/cfx-textfield.css */
+/* ============================================ */
+
+/* Base TextField Styles */
+.cfx-textfield {
+    -fx-font-family: "System";
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+/*    -fx-padding: 16px 12px;*/
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.38);
+}
+
+/* Remove default focus border */
+.cfx-textfield:focused {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+/* ===== OUTLINED VARIANT ===== */
+.cfx-textfield.outlined {
+    -fx-border-color: rgba(0, 0, 0, 0.38);
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-color: transparent;
+}
+
+.cfx-textfield.outlined:hover {
+    -fx-border-color: rgba(0, 0, 0, 0.87);
+}
+
+.cfx-textfield.outlined:focused {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-background-color: transparent;
+}
+
+.cfx-textfield.outlined.error {
+    -fx-border-color: #F44336;
+}
+
+.cfx-textfield.outlined.error:focused {
+    -fx-border-color: #F44336;
+    -fx-border-width: 2px;
+}
+
+/* ===== FILLED VARIANT ===== */
+.cfx-textfield.filled {
+    -fx-background-color: rgba(0, 0, 0, 0.06);
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.38) transparent;
+    -fx-background-radius: 4px 4px 0 0;
+    -fx-border-radius: 0;
+}
+
+.cfx-textfield.filled:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.09);
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.87) transparent;
+}
+
+.cfx-textfield.filled:focused {
+    -fx-background-color: rgba(0, 0, 0, 0.09);
+    -fx-border-color: transparent transparent #2196F3 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.cfx-textfield.filled.error {
+    -fx-border-color: transparent transparent #F44336 transparent;
+}
+
+.cfx-textfield.filled.error:focused {
+    -fx-border-color: transparent transparent #F44336 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+/* ===== FLOATING LABEL ===== */
+.cfx-textfield-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(0, 0, 0, 0.60);
+    -fx-translate-x: 12px;
+    -fx-padding: 0;
+}
+
+.cfx-textfield-label.floating {
+    -fx-font-size: 12px;
+    -fx-text-fill: #2196F3;
+    -fx-background-color: white;
+    -fx-padding: 0 4px;
+}
+
+.cfx-textfield.error .cfx-textfield-label.floating {
+    -fx-text-fill: #F44336;
+}
+
+.cfx-textfield.outlined .cfx-textfield-label.floating {
+    -fx-translate-x: 8px;
+}
+
+/* ===== HELPER TEXT ===== */
+.cfx-textfield-helper {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(0, 0, 0, 0.60);
+    -fx-padding: 4px 12px 0 12px;
+}
+
+.cfx-textfield-error {
+    -fx-font-size: 12px;
+    -fx-text-fill: #F44336;
+    -fx-padding: 4px 12px 0 12px;
+}
+
+/* ===== ICONS ===== */
+.cfx-textfield-leading-icon {
+    -fx-translate-x: 12px;
+    -fx-fill: rgba(0, 0, 0, 0.54);
+}
+
+.cfx-textfield-trailing-icon {
+    -fx-translate-x: -12px;
+    -fx-fill: rgba(0, 0, 0, 0.54);
+}
+
+/* ===== DISABLED STATE ===== */
+.cfx-textfield:disabled {
+    -fx-opacity: 0.6;
+    -fx-text-fill: rgba(0, 0, 0, 0.38);
+}
+
+.cfx-textfield.outlined:disabled {
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+}
+
+.cfx-textfield.filled:disabled {
+    -fx-background-color: rgba(0, 0, 0, 0.03);
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.12) transparent;
+}
+
+/* ===== WITH ICONS PADDING ===== */
+.cfx-textfield.has-leading-icon {
+    -fx-padding: 16px 12px 16px 48px;
+}
+
+.cfx-textfield.has-trailing-icon {
+    -fx-padding: 16px 48px 16px 12px;
+}
+
+.cfx-textfield.has-both-icons {
+    -fx-padding: 16px 48px 16px 48px;
+}

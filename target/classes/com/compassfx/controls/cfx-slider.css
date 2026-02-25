@@ -1,0 +1,162 @@
+/* ============================================ */
+/* CFX-SLIDER.CSS - Slider Styles */
+/* src/main/resources/com/compassfx/controls/cfx-slider.css */
+/* ============================================ */
+
+/* ===== HORIZONTAL SLIDER ===== */
+
+.cfx-slider {
+    -fx-cursor: hand;
+}
+
+/* Track (background) */
+.cfx-slider .track {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 2px;
+    -fx-pref-height: 4px;
+}
+
+/* Filled track (progress) */
+.cfx-slider .track .filled {
+    -fx-background-color: #2196F3;
+    -fx-background-radius: 2px;
+}
+
+/* Thumb (handle) */
+.cfx-slider .thumb {
+    -fx-background-color: #2196F3;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0.3, 0, 1);
+}
+
+.cfx-slider:hover .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0.4, 0, 1);
+}
+
+.cfx-slider:focused .thumb {
+    -fx-background-color: #2196F3;
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.4), 6, 0.5, 0, 0);
+}
+
+/* ===== VERTICAL SLIDER ===== */
+
+.cfx-slider.vertical .track {
+    -fx-pref-width: 4px;
+    -fx-pref-height: -1;
+}
+
+/* ===== COLOR VARIANTS ===== */
+
+/* Primary (default) */
+.cfx-slider.primary .track .filled {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-slider.primary .thumb {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-slider.primary:focused .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.4), 6, 0.5, 0, 0);
+}
+
+/* Secondary */
+.cfx-slider.secondary .track .filled {
+    -fx-background-color: #9C27B0;
+}
+
+.cfx-slider.secondary .thumb {
+    -fx-background-color: #9C27B0;
+}
+
+.cfx-slider.secondary:focused .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(156, 39, 176, 0.4), 6, 0.5, 0, 0);
+}
+
+/* Success */
+.cfx-slider.success .track .filled {
+    -fx-background-color: #4CAF50;
+}
+
+.cfx-slider.success .thumb {
+    -fx-background-color: #4CAF50;
+}
+
+.cfx-slider.success:focused .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.4), 6, 0.5, 0, 0);
+}
+
+/* Warning */
+.cfx-slider.warning .track .filled {
+    -fx-background-color: #FF9800;
+}
+
+.cfx-slider.warning .thumb {
+    -fx-background-color: #FF9800;
+}
+
+.cfx-slider.warning:focused .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(255, 152, 0, 0.4), 6, 0.5, 0, 0);
+}
+
+/* Error */
+.cfx-slider.error .track .filled {
+    -fx-background-color: #F44336;
+}
+
+.cfx-slider.error .thumb {
+    -fx-background-color: #F44336;
+}
+
+.cfx-slider.error:focused .thumb {
+    -fx-effect: dropshadow(gaussian, rgba(244, 67, 54, 0.4), 6, 0.5, 0, 0);
+}
+
+/* ===== DISCRETE SLIDER (with tick marks) ===== */
+
+.cfx-slider.discrete {
+    -fx-show-tick-marks: true;
+    -fx-show-tick-labels: false;
+}
+
+.cfx-slider.discrete .axis {
+    -fx-tick-mark-fill: #BDBDBD;
+    -fx-tick-label-fill: rgba(0, 0, 0, 0.6);
+}
+
+.cfx-slider.discrete .track .tick-mark {
+    -fx-fill: #BDBDBD;
+    -fx-stroke: null;
+}
+
+/* ===== WITH LABELS ===== */
+
+.cfx-slider.with-labels {
+    -fx-show-tick-labels: true;
+}
+
+.cfx-slider.with-labels .axis {
+    -fx-tick-label-fill: rgba(0, 0, 0, 0.6);
+    -fx-tick-label-font-size: 11px;
+}
+
+/* ===== DISABLED STATE ===== */
+
+.cfx-slider:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+.cfx-slider:disabled .track {
+    -fx-background-color: #F5F5F5;
+}
+
+.cfx-slider:disabled .track .filled {
+    -fx-background-color: #BDBDBD;
+}
+
+.cfx-slider:disabled .thumb {
+    -fx-background-color: #BDBDBD;
+}

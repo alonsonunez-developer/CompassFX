@@ -1,0 +1,116 @@
+/* ============================================ */
+/* CFX-SNACKBAR.CSS - Snackbar/Toast Styles */
+/* src/main/resources/com/compassfx/controls/cfx-snackbar.css */
+/* ============================================ */
+
+.cfx-snackbar {
+    -fx-background-color: #323232;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.3, 0, 4);
+    -fx-min-width: 288px;
+    -fx-max-width: 568px;
+}
+
+/* Message Label */
+.cfx-snackbar-message {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: "System";
+    -fx-wrap-text: true;
+}
+
+/* Action Button */
+.cfx-snackbar-action {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4CAF50;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: transparent;
+}
+
+.cfx-snackbar-action:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cfx-snackbar-action:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Close Button */
+.cfx-snackbar-close {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-padding: 4px 8px;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-border-color: transparent;
+}
+
+.cfx-snackbar-close:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-text-fill: white;
+}
+
+.cfx-snackbar-close:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== TYPE VARIANTS ===== */
+
+/* Default (already defined above) */
+.cfx-snackbar.default {
+    -fx-background-color: #323232;
+}
+
+.cfx-snackbar.default .cfx-snackbar-action {
+    -fx-text-fill: #4CAF50;
+}
+
+/* Success */
+.cfx-snackbar.success {
+    -fx-background-color: #4CAF50;
+}
+
+.cfx-snackbar.success .cfx-snackbar-action {
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+/* Warning */
+.cfx-snackbar.warning {
+    -fx-background-color: #FF9800;
+}
+
+.cfx-snackbar.warning .cfx-snackbar-action {
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+/* Error */
+.cfx-snackbar.error {
+    -fx-background-color: #F44336;
+}
+
+.cfx-snackbar.error .cfx-snackbar-action {
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+/* Info */
+.cfx-snackbar.info {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-snackbar.info .cfx-snackbar-action {
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+/* ===== POSITION VARIANTS ===== */
+/* Positions are handled in Java code through x/y coordinates */

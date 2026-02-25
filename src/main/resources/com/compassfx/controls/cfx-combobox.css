@@ -1,0 +1,194 @@
+/* ============================================ */
+/* CFX-COMBOBOX.CSS - ComboBox Styles */
+/* src/main/resources/com/compassfx/controls/cfx-combobox.css */
+/* ============================================ */
+
+/* Base ComboBox Styles */
+.cfx-combobox {
+    -fx-font-family: "System";
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-min-width: 200px;
+    -fx-cursor: hand;
+}
+
+/* ComboBox button area */
+.cfx-combobox .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 8px 0 0;
+}
+
+.cfx-combobox .arrow {
+    -fx-background-color: rgba(0, 0, 0, 0.54);
+    -fx-padding: 4px;
+    -fx-shape: "M 0 0 L 4 5 L 8 0 Z";
+}
+
+.cfx-combobox:hover .arrow {
+    -fx-background-color: rgba(0, 0, 0, 0.87);
+}
+
+.cfx-combobox:focused .arrow,
+.cfx-combobox:showing .arrow {
+    -fx-background-color: #2196F3;
+}
+
+/* ===== OUTLINED VARIANT ===== */
+.cfx-combobox.outlined {
+    -fx-border-color: rgba(0, 0, 0, 0.38);
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-color: transparent;
+}
+
+.cfx-combobox.outlined:hover {
+    -fx-border-color: rgba(0, 0, 0, 0.87);
+}
+
+.cfx-combobox.outlined:focused,
+.cfx-combobox.outlined:showing {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-background-color: transparent;
+}
+
+.cfx-combobox.outlined.error {
+    -fx-border-color: #F44336;
+}
+
+.cfx-combobox.outlined.error:focused,
+.cfx-combobox.outlined.error:showing {
+    -fx-border-color: #F44336;
+    -fx-border-width: 2px;
+}
+
+/* ===== FILLED VARIANT ===== */
+.cfx-combobox.filled {
+    -fx-background-color: rgba(0, 0, 0, 0.06);
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.38) transparent;
+    -fx-background-radius: 4px 4px 0 0;
+    -fx-border-radius: 0;
+}
+
+.cfx-combobox.filled:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.09);
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.87) transparent;
+}
+
+.cfx-combobox.filled:focused,
+.cfx-combobox.filled:showing {
+    -fx-background-color: rgba(0, 0, 0, 0.09);
+    -fx-border-color: transparent transparent #2196F3 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.cfx-combobox.filled.error {
+    -fx-border-color: transparent transparent #F44336 transparent;
+}
+
+.cfx-combobox.filled.error:focused,
+.cfx-combobox.filled.error:showing {
+    -fx-border-color: transparent transparent #F44336 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+/* ===== LIST CELL ===== */
+.cfx-combobox .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    /*-fx-padding: 12px 16px;*/
+}
+
+.cfx-combobox .list-cell:filled:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.04);
+}
+
+/*.cfx-combobox .list-cell:filled:selected {
+    -fx-background-color: rgba(33, 150, 243, 0.12);
+    -fx-text-fill: #2196F3;
+}*/
+
+/* ===== POPUP ===== */
+.cfx-combobox-popup .list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0.3, 0, 2);
+    -fx-padding: 8px 0;
+}
+
+.cfx-combobox-popup .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-padding: 12px 16px;
+}
+
+.cfx-combobox-popup .list-view .list-cell:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.04);
+}
+
+.cfx-combobox-popup .list-view .list-cell:selected {
+    -fx-background-color: rgba(33, 150, 243, 0.12);
+    -fx-text-fill: #2196F3;
+}
+
+/* ===== FLOATING LABEL ===== */
+.cfx-combobox-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(0, 0, 0, 0.60);
+    -fx-padding: 0;
+}
+
+.cfx-combobox-label.floating {
+    -fx-font-size: 12px;
+    -fx-text-fill: #2196F3;
+    -fx-background-color: white;
+    -fx-padding: 0 4px;
+}
+
+.cfx-combobox.error .cfx-combobox-label.floating {
+    -fx-text-fill: #F44336;
+}
+
+.cfx-combobox.outlined .cfx-combobox-label.floating {
+    -fx-translate-x: 8px;
+}
+
+/* ===== HELPER TEXT ===== */
+.cfx-combobox-helper {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(0, 0, 0, 0.60);
+    -fx-padding: 4px 12px 0 12px;
+}
+
+.cfx-combobox-error {
+    -fx-font-size: 12px;
+    -fx-text-fill: #F44336;
+    -fx-padding: 4px 12px 0 12px;
+}
+
+/* ===== DISABLED STATE ===== */
+.cfx-combobox:disabled {
+    -fx-opacity: 0.6;
+}
+
+.cfx-combobox.outlined:disabled {
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+}
+
+.cfx-combobox.filled:disabled {
+    -fx-background-color: rgba(0, 0, 0, 0.03);
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.12) transparent;
+}
+
+.cfx-combobox:disabled .arrow {
+    -fx-background-color: rgba(0, 0, 0, 0.26);
+}
+
+/* Remove default focus indicator */
+.cfx-combobox:focused {
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
+}

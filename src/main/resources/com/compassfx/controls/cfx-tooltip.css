@@ -1,0 +1,93 @@
+/* ============================================ */
+/* CFX-TOOLTIP.CSS - Tooltip Styles */
+/* src/main/resources/com/compassfx/controls/cfx-tooltip.css */
+/* ============================================ */
+
+.cfx-tooltip {
+    -fx-background-color: rgba(97, 97, 97, 0.95);
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0.3, 0, 2);
+}
+
+/* Content */
+.cfx-tooltip-content {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-family: "System";
+    -fx-wrap-text: true;
+}
+
+/* Position variants with arrow indicators */
+.cfx-tooltip.with-arrow.top {
+    -fx-padding: 8px 12px 12px 12px;
+}
+
+.cfx-tooltip.with-arrow.bottom {
+    -fx-padding: 12px 12px 8px 12px;
+}
+
+.cfx-tooltip.with-arrow.left {
+    -fx-padding: 8px 12px 8px 16px;
+}
+
+.cfx-tooltip.with-arrow.right {
+    -fx-padding: 8px 16px 8px 12px;
+}
+
+/* Dark variant (default) */
+.cfx-tooltip.dark {
+    -fx-background-color: rgba(97, 97, 97, 0.95);
+}
+
+.cfx-tooltip.dark .cfx-tooltip-content {
+    -fx-text-fill: white;
+}
+
+/* Light variant */
+.cfx-tooltip.light {
+    -fx-background-color: rgba(255, 255, 255, 0.98);
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+}
+
+.cfx-tooltip.light .cfx-tooltip-content {
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+/* Primary color variant */
+.cfx-tooltip.primary {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-tooltip.primary .cfx-tooltip-content {
+    -fx-text-fill: white;
+}
+
+/* Success color variant */
+.cfx-tooltip.success {
+    -fx-background-color: #4CAF50;
+}
+
+.cfx-tooltip.success .cfx-tooltip-content {
+    -fx-text-fill: white;
+}
+
+/* Warning color variant */
+.cfx-tooltip.warning {
+    -fx-background-color: #FF9800;
+}
+
+.cfx-tooltip.warning .cfx-tooltip-content {
+    -fx-text-fill: white;
+}
+
+/* Error color variant */
+.cfx-tooltip.error {
+    -fx-background-color: #F44336;
+}
+
+.cfx-tooltip.error .cfx-tooltip-content {
+    -fx-text-fill: white;
+}
