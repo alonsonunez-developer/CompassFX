@@ -253,7 +253,7 @@ public class TabsDemo extends Application {
         primaryStage.show();
     }
 
-    private VBox createContent(String titleText, String description) {
+    static VBox createContent(String titleText, String description) {
         VBox content = new VBox(15);
         content.setPadding(new Insets(20));
         content.setAlignment(Pos.TOP_LEFT);
