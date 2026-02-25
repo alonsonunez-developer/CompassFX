@@ -87,11 +87,13 @@ public class CompassFXPlayground extends Application {
 
         settingsDrawer = createSettingsDrawer();
 
+        notificationsDrawer = createNotificationsDrawer();
+
         // Show welcome page
         showWelcomePage();
 
         // Root with drawer
-        StackPane rootWithDrawer = new StackPane(root, navigationDrawer, settingsDrawer);
+        StackPane rootWithDrawer = new StackPane(root, navigationDrawer, settingsDrawer, notificationsDrawer);
 
         Scene scene = new Scene(rootWithDrawer, 1200, 800);
         CompassFX.applyLightTheme(scene);
@@ -222,6 +224,46 @@ public class CompassFXPlayground extends Application {
         );
 
         drawer.setContent(form);
+
+        return drawer;
+    }
+
+    private CFXDrawer createNotificationsDrawer() {
+        CFXDrawer drawer = new CFXDrawer();
+        drawer.setPosition(DrawerPosition.TOP);
+        drawer.setSize(DrawerSize.SMALL);
+
+        VBox notifications = new VBox(10);
+        notifications.setAlignment(Pos.TOP_LEFT);
+
+        Label notifTitle = new Label("Recent Notifications");
+        notifTitle.setFont(Font.font("System", FontWeight.BOLD, 18));
+
+        notifications.getChildren().add(notifTitle);
+
+        String[][] notifs = {
+                {"New message from John", "2 minutes ago"},
+                {"Your report is ready", "1 hour ago"},
+                {"System update available", "3 hours ago"}
+        };
+
+        for (String[] notif : notifs) {
+            VBox notifBox = new VBox(3);
+            notifBox.setPadding(new Insets(10));
+            notifBox.setStyle("-fx-background-color: white; -fx-background-radius: 6px; " +
+                    "-fx-border-color: #E0E0E0; -fx-border-width: 1px; -fx-border-radius: 6px;");
+
+            Label notifText = new Label(notif[0]);
+            notifText.setFont(Font.font("System", FontWeight.MEDIUM, 14));
+
+            Label notifTime = new Label(notif[1]);
+            notifTime.setStyle("-fx-text-fill: #999; -fx-font-size: 12px;");
+
+            notifBox.getChildren().addAll(notifText, notifTime);
+            notifications.getChildren().add(notifBox);
+        }
+
+        drawer.setContent(notifications);
 
         return drawer;
     }
@@ -2652,7 +2694,19 @@ public class CompassFXPlayground extends Application {
 
         rightSection.getChildren().addAll(rightLabel, openRightBtn);
 
-        buttons.getChildren().addAll(openBtn, openRightBtn);
+        VBox topSection = new VBox(10);
+        topSection.setAlignment(Pos.CENTER);
+
+        Label topLabel = new Label("Top Drawer - Notifications");
+        topLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
+
+        CFXButton openTopBtn = new CFXButton("Open Top Drawer");
+        openTopBtn.setColor(ButtonColor.WARNING);
+        openTopBtn.setOnAction(e -> notificationsDrawer.open());
+
+        topSection.getChildren().addAll(topLabel, openTopBtn);
+
+        buttons.getChildren().addAll(openBtn, openRightBtn, openTopBtn);
 
         contentArea.getChildren().addAll(info, buttons);
     }
