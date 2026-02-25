@@ -89,11 +89,13 @@ public class CompassFXPlayground extends Application {
 
         notificationsDrawer = createNotificationsDrawer();
 
+        actionsDrawer = createActionsDrawer();
+
         // Show welcome page
         showWelcomePage();
 
         // Root with drawer
-        StackPane rootWithDrawer = new StackPane(root, navigationDrawer, settingsDrawer, notificationsDrawer);
+        StackPane rootWithDrawer = new StackPane(root, navigationDrawer, settingsDrawer, notificationsDrawer, actionsDrawer);
 
         Scene scene = new Scene(rootWithDrawer, 1200, 800);
         CompassFX.applyLightTheme(scene);
@@ -264,6 +266,28 @@ public class CompassFXPlayground extends Application {
         }
 
         drawer.setContent(notifications);
+
+        return drawer;
+    }
+
+    private CFXDrawer createActionsDrawer() {
+        CFXDrawer drawer = new CFXDrawer();
+        drawer.setPosition(DrawerPosition.BOTTOM);
+        drawer.setSize(DrawerSize.SMALL);
+
+        HBox actions = new HBox(15);
+        actions.setAlignment(Pos.CENTER);
+        actions.setPadding(new Insets(20));
+
+        CFXButton shareBtn = new CFXButton("📤 Share");
+        CFXButton downloadBtn = new CFXButton("⬇️ Download");
+        CFXButton deleteBtn = new CFXButton("🗑️ Delete");
+        deleteBtn.setColor(ButtonColor.ERROR);
+        CFXButton moreBtn = new CFXButton("⋮ More");
+        moreBtn.setColor(ButtonColor.SECONDARY);
+
+        actions.getChildren().addAll(shareBtn, downloadBtn, deleteBtn, moreBtn);
+        drawer.setContent(actions);
 
         return drawer;
     }
@@ -2706,7 +2730,19 @@ public class CompassFXPlayground extends Application {
 
         topSection.getChildren().addAll(topLabel, openTopBtn);
 
-        buttons.getChildren().addAll(openBtn, openRightBtn, openTopBtn);
+        VBox bottomSection = new VBox(10);
+        bottomSection.setAlignment(Pos.CENTER);
+
+        Label bottomLabel = new Label("Bottom Drawer - Actions Menu");
+        bottomLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
+
+        CFXButton openBottomBtn = new CFXButton("Open Bottom Drawer");
+        openBottomBtn.setColor(ButtonColor.ERROR);
+        openBottomBtn.setOnAction(e -> actionsDrawer.open());
+
+        bottomSection.getChildren().addAll(bottomLabel, openBottomBtn);
+
+        buttons.getChildren().addAll(openBtn, openTopBtn, openRightBtn, openBottomBtn);
 
         contentArea.getChildren().addAll(info, buttons);
     }
