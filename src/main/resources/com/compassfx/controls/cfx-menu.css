@@ -1,0 +1,194 @@
+/* ============================================ */
+/* CFX-MENU.CSS - Menu Styles */
+/* src/main/resources/com/compassfx/controls/cfx-menu.css */
+/* ============================================ */
+
+/* MenuBar Container */
+.cfx-menubar {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.menubar-container {
+    -fx-padding: 0;
+}
+
+/* Menu Button */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover,
+.menu-button.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.08);
+}
+
+.menu-button .label {
+    -fx-text-fill: #212121;
+    -fx-font-size: 14px;
+}
+
+.menu-arrow {
+    -fx-text-fill: #757575;
+    -fx-font-size: 10px;
+}
+
+/* Menu Dropdown */
+.menu-dropdown {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 12, 0.3, 0, 4);
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-translate-y: 8px;
+}
+
+/* Menu Item */
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.menu-item:hover,
+.menu-item.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.08);
+}
+
+.menu-item .label {
+    -fx-text-fill: #212121;
+    -fx-font-size: 14px;
+}
+
+.menu-item:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+.submenu-arrow {
+    -fx-text-fill: #757575;
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+}
+
+.accelerator-label {
+    -fx-text-fill: #9E9E9E;
+    -fx-font-size: 12px;
+    -fx-font-family: monospace;
+}
+
+/* Menu Separator */
+.menu-separator {
+    -fx-background-color: #E0E0E0;
+}
+
+.menu-separator .line {
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Context Menu */
+.cfx-context-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 12, 0.3, 0, 4);
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-padding: 8px 0;
+}
+
+.context-menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.context-menu-item:hover,
+.context-menu-item.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.08);
+}
+
+.context-menu-item .label {
+    -fx-text-fill: #212121;
+    -fx-font-size: 14px;
+}
+
+/* MenuBar Variants */
+
+/* Elevated Variant */
+.cfx-menubar.elevated {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0.2, 0, 2);
+    -fx-border-width: 0;
+}
+
+/* Minimal Variant */
+.cfx-menubar.minimal {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.cfx-menubar.minimal .menu-button {
+    -fx-padding: 8px 12px;
+}
+
+/* Dark Theme */
+.dark-theme .cfx-menubar {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .menu-button .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.dark-theme .menu-button:hover,
+.dark-theme .menu-button.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.15);
+}
+
+.dark-theme .menu-dropdown {
+    -fx-background-color: #2C2C2C;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .menu-item .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.dark-theme .menu-item:hover,
+.dark-theme .menu-item.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.15);
+}
+
+.dark-theme .menu-arrow,
+.dark-theme .submenu-arrow {
+    -fx-text-fill: rgba(255, 255, 255, 0.6);
+}
+
+.dark-theme .accelerator-label {
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+
+.dark-theme .menu-separator .line {
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .cfx-context-menu {
+    -fx-background-color: #2C2C2C;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .context-menu-item .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.87);
+}
+
+.dark-theme .context-menu-item:hover,
+.dark-theme .context-menu-item.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.15);
+}

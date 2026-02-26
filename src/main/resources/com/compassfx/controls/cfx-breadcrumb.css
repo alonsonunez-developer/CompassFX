@@ -1,0 +1,150 @@
+/* ============================================ */
+/* CFX-BREADCRUMB.CSS - Breadcrumb Styles */
+/* src/main/resources/com/compassfx/controls/cfx-breadcrumb.css */
+/* ============================================ */
+
+/* Base Breadcrumb */
+.cfx-breadcrumb {
+    -fx-background-color: transparent;
+}
+
+.breadcrumb-container {
+    -fx-padding: 8px 0;
+}
+
+/* Breadcrumb Item */
+.breadcrumb-item {
+    -fx-background-color: transparent;
+    -fx-padding: 6px 10px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+.breadcrumb-item.clickable {
+    -fx-cursor: hand;
+}
+
+.breadcrumb-item.clickable.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.08);
+}
+
+.breadcrumb-text {
+    -fx-text-fill: #616161;
+    -fx-font-size: 14px;
+}
+
+.breadcrumb-text.current {
+    -fx-text-fill: #2196F3;
+    -fx-font-weight: bold;
+}
+
+.breadcrumb-text.hover {
+    -fx-text-fill: #2196F3;
+}
+
+/* Separator */
+.breadcrumb-separator {
+    -fx-text-fill: #9E9E9E;
+    -fx-font-size: 14px;
+    -fx-padding: 0 4px;
+}
+
+/* Home Icon */
+.breadcrumb-home-icon {
+    -fx-padding: 6px 8px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+.breadcrumb-home-icon.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.08);
+}
+
+/* Breadcrumb Icon */
+.breadcrumb-icon {
+    -fx-padding: 0 2px 0 0;
+}
+
+/* Ellipsis */
+.breadcrumb-ellipsis {
+    -fx-text-fill: #9E9E9E;
+    -fx-font-size: 14px;
+    -fx-padding: 6px 10px;
+}
+
+/* ===== VARIANTS ===== */
+
+/* Standard Variant (default) */
+.cfx-breadcrumb.standard .breadcrumb-item {
+    -fx-background-color: transparent;
+}
+
+/* Outlined Variant */
+.cfx-breadcrumb.outlined .breadcrumb-item {
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+}
+
+.cfx-breadcrumb.outlined .breadcrumb-item.clickable.hover {
+    -fx-border-color: #2196F3;
+    -fx-background-color: rgba(33, 150, 243, 0.05);
+}
+
+.cfx-breadcrumb.outlined .breadcrumb-item .breadcrumb-text.current {
+    -fx-border-color: #2196F3;
+}
+
+/* Filled Variant */
+.cfx-breadcrumb.filled .breadcrumb-item {
+    -fx-background-color: #F5F5F5;
+}
+
+.cfx-breadcrumb.filled .breadcrumb-item.clickable.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.15);
+}
+
+.cfx-breadcrumb.filled .breadcrumb-item .breadcrumb-text.current {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-breadcrumb.filled .breadcrumb-home-icon {
+    -fx-background-color: #F5F5F5;
+}
+
+/* ===== DARK THEME ===== */
+
+.dark-theme .breadcrumb-text {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .breadcrumb-text.current {
+    -fx-text-fill: #2196F3;
+}
+
+.dark-theme .breadcrumb-text.hover {
+    -fx-text-fill: #2196F3;
+}
+
+.dark-theme .breadcrumb-separator {
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+
+.dark-theme .breadcrumb-ellipsis {
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+
+.dark-theme.cfx-breadcrumb.outlined .breadcrumb-item {
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme.cfx-breadcrumb.outlined .breadcrumb-item.clickable.hover {
+    -fx-border-color: #2196F3;
+}
+
+.dark-theme.cfx-breadcrumb.filled .breadcrumb-item {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme.cfx-breadcrumb.filled .breadcrumb-home-icon {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}

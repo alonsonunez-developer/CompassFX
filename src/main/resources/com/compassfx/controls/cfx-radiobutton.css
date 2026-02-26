@@ -1,0 +1,76 @@
+
+.cfx-radiobutton {
+    -fx-font-family: "System";
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-cursor: hand;
+}
+
+/* Hide default radio button circle */
+.cfx-radiobutton .radio {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0, 0, 0, 0.54);
+    -fx-border-width: 2px;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-padding: 9px;
+}
+
+/* Hover state */
+.cfx-radiobutton:hover .radio {
+    -fx-border-color: rgba(0, 0, 0, 0.87);
+}
+
+/* Selected state - outer circle */
+.cfx-radiobutton:selected .radio {
+    -fx-border-color: #2196F3;
+}
+
+.cfx-radiobutton:selected:hover .radio {
+    -fx-border-color: #1E88E5;
+}
+
+/* Inner dot when selected */
+.cfx-radiobutton .dot {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-padding: 5px;
+}
+
+.cfx-radiobutton:selected .dot {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-radiobutton:selected:hover .dot {
+    -fx-background-color: #1E88E5;
+}
+
+/* Focus state */
+.cfx-radiobutton:focused .radio {
+    -fx-border-color: #2196F3;
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.4), 4, 0.3, 0, 0);
+}
+
+/* Disabled state */
+.cfx-radiobutton:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+.cfx-radiobutton:disabled .radio {
+    -fx-border-color: rgba(0, 0, 0, 0.26);
+}
+
+.cfx-radiobutton:disabled:selected .radio {
+    -fx-border-color: rgba(0, 0, 0, 0.26);
+}
+
+.cfx-radiobutton:disabled:selected .dot {
+    -fx-background-color: rgba(0, 0, 0, 0.26);
+}
+
+/* Ripple container */
+.cfx-radiobutton-ripple-container {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+}

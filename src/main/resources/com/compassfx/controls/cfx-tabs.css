@@ -1,0 +1,225 @@
+/* ============================================ */
+/* CFX-TABS.CSS - Tabs Styles */
+/* src/main/resources/com/compassfx/controls/cfx-tabs.css */
+/* ============================================ */
+
+/* Tabs Container */
+.cfx-tabs {
+    -fx-background-color: transparent;
+}
+
+.tabs-container {
+    -fx-background-color: transparent;
+}
+
+/* Tab Bar */
+.tab-bar {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0;
+}
+
+/* Tab Button */
+.tab-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.tab-button:hover,
+.tab-button.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.08);
+}
+
+.tab-button.selected {
+    -fx-background-color: transparent;
+}
+
+.tab-text {
+    -fx-text-fill: #616161;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+.tab-button.selected .tab-text {
+    -fx-text-fill: #2196F3;
+    -fx-font-weight: 600;
+}
+
+.tab-button:disabled .tab-text {
+    -fx-text-fill: #BDBDBD;
+}
+
+/* Tab Icon */
+.tab-icon {
+    -fx-opacity: 0.7;
+}
+
+.tab-button.selected .tab-icon {
+    -fx-opacity: 1.0;
+}
+
+/* Close Button */
+.tab-close-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #757575;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.tab-close-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+    -fx-text-fill: #F44336;
+}
+
+/* Active Indicator */
+.tab-indicator {
+    -fx-background-color: #2196F3;
+    -fx-background-radius: 2px 2px 0 0;
+}
+
+/* Content Area */
+.tab-content {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+}
+
+/* ===== VARIANTS ===== */
+
+/* Standard Variant (default) */
+.cfx-tabs.standard .tab-bar {
+    -fx-border-width: 0 0 1 0;
+}
+
+.cfx-tabs.standard .tab-indicator {
+    -fx-background-radius: 2px 2px 0 0;
+}
+
+/* Filled Variant */
+.cfx-tabs.filled .tab-button.selected {
+    -fx-background-color: #E3F2FD;
+}
+
+.cfx-tabs.filled .tab-indicator {
+    -fx-opacity: 0;
+}
+
+/* Pills Variant */
+.cfx-tabs.pills .tab-bar {
+    -fx-border-width: 0;
+    -fx-padding: 8px;
+}
+
+.cfx-tabs.pills .tab-button {
+    -fx-background-radius: 20px;
+    -fx-padding: 8px 16px;
+}
+
+.cfx-tabs.pills .tab-button.selected {
+    -fx-background-color: #2196F3;
+}
+
+.cfx-tabs.pills .tab-button.selected .tab-text {
+    -fx-text-fill: white;
+}
+
+.cfx-tabs.pills .tab-indicator {
+    -fx-opacity: 0;
+}
+
+/* Underline Variant */
+.cfx-tabs.underline .tab-bar {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #E0E0E0;
+}
+
+.cfx-tabs.underline .tab-button {
+    -fx-padding: 12px 16px;
+}
+
+.cfx-tabs.underline .tab-indicator {
+    -fx-min-height: 2px;
+    -fx-pref-height: 2px;
+}
+
+/* ===== POSITIONS ===== */
+
+/* Top Position (default) */
+.cfx-tabs.top .tab-bar {
+    -fx-border-width: 0 0 1 0;
+}
+
+.cfx-tabs.top .tab-indicator {
+    -fx-background-radius: 2px 2px 0 0;
+}
+
+/* Bottom Position */
+.cfx-tabs.bottom .tab-bar {
+    -fx-border-width: 1 0 0 0;
+}
+
+.cfx-tabs.bottom .tab-indicator {
+    -fx-background-radius: 0 0 2px 2px;
+}
+
+/* Left Position */
+.cfx-tabs.left .tab-bar {
+    -fx-border-width: 0 1 0 0;
+}
+
+.cfx-tabs.left .tab-button {
+    -fx-alignment: center-left;
+    -fx-padding: 12px 20px;
+}
+
+/* Right Position */
+.cfx-tabs.right .tab-bar {
+    -fx-border-width: 0 0 0 1;
+}
+
+.cfx-tabs.right .tab-button {
+    -fx-alignment: center-right;
+    -fx-padding: 12px 20px;
+}
+
+/* ===== DARK THEME ===== */
+
+.dark-theme .tab-bar {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .tab-text {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .tab-button.selected .tab-text {
+    -fx-text-fill: #2196F3;
+}
+
+.dark-theme .tab-button:hover,
+.dark-theme .tab-button.hover {
+    -fx-background-color: rgba(33, 150, 243, 0.15);
+}
+
+.dark-theme .tab-content {
+    -fx-background-color: #2C2C2C;
+}
+
+.dark-theme.cfx-tabs.filled .tab-button.selected {
+    -fx-background-color: rgba(33, 150, 243, 0.2);
+}
+
+.dark-theme .tab-close-button {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme .tab-close-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}

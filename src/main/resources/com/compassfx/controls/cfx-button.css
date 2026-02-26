@@ -1,0 +1,283 @@
+
+.cfx-button {
+    -fx-font-family: "System";
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-cursor: hand;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-padding: 8px 16px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+/* ===== SIZE VARIANTS ===== */
+.cfx-button.small {
+    -fx-font-size: 12px;
+    -fx-padding: 4px 12px;
+}
+
+.cfx-button.medium {
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+}
+
+.cfx-button.large {
+    -fx-font-size: 16px;
+    -fx-padding: 12px 24px;
+}
+
+/* ===== CONTAINED VARIANT - PRIMARY ===== */
+.cfx-button.contained {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.16), 6, 0.3, 0, 3);
+}
+
+.cfx-button.contained:hover {
+    -fx-background-color: #1E88E5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.19), 10, 0.35, 0, 6);
+}
+
+.cfx-button.contained:pressed {
+    -fx-background-color: #1976D2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.19), 10, 0.35, 0, 6);
+}
+
+.cfx-button.contained:disabled {
+    -fx-background-color: #E0E0E0;
+    -fx-text-fill: rgba(0, 0, 0, 0.38);
+    -fx-effect: null;
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+/* ===== CONTAINED - SECONDARY ===== */
+.cfx-button.contained.secondary {
+    -fx-background-color: #9C27B0;
+}
+
+.cfx-button.contained.secondary:hover {
+    -fx-background-color: #8E24AA;
+}
+
+.cfx-button.contained.secondary:pressed {
+    -fx-background-color: #7B1FA2;
+}
+
+/* ===== CONTAINED - SUCCESS ===== */
+.cfx-button.contained.success {
+    -fx-background-color: #4CAF50;
+}
+
+.cfx-button.contained.success:hover {
+    -fx-background-color: #388E3C;
+}
+
+.cfx-button.contained.success:pressed {
+    -fx-background-color: #2E7D32;
+}
+
+/* ===== CONTAINED - WARNING ===== */
+.cfx-button.contained.warning {
+    -fx-background-color: #FF9800;
+}
+
+.cfx-button.contained.warning:hover {
+    -fx-background-color: #F57C00;
+}
+
+.cfx-button.contained.warning:pressed {
+    -fx-background-color: #EF6C00;
+}
+
+/* ===== CONTAINED - ERROR ===== */
+.cfx-button.contained.error {
+    -fx-background-color: #F44336;
+}
+
+.cfx-button.contained.error:hover {
+    -fx-background-color: #D32F2F;
+}
+
+.cfx-button.contained.error:pressed {
+    -fx-background-color: #C62828;
+}
+
+/* ===== OUTLINED VARIANT - PRIMARY ===== */
+.cfx-button.outlined {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2196F3;
+    -fx-border-color: #2196F3;
+    -fx-border-width: 1px;
+    -fx-effect: null;
+}
+
+.cfx-button.outlined:hover {
+    -fx-background-color: rgba(33, 150, 243, 0.04);
+    -fx-border-color: #1E88E5;
+    -fx-text-fill: #1E88E5;
+}
+
+.cfx-button.outlined:pressed {
+    -fx-background-color: rgba(33, 150, 243, 0.12);
+}
+
+.cfx-button.outlined:disabled {
+    -fx-border-color: #E0E0E0;
+    -fx-text-fill: rgba(0, 0, 0, 0.38);
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+/* ===== OUTLINED - SECONDARY ===== */
+.cfx-button.outlined.secondary {
+    -fx-text-fill: #9C27B0;
+    -fx-border-color: #9C27B0;
+}
+
+.cfx-button.outlined.secondary:hover {
+    -fx-background-color: rgba(156, 39, 176, 0.04);
+    -fx-border-color: #8E24AA;
+    -fx-text-fill: #8E24AA;
+}
+
+.cfx-button.outlined.secondary:pressed {
+    -fx-background-color: rgba(156, 39, 176, 0.12);
+}
+
+/* ===== OUTLINED - SUCCESS ===== */
+.cfx-button.outlined.success {
+    -fx-text-fill: #4CAF50;
+    -fx-border-color: #4CAF50;
+}
+
+.cfx-button.outlined.success:hover {
+    -fx-background-color: rgba(76, 175, 80, 0.04);
+    -fx-border-color: #388E3C;
+    -fx-text-fill: #388E3C;
+}
+
+/* ===== OUTLINED - WARNING ===== */
+.cfx-button.outlined.warning {
+    -fx-text-fill: #FF9800;
+    -fx-border-color: #FF9800;
+}
+
+.cfx-button.outlined.warning:hover {
+    -fx-background-color: rgba(255, 152, 0, 0.04);
+    -fx-border-color: #F57C00;
+    -fx-text-fill: #F57C00;
+}
+
+/* ===== OUTLINED - ERROR ===== */
+.cfx-button.outlined.error {
+    -fx-text-fill: #F44336;
+    -fx-border-color: #F44336;
+}
+
+.cfx-button.outlined.error:hover {
+    -fx-background-color: rgba(244, 67, 54, 0.04);
+    -fx-border-color: #D32F2F;
+    -fx-text-fill: #D32F2F;
+}
+
+/* ===== TEXT VARIANT - PRIMARY ===== */
+.cfx-button.text {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2196F3;
+    -fx-border-color: transparent;
+    -fx-effect: null;
+}
+
+.cfx-button.text:hover {
+    -fx-background-color: rgba(33, 150, 243, 0.04);
+    -fx-text-fill: #1E88E5;
+}
+
+.cfx-button.text:pressed {
+    -fx-background-color: rgba(33, 150, 243, 0.12);
+}
+
+.cfx-button.text:disabled {
+    -fx-text-fill: rgba(0, 0, 0, 0.38);
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+/* ===== TEXT - SECONDARY ===== */
+.cfx-button.text.secondary {
+    -fx-text-fill: #9C27B0;
+}
+
+.cfx-button.text.secondary:hover {
+    -fx-background-color: rgba(156, 39, 176, 0.04);
+    -fx-text-fill: #8E24AA;
+}
+
+.cfx-button.text.secondary:pressed {
+    -fx-background-color: rgba(156, 39, 176, 0.12);
+}
+
+/* ===== TEXT - SUCCESS ===== */
+.cfx-button.text.success {
+    -fx-text-fill: #4CAF50;
+}
+
+.cfx-button.text.success:hover {
+    -fx-background-color: rgba(76, 175, 80, 0.04);
+    -fx-text-fill: #388E3C;
+}
+
+/* ===== TEXT - WARNING ===== */
+.cfx-button.text.warning {
+    -fx-text-fill: #FF9800;
+}
+
+.cfx-button.text.warning:hover {
+    -fx-background-color: rgba(255, 152, 0, 0.04);
+    -fx-text-fill: #F57C00;
+}
+
+/* ===== TEXT - ERROR ===== */
+.cfx-button.text.error {
+    -fx-text-fill: #F44336;
+}
+
+.cfx-button.text.error:hover {
+    -fx-background-color: rgba(244, 67, 54, 0.04);
+    -fx-text-fill: #D32F2F;
+}
+
+/* ===== ICON BUTTON ===== */
+.cfx-button.icon {
+    -fx-padding: 8px;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.cfx-button.icon.small {
+    -fx-padding: 6px;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-pref-width: 32px;
+    -fx-pref-height: 32px;
+}
+
+.cfx-button.icon.large {
+    -fx-padding: 12px;
+    -fx-min-width: 48px;
+    -fx-min-height: 48px;
+    -fx-pref-width: 48px;
+    -fx-pref-height: 48px;
+}
+
+/* ===== FULL WIDTH ===== */
+.cfx-button.full-width {
+    -fx-max-width: Infinity;
+}
