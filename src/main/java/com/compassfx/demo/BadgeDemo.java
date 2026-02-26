@@ -1,8 +1,10 @@
 package com.compassfx.demo;
 
 import com.compassfx.CompassFX;
+import com.compassfx.controls.CFXAvatar;
 import com.compassfx.controls.CFXBadge;
 import com.compassfx.controls.CFXButton;
+import com.compassfx.enums.AvatarSize;
 import com.compassfx.enums.BadgeColor;
 import com.compassfx.enums.BadgePosition;
 import com.compassfx.enums.BadgeVariant;
@@ -15,10 +17,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class BadgeDemo extends Application {
@@ -29,78 +31,151 @@ public class BadgeDemo extends Application {
         root.setPadding(new Insets(40));
         root.setAlignment(Pos.TOP_CENTER);
         root.setStyle("-fx-background-color: #FAFAFA;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
 
         Label title = new Label("CompassFX Badge Demo");
         title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #212121;");
 
         // ====================================
-        // Basic Badges with Different Colors
+        // Standalone Pills (números solos)
         // ====================================
-        Label colorsLabel = new Label("Badge Colors");
-        colorsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+        Label pillsLabel = new Label("Standalone Badge Pills");
+        pillsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
-        HBox colorsBox = new HBox(20);
-        colorsBox.setAlignment(Pos.CENTER);
+        HBox pillsBox = new HBox(15);
+        pillsBox.setAlignment(Pos.CENTER);
 
-        CFXBadge defaultBadge = createBadge("Default", BadgeColor.DEFAULT, 4);
-        CFXBadge primaryBadge = createBadge("Primary", BadgeColor.PRIMARY, 3);
-        CFXBadge secondaryBadge = createBadge("Secondary", BadgeColor.SECONDARY, 7);
-        CFXBadge successBadge = createBadge("Success", BadgeColor.SUCCESS, 5);
-        CFXBadge warningBadge = createBadge("Warning", BadgeColor.WARNING, 12);
-        CFXBadge errorBadge = createBadge("Error", BadgeColor.ERROR, 2);
-        CFXBadge infoBadge = createBadge("Info", BadgeColor.INFO, 9);
-
-        colorsBox.getChildren().addAll(
-                defaultBadge, primaryBadge, secondaryBadge, successBadge,
-                warningBadge, errorBadge, infoBadge
+        pillsBox.getChildren().addAll(
+                createStandaloneBadge("4", BadgeColor.DEFAULT),
+                createStandaloneBadge("3", BadgeColor.PRIMARY),
+                createStandaloneBadge("7", BadgeColor.SECONDARY),
+                createStandaloneBadge("5", BadgeColor.SUCCESS),
+                createStandaloneBadge("12", BadgeColor.WARNING),
+                createStandaloneBadge("2", BadgeColor.ERROR),
+                createStandaloneBadge("9", BadgeColor.INFO)
         );
 
         // ====================================
-        // Badge Variants
+        // Text Pills
         // ====================================
-        Label variantsLabel = new Label("Badge Variants");
-        variantsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+        Label textPillsLabel = new Label("Text Badge Pills");
+        textPillsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
-        HBox variantsBox = new HBox(30);
-        variantsBox.setAlignment(Pos.CENTER);
+        HBox textPillsBox = new HBox(15);
+        textPillsBox.setAlignment(Pos.CENTER);
 
-        // Standard variant
-        CFXBadge standardBadge = new CFXBadge(createBox("Standard", Color.web("#2196F3")));
-        standardBadge.setValue(99);
-        standardBadge.setColor(BadgeColor.ERROR);
-
-        // Dot variant
-        CFXBadge dotBadge = new CFXBadge(createBox("Dot", Color.web("#4CAF50")));
-        dotBadge.setVariant(BadgeVariant.DOT);
-        dotBadge.setColor(BadgeColor.SUCCESS);
-
-        variantsBox.getChildren().addAll(standardBadge, dotBadge);
+        textPillsBox.getChildren().addAll(
+                createStandaloneBadge("NEW", BadgeColor.PRIMARY),
+                createStandaloneBadge("HOT", BadgeColor.ERROR),
+                createStandaloneBadge("SALE", BadgeColor.WARNING),
+                createStandaloneBadge("BETA", BadgeColor.INFO),
+                createStandaloneBadge("PRO", BadgeColor.SUCCESS)
+        );
 
         // ====================================
-        // Max Value (99+)
+        // Badges on Icons (con emojis)
         // ====================================
-        Label maxLabel = new Label("Max Value Display");
-        maxLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+        Label iconsLabel = new Label("Badges on Icons");
+        iconsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
-        HBox maxBox = new HBox(30);
-        maxBox.setAlignment(Pos.CENTER);
+        HBox iconsBox = new HBox(40);
+        iconsBox.setAlignment(Pos.CENTER);
 
-        CFXBadge badge50 = new CFXBadge(createBox("50", Color.web("#FF9800")));
-        badge50.setValue(50);
-        badge50.setColor(BadgeColor.WARNING);
+        // Mail icon with badge
+        Label mailIcon = new Label("📧");
+        mailIcon.setStyle("-fx-font-size: 48px;");
+        CFXBadge mailBadge = new CFXBadge(mailIcon);
+        mailBadge.setValue(5);
+        mailBadge.setColor(BadgeColor.ERROR);
 
-        CFXBadge badge100 = new CFXBadge(createBox("100", Color.web("#F44336")));
-        badge100.setValue(100);
-        badge100.setColor(BadgeColor.ERROR);
+        // Bell icon with badge
+        Label bellIcon = new Label("🔔");
+        bellIcon.setStyle("-fx-font-size: 48px;");
+        CFXBadge bellBadge = new CFXBadge(bellIcon);
+        bellBadge.setValue(15);
+        bellBadge.setColor(BadgeColor.WARNING);
 
-        CFXBadge badge999 = new CFXBadge(createBox("999", Color.web("#9C27B0")));
-        badge999.setValue(999);
-        badge999.setColor(BadgeColor.SECONDARY);
+        // Cart icon with badge
+        Label cartIcon = new Label("🛒");
+        cartIcon.setStyle("-fx-font-size: 48px;");
+        CFXBadge cartBadge = new CFXBadge(cartIcon);
+        cartBadge.setValue(3);
+        cartBadge.setColor(BadgeColor.SUCCESS);
 
-        maxBox.getChildren().addAll(badge50, badge100, badge999);
+        // Message icon with dot
+        Label msgIcon = new Label("💬");
+        msgIcon.setStyle("-fx-font-size: 48px;");
+        CFXBadge msgBadge = new CFXBadge(msgIcon);
+        msgBadge.setVariant(BadgeVariant.DOT);
+        msgBadge.setColor(BadgeColor.PRIMARY);
+
+        iconsBox.getChildren().addAll(mailBadge, bellBadge, cartBadge, msgBadge);
+
+        // ====================================
+        // Badges on Avatars
+        // ====================================
+        Label avatarsLabel = new Label("Badges on Avatars");
+        avatarsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        HBox avatarsBox = new HBox(40);
+        avatarsBox.setAlignment(Pos.CENTER);
+
+        // Avatar with number badge
+        CFXAvatar avatar1 = new CFXAvatar("JD");
+        avatar1.setAvatarSize(AvatarSize.LARGE);
+        avatar1.setColor(Color.web("#2196F3"));
+        CFXBadge avatarBadge1 = new CFXBadge(avatar1);
+        avatarBadge1.setValue(9);
+        avatarBadge1.setColor(BadgeColor.ERROR);
+
+        // Avatar with dot badge (online status)
+        CFXAvatar avatar2 = new CFXAvatar("AS");
+        avatar2.setAvatarSize(AvatarSize.LARGE);
+        avatar2.setColor(Color.web("#4CAF50"));
+        CFXBadge avatarBadge2 = new CFXBadge(avatar2);
+        avatarBadge2.setVariant(BadgeVariant.DOT);
+        avatarBadge2.setColor(BadgeColor.SUCCESS);
+        avatarBadge2.setPosition(BadgePosition.BOTTOM_RIGHT);
+
+        // Avatar with text badge
+        CFXAvatar avatar3 = new CFXAvatar("MK");
+        avatar3.setAvatarSize(AvatarSize.LARGE);
+        avatar3.setColor(Color.web("#FF9800"));
+        CFXBadge avatarBadge3 = new CFXBadge(avatar3);
+        avatarBadge3.setText("VIP");
+        avatarBadge3.setColor(BadgeColor.WARNING);
+
+        avatarsBox.getChildren().addAll(avatarBadge1, avatarBadge2, avatarBadge3);
+
+        // ====================================
+        // Badges on Buttons
+        // ====================================
+        Label buttonsLabel = new Label("Badges on Buttons");
+        buttonsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        HBox buttonsBox = new HBox(30);
+        buttonsBox.setAlignment(Pos.CENTER);
+
+        // Messages button with badge
+        CFXButton messagesBtn = new CFXButton("Messages");
+        messagesBtn.setVariant(ButtonVariant.CONTAINED);
+        CFXBadge messagesBadge = new CFXBadge(messagesBtn);
+        messagesBadge.setValue(7);
+        messagesBadge.setColor(BadgeColor.ERROR);
+
+        // Notifications button with badge
+        CFXButton notifBtn = new CFXButton("Notifications");
+        notifBtn.setVariant(ButtonVariant.OUTLINED);
+        CFXBadge notifBadge = new CFXBadge(notifBtn);
+        notifBadge.setValue(25);
+        notifBadge.setColor(BadgeColor.WARNING);
+
+        // Cart button with badge
+        CFXButton cartBtn = new CFXButton("Cart");
+        CFXBadge cartBtnBadge = new CFXBadge(cartBtn);
+        cartBtnBadge.setValue(3);
+        cartBtnBadge.setColor(BadgeColor.SUCCESS);
+
+        buttonsBox.getChildren().addAll(messagesBadge, notifBadge, cartBtnBadge);
 
         // ====================================
         // Different Positions
@@ -108,133 +183,88 @@ public class BadgeDemo extends Application {
         Label positionsLabel = new Label("Badge Positions");
         positionsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
-        HBox positionsBox = new HBox(30);
+        HBox positionsBox = new HBox(40);
         positionsBox.setAlignment(Pos.CENTER);
 
-        CFXBadge topRightBadge = new CFXBadge(createBox("Top Right", Color.web("#2196F3")));
-        topRightBadge.setValue(1);
-        topRightBadge.setPosition(BadgePosition.TOP_RIGHT);
-        topRightBadge.setColor(BadgeColor.PRIMARY);
+        Circle circle1 = createCircle(Color.web("#2196F3"));
+        CFXBadge topRight = new CFXBadge(circle1);
+        topRight.setValue(1);
+        topRight.setPosition(BadgePosition.TOP_RIGHT);
+        topRight.setColor(BadgeColor.PRIMARY);
 
-        CFXBadge topLeftBadge = new CFXBadge(createBox("Top Left", Color.web("#4CAF50")));
-        topLeftBadge.setValue(2);
-        topLeftBadge.setPosition(BadgePosition.TOP_LEFT);
-        topLeftBadge.setColor(BadgeColor.SUCCESS);
+        Circle circle2 = createCircle(Color.web("#4CAF50"));
+        CFXBadge topLeft = new CFXBadge(circle2);
+        topLeft.setValue(2);
+        topLeft.setPosition(BadgePosition.TOP_LEFT);
+        topLeft.setColor(BadgeColor.SUCCESS);
 
-        CFXBadge bottomRightBadge = new CFXBadge(createBox("Bottom Right", Color.web("#FF9800")));
-        bottomRightBadge.setValue(3);
-        bottomRightBadge.setPosition(BadgePosition.BOTTOM_RIGHT);
-        bottomRightBadge.setColor(BadgeColor.WARNING);
+        Circle circle3 = createCircle(Color.web("#FF9800"));
+        CFXBadge bottomRight = new CFXBadge(circle3);
+        bottomRight.setValue(3);
+        bottomRight.setPosition(BadgePosition.BOTTOM_RIGHT);
+        bottomRight.setColor(BadgeColor.WARNING);
 
-        CFXBadge bottomLeftBadge = new CFXBadge(createBox("Bottom Left", Color.web("#F44336")));
-        bottomLeftBadge.setValue(4);
-        bottomLeftBadge.setPosition(BadgePosition.BOTTOM_LEFT);
-        bottomLeftBadge.setColor(BadgeColor.ERROR);
+        Circle circle4 = createCircle(Color.web("#F44336"));
+        CFXBadge bottomLeft = new CFXBadge(circle4);
+        bottomLeft.setValue(4);
+        bottomLeft.setPosition(BadgePosition.BOTTOM_LEFT);
+        bottomLeft.setColor(BadgeColor.ERROR);
 
-        positionsBox.getChildren().addAll(
-                topRightBadge, topLeftBadge, bottomRightBadge, bottomLeftBadge
+        positionsBox.getChildren().addAll(topRight, topLeft, bottomRight, bottomLeft);
+
+        // ====================================
+        // Max Value Display (99+)
+        // ====================================
+        Label maxLabel = new Label("Max Value Display (99+)");
+        maxLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        HBox maxBox = new HBox(15);
+        maxBox.setAlignment(Pos.CENTER);
+
+        maxBox.getChildren().addAll(
+                createStandaloneBadge("50", BadgeColor.WARNING, 50),
+                createStandaloneBadge("99", BadgeColor.ERROR, 99),
+                createStandaloneBadge("99+", BadgeColor.ERROR, 150),
+                createStandaloneBadge("99+", BadgeColor.SECONDARY, 999)
         );
 
         // ====================================
-        // Custom Text Badges
+        // Interactive Demo
         // ====================================
-        Label customTextLabel = new Label("Custom Text Badges");
-        customTextLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
-
-        HBox customTextBox = new HBox(30);
-        customTextBox.setAlignment(Pos.CENTER);
-
-        CFXBadge newBadge = new CFXBadge(createBox("NEW", Color.web("#9C27B0")));
-        newBadge.setText("NEW");
-        newBadge.setColor(BadgeColor.SECONDARY);
-
-        CFXBadge hotBadge = new CFXBadge(createBox("HOT", Color.web("#F44336")));
-        hotBadge.setText("HOT");
-        hotBadge.setColor(BadgeColor.ERROR);
-
-        CFXBadge saleBadge = new CFXBadge(createBox("SALE", Color.web("#FF9800")));
-        saleBadge.setText("SALE");
-        saleBadge.setColor(BadgeColor.WARNING);
-
-        customTextBox.getChildren().addAll(newBadge, hotBadge, saleBadge);
-
-        // ====================================
-        // Interactive Demo with Buttons
-        // ====================================
-        Label interactiveLabel = new Label("Interactive Badge");
+        Label interactiveLabel = new Label("Interactive Badge Counter");
         interactiveLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
-        VBox interactiveBox = new VBox(15);
+        VBox interactiveBox = new VBox(20);
         interactiveBox.setAlignment(Pos.CENTER);
 
-        // Create a badge with a circle icon
-        Circle mailIcon = new Circle(30);
-        mailIcon.setFill(Color.web("#2196F3"));
-        mailIcon.setStroke(Color.web("#1976D2"));
-        mailIcon.setStrokeWidth(2);
+        Label counterIcon = new Label("📬");
+        counterIcon.setStyle("-fx-font-size: 64px;");
+        CFXBadge counterBadge = new CFXBadge(counterIcon);
+        counterBadge.setValue(0);
+        counterBadge.setColor(BadgeColor.ERROR);
+        counterBadge.setShowZero(false);
 
-        Label mailLabel = new Label("📧");
-        mailLabel.setStyle("-fx-font-size: 24px;");
+        HBox controlsBox = new HBox(10);
+        controlsBox.setAlignment(Pos.CENTER);
 
-        VBox mailBox = new VBox(5, mailIcon, mailLabel);
-        mailBox.setAlignment(Pos.CENTER);
-
-        CFXBadge mailBadge = new CFXBadge(mailBox);
-        mailBadge.setValue(0);
-        mailBadge.setColor(BadgeColor.ERROR);
-        mailBadge.setShowZero(false); // Badge will be hidden when value is 0
-
-        HBox buttonBox = new HBox(10);
-        buttonBox.setAlignment(Pos.CENTER);
-
-        CFXButton addBtn = new CFXButton("Add Message");
+        CFXButton addBtn = new CFXButton("+ Add");
         addBtn.setVariant(ButtonVariant.CONTAINED);
-        addBtn.setOnAction(e -> mailBadge.setValue(mailBadge.getValue() + 1));
+        addBtn.setOnAction(e -> counterBadge.setValue(counterBadge.getValue() + 1));
 
-        CFXButton removeBtn = new CFXButton("Remove Message");
+        CFXButton removeBtn = new CFXButton("− Remove");
         removeBtn.setVariant(ButtonVariant.OUTLINED);
         removeBtn.setOnAction(e -> {
-            if (mailBadge.getValue() > 0) {
-                mailBadge.setValue(mailBadge.getValue() - 1);
+            if (counterBadge.getValue() > 0) {
+                counterBadge.setValue(counterBadge.getValue() - 1);
             }
         });
 
         CFXButton resetBtn = new CFXButton("Reset");
         resetBtn.setVariant(ButtonVariant.TEXT);
-        resetBtn.setOnAction(e -> mailBadge.setValue(0));
+        resetBtn.setOnAction(e -> counterBadge.setValue(0));
 
-        buttonBox.getChildren().addAll(addBtn, removeBtn, resetBtn);
-        interactiveBox.getChildren().addAll(mailBadge, buttonBox);
-
-        // ====================================
-        // Badges with Icons
-        // ====================================
-        Label iconsLabel = new Label("Badges with Different Content");
-        iconsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
-
-        HBox iconsBox = new HBox(30);
-        iconsBox.setAlignment(Pos.CENTER);
-
-        // Badge with circle
-        Circle circle = new Circle(25, Color.web("#E91E63"));
-        CFXBadge circleBadge = new CFXBadge(circle);
-        circleBadge.setValue(8);
-        circleBadge.setColor(BadgeColor.WARNING);
-
-        // Badge with emoji
-        Label emoji = new Label("🔔");
-        emoji.setStyle("-fx-font-size: 40px;");
-        CFXBadge emojiBadge = new CFXBadge(emoji);
-        emojiBadge.setValue(15);
-        emojiBadge.setColor(BadgeColor.ERROR);
-
-        // Badge with button
-        CFXButton button = new CFXButton("Messages");
-        CFXBadge buttonBadge = new CFXBadge(button);
-        buttonBadge.setValue(3);
-        buttonBadge.setColor(BadgeColor.SUCCESS);
-
-        iconsBox.getChildren().addAll(circleBadge, emojiBadge, buttonBadge);
+        controlsBox.getChildren().addAll(addBtn, removeBtn, resetBtn);
+        interactiveBox.getChildren().addAll(counterBadge, controlsBox);
 
         // ====================================
         // Add all to root
@@ -242,29 +272,36 @@ public class BadgeDemo extends Application {
         root.getChildren().addAll(
                 title,
                 new Separator(),
-                colorsLabel,
-                colorsBox,
+                pillsLabel,
+                pillsBox,
                 new Separator(),
-                variantsLabel,
-                variantsBox,
+                textPillsLabel,
+                textPillsBox,
                 new Separator(),
-                maxLabel,
-                maxBox,
+                iconsLabel,
+                iconsBox,
+                new Separator(),
+                avatarsLabel,
+                avatarsBox,
+                new Separator(),
+                buttonsLabel,
+                buttonsBox,
                 new Separator(),
                 positionsLabel,
                 positionsBox,
                 new Separator(),
-                customTextLabel,
-                customTextBox,
-                new Separator(),
-                iconsLabel,
-                iconsBox,
+                maxLabel,
+                maxBox,
                 new Separator(),
                 interactiveLabel,
                 interactiveBox
         );
 
-        Scene scene = new Scene(scrollPane, 1000, 1100);
+        ScrollPane scrollPane = new ScrollPane(root);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-background: #FAFAFA; -fx-background-color: #FAFAFA;");
+
+        Scene scene = new Scene(scrollPane, 1000, 1200);
         CompassFX.applyLightTheme(scene);
 
         primaryStage.setTitle("CompassFX Badge Demo");
@@ -272,38 +309,46 @@ public class BadgeDemo extends Application {
         primaryStage.show();
     }
 
-    private CFXBadge createBadge(String label, BadgeColor color, int value) {
-        VBox content = createBox(label, getColorForBadge(color));
-        CFXBadge badge = new CFXBadge(content);
-        badge.setValue(value);
-        badge.setColor(color);
-        return badge;
-    }
-
-    private VBox createBox(String text, Color color) {
-        Rectangle rect = new Rectangle(60, 60);
-        rect.setFill(color);
-        rect.setArcWidth(8);
-        rect.setArcHeight(8);
+    // Helper: Create standalone badge pill (just the badge, no content)
+    private StackPane createStandaloneBadge(String text, BadgeColor color) {
+        StackPane pill = new StackPane();
+        pill.setStyle(String.format(
+                "-fx-background-color: %s; " +
+                        "-fx-background-radius: 12px; " +
+                        "-fx-padding: 4px 10px; " +
+                        "-fx-min-width: 24px; " +
+                        "-fx-min-height: 24px; " +
+                        "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.2, 0, 1);",
+                getColorHex(color)
+        ));
 
         Label label = new Label(text);
-        label.setStyle("-fx-font-size: 10px; -fx-text-fill: white; -fx-font-weight: 600;");
+        label.setStyle("-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: 600;");
 
-        VBox box = new VBox(5, rect, label);
-        box.setAlignment(Pos.CENTER);
-        return box;
+        pill.getChildren().add(label);
+        return pill;
     }
 
-    private Color getColorForBadge(BadgeColor badgeColor) {
-        switch (badgeColor) {
-            case PRIMARY: return Color.web("#2196F3");
-            case SECONDARY: return Color.web("#9C27B0");
-            case SUCCESS: return Color.web("#4CAF50");
-            case WARNING: return Color.web("#FF9800");
-            case ERROR: return Color.web("#F44336");
-            case INFO: return Color.web("#2196F3");
+    private StackPane createStandaloneBadge(String text, BadgeColor color, int value) {
+        return createStandaloneBadge(text, color);
+    }
+
+    private Circle createCircle(Color color) {
+        Circle circle = new Circle(30);
+        circle.setFill(color);
+        return circle;
+    }
+
+    private String getColorHex(BadgeColor color) {
+        switch (color) {
+            case PRIMARY: return "#2196F3";
+            case SECONDARY: return "#9C27B0";
+            case SUCCESS: return "#4CAF50";
+            case WARNING: return "#FF9800";
+            case ERROR: return "#F44336";
+            case INFO: return "#00BCD4";
             case DEFAULT:
-            default: return Color.web("#323232");
+            default: return "#616161";
         }
     }
 

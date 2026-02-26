@@ -1,5 +1,5 @@
 /* ============================================ */
-/* CFX-BADGE.CSS - Badge Styles */
+/* CFX-BADGE.CSS - Badge Styles (PILL DESIGN) */
 /* src/main/resources/com/compassfx/controls/cfx-badge.css */
 /* ============================================ */
 
@@ -17,82 +17,115 @@
     -fx-alignment: center;
 }
 
-/* Badge Indicator */
+/* Badge Indicator - BEAUTIFUL PILL DESIGN */
 .badge-indicator {
     -fx-alignment: center;
-    -fx-background-radius: 10px;
-    -fx-min-width: 20px;
-    -fx-min-height: 20px;
-    -fx-padding: 0 6px;
+    -fx-background-radius: 12px;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-padding: 4px 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.2, 0, 1);
 }
 
 /* Badge Label */
 .badge-label {
     -fx-text-fill: white;
-    -fx-font-size: 11px;
+    -fx-font-size: 12px;
     -fx-font-weight: 600;
     -fx-font-family: "System";
 }
 
-/* ===== VARIANT: STANDARD ===== */
+/* ===== VARIANT: STANDARD (Pill shape) ===== */
 .cfx-badge.standard .badge-indicator {
-    -fx-background-radius: 10px;
-    -fx-min-width: 20px;
-    -fx-min-height: 20px;
-    -fx-padding: 0 6px;
+    -fx-background-radius: 12px;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-padding: 4px 10px;
 }
 
-/* ===== VARIANT: DOT ===== */
+/* ===== VARIANT: DOT (Small circle) ===== */
 .cfx-badge.dot .badge-indicator {
-    -fx-background-radius: 6px;
+    -fx-background-radius: 50%;
     -fx-min-width: 12px;
     -fx-min-height: 12px;
     -fx-max-width: 12px;
     -fx-max-height: 12px;
+    -fx-pref-width: 12px;
+    -fx-pref-height: 12px;
     -fx-padding: 0;
 }
 
 /* ===== COLOR VARIANTS ===== */
 
-/* Default */
+/* Default - Gray */
 .cfx-badge.default .badge-indicator {
-    -fx-background-color: #323232;
+    -fx-background-color: #616161;
 }
 
-/* Primary */
+/* Primary - Blue */
 .cfx-badge.primary .badge-indicator {
     -fx-background-color: #2196F3;
 }
 
-/* Secondary */
+/* Secondary - Purple */
 .cfx-badge.secondary .badge-indicator {
     -fx-background-color: #9C27B0;
 }
 
-/* Success */
+/* Success - Green */
 .cfx-badge.success .badge-indicator {
     -fx-background-color: #4CAF50;
 }
 
-/* Warning */
+/* Warning - Orange */
 .cfx-badge.warning .badge-indicator {
     -fx-background-color: #FF9800;
 }
 
-/* Error */
+/* Error - Red */
 .cfx-badge.error .badge-indicator {
     -fx-background-color: #F44336;
 }
 
-/* Info */
+/* Info - Cyan */
 .cfx-badge.info .badge-indicator {
-    -fx-background-color: #2196F3;
+    -fx-background-color: #00BCD4;
+}
+
+/* ===== HOVER EFFECT ===== */
+.badge-indicator:hover {
+    -fx-opacity: 0.9;
+    -fx-cursor: hand;
+}
+
+/* ===== POSITION OFFSETS (cuando se usa sobre otro elemento) ===== */
+
+.cfx-badge.top-right .badge-indicator {
+    -fx-translate-x: 8px;
+    -fx-translate-y: -8px;
+}
+
+.cfx-badge.top-left .badge-indicator {
+    -fx-translate-x: -8px;
+    -fx-translate-y: -8px;
+}
+
+.cfx-badge.bottom-right .badge-indicator {
+    -fx-translate-x: 8px;
+    -fx-translate-y: 8px;
+}
+
+.cfx-badge.bottom-left .badge-indicator {
+    -fx-translate-x: -8px;
+    -fx-translate-y: 8px;
 }
 
 /* ===== DARK THEME SUPPORT ===== */
 
 .dark-theme .cfx-badge.default .badge-indicator {
-    -fx-background-color: #616161;
+    -fx-background-color: #9E9E9E;
 }
 
-/* Dark theme keeps other colors the same for visibility */
+.dark-theme .badge-indicator {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0.3, 0, 2);
+}
