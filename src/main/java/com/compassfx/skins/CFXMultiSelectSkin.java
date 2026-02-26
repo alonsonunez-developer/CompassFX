@@ -10,8 +10,7 @@ import javafx.scene.shape.SVGPath;
 import javafx.stage.Popup;
 
 /**
- * Skin for CFXMultiSelect
- * Shows chips for selected items and dropdown with checkboxes
+ * Skin for CFXMultiSelect - FIXED VERSION
  */
 public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
 
@@ -37,15 +36,15 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
         floatingLabel = new Label();
         floatingLabel.getStyleClass().add("multiselect-label");
         floatingLabel.textProperty().bind(control.labelProperty());
-        floatingLabel.setVisible(false);
-        floatingLabel.setManaged(false);
+        floatingLabel.setVisible(!control.getLabel().isEmpty());
+        floatingLabel.setManaged(!control.getLabel().isEmpty());
 
-        // Field container (the main box)
+        // Field container
         fieldContainer = new StackPane();
         fieldContainer.getStyleClass().add("multiselect-field");
         fieldContainer.setMinHeight(48);
 
-        // Chips container (shows selected items)
+        // Chips container
         chipsContainer = new FlowPane(6, 6);
         chipsContainer.getStyleClass().add("chips-container");
         chipsContainer.setPadding(new Insets(8, 40, 8, 12));
@@ -66,7 +65,7 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
 
         fieldContainer.getChildren().addAll(chipsContainer, promptLabel, dropdownArrow);
 
-        // Popup (dropdown menu)
+        // Popup
         popup = new Popup();
         popup.setAutoHide(true);
 
@@ -91,22 +90,24 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
         container.getChildren().addAll(floatingLabel, fieldContainer);
         getChildren().add(container);
 
-        // Setup interactions
+        // Setup
         setupFieldClick();
         setupSelectAll();
         updateChips();
         updatePromptVisibility();
+        updatePopupItems();
 
         // Listeners
-        control.selectedItemsProperty().addListener((obs, old, newVal) -> {
+        control.getSelectedItems().addListener((javafx.collections.ListChangeListener<T>) change -> {
+            System.out.println("Selected items changed: " + control.getSelectedItems());
             updateChips();
             updatePromptVisibility();
             updateSelectAllState();
         });
 
-        control.itemsProperty().addListener((obs, old, newVal) -> {
+        control.getItems().addListener((javafx.collections.ListChangeListener<T>) change -> {
+            System.out.println("Items changed");
             updatePopupItems();
-            updateSelectAllState();
         });
 
         control.labelProperty().addListener((obs, old, newVal) -> {
@@ -114,13 +115,6 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
             floatingLabel.setVisible(hasLabel);
             floatingLabel.setManaged(hasLabel);
         });
-
-        control.selectAllEnabledProperty().addListener((obs, old, newVal) -> {
-            selectAllCheckbox.setVisible(newVal);
-            selectAllCheckbox.setManaged(newVal);
-        });
-
-        updatePopupItems();
     }
 
     private void setupFieldClick() {
@@ -144,14 +138,18 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
     private void setupSelectAll() {
         selectAllCheckbox.setOnAction(e -> {
             if (selectAllCheckbox.isSelected()) {
-                getSkinnable().getSelectedItems().setAll(getSkinnable().getItems());
+                System.out.println("Select all clicked - selecting all items");
+                getSkinnable().getSelectedItems().clear();
+                getSkinnable().getSelectedItems().addAll(getSkinnable().getItems());
             } else {
+                System.out.println("Select all unclicked - clearing selection");
                 getSkinnable().getSelectedItems().clear();
             }
         });
     }
 
     private void updatePopupItems() {
+        System.out.println("Updating popup items");
         popupContent.getChildren().clear();
 
         if (getSkinnable().isSelectAllEnabled() && !getSkinnable().getItems().isEmpty()) {
@@ -162,14 +160,22 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
         for (T item : getSkinnable().getItems()) {
             CheckBox checkbox = new CheckBox(item.toString());
             checkbox.getStyleClass().add("multiselect-item");
-            checkbox.setSelected(getSkinnable().getSelectedItems().contains(item));
 
-            checkbox.selectedProperty().addListener((obs, old, newVal) -> {
-                if (newVal) {
+            // Set initial state
+            boolean isSelected = getSkinnable().getSelectedItems().contains(item);
+            checkbox.setSelected(isSelected);
+            System.out.println("Item: " + item + ", Selected: " + isSelected);
+
+            // Handle checkbox action
+            checkbox.setOnAction(e -> {
+                System.out.println("Checkbox clicked: " + item + ", New state: " + checkbox.isSelected());
+                if (checkbox.isSelected()) {
                     if (!getSkinnable().getSelectedItems().contains(item)) {
+                        System.out.println("Adding item: " + item);
                         getSkinnable().getSelectedItems().add(item);
                     }
                 } else {
+                    System.out.println("Removing item: " + item);
                     getSkinnable().getSelectedItems().remove(item);
                 }
             });
@@ -198,6 +204,7 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
     }
 
     private void updateChips() {
+        System.out.println("Updating chips - count: " + getSkinnable().getSelectedItems().size());
         chipsContainer.getChildren().clear();
 
         int maxDisplay = getSkinnable().getMaxChipsDisplay();
@@ -230,6 +237,7 @@ public class CFXMultiSelectSkin<T> extends SkinBase<CFXMultiSelect<T>> {
         Label closeBtn = new Label("×");
         closeBtn.getStyleClass().add("chip-close");
         closeBtn.setOnMouseClicked(e -> {
+            System.out.println("Chip close clicked: " + item);
             getSkinnable().getSelectedItems().remove(item);
             e.consume();
         });
