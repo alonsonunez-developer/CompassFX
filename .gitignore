@@ -1,2 +1,6 @@
 *target/**
 target/
+*.class
+.idea/
+*.iml
+out/
