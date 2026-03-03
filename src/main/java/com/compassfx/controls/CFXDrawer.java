@@ -1,5 +1,5 @@
 // ============================================
-// CFXDrawer.java - Drawer Control (FIXED)
+// CFXDrawer.java - Drawer Control (WITH SCROLL)
 // src/main/java/com/compassfx/controls/CFXDrawer.java
 // ============================================
 package com.compassfx.controls;
@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -19,6 +20,7 @@ import javafx.util.Duration;
 /**
  * CompassFX Drawer - A sliding drawer panel component
  * Can be opened from left, right, top, or bottom
+ * Now with optional scrolling support!
  */
 public class CFXDrawer extends Region {
 
@@ -36,6 +38,7 @@ public class CFXDrawer extends Region {
     private final BooleanProperty closeOnClickOutside;
     private final BooleanProperty animated;
     private final ObjectProperty<Duration> animationDuration;
+    private final BooleanProperty scrollable;
 
     // Event handlers
     private ObjectProperty<EventHandler<ActionEvent>> onOpen;
@@ -45,6 +48,7 @@ public class CFXDrawer extends Region {
     private final Region overlayPane;
     private final StackPane drawerPane;
     private final StackPane contentContainer;
+    private final ScrollPane scrollPane;
 
     public CFXDrawer() {
         this.open = new SimpleBooleanProperty(this, "open", false);
@@ -57,6 +61,7 @@ public class CFXDrawer extends Region {
         this.closeOnClickOutside = new SimpleBooleanProperty(this, "closeOnClickOutside", true);
         this.animated = new SimpleBooleanProperty(this, "animated", true);
         this.animationDuration = new SimpleObjectProperty<>(this, "animationDuration", Duration.millis(300));
+        this.scrollable = new SimpleBooleanProperty(this, "scrollable", false);
         this.onOpen = new SimpleObjectProperty<>(this, "onOpen", null);
         this.onClose = new SimpleObjectProperty<>(this, "onClose", null);
 
@@ -76,6 +81,16 @@ public class CFXDrawer extends Region {
         contentContainer.getStyleClass().add("drawer-content");
         contentContainer.setPadding(new Insets(20));
 
+        // Create scroll pane
+        scrollPane = new ScrollPane();
+        scrollPane.getStyleClass().add("drawer-scroll");
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setContent(contentContainer);
+
+        // Initially don't use scroll pane
         drawerPane.getChildren().add(contentContainer);
 
         getChildren().addAll(overlayPane, drawerPane);
@@ -114,6 +129,11 @@ public class CFXDrawer extends Region {
             }
         });
 
+        // Scrollable property listener
+        scrollable.addListener((obs, oldVal, newVal) -> {
+            updateScrollableState();
+        });
+
         // Open/Close handling
         open.addListener((obs, oldVal, newVal) -> {
             if (newVal) {
@@ -129,6 +149,19 @@ public class CFXDrawer extends Region {
                 close();
             }
         });
+    }
+
+    private void updateScrollableState() {
+        drawerPane.getChildren().clear();
+
+        if (scrollable.get()) {
+            // Use scroll pane
+            scrollPane.setContent(contentContainer);
+            drawerPane.getChildren().add(scrollPane);
+        } else {
+            // Direct content
+            drawerPane.getChildren().add(contentContainer);
+        }
     }
 
     private void updateStyleClasses() {
@@ -340,6 +373,10 @@ public class CFXDrawer extends Region {
         this.animationDuration.set(animationDuration);
     }
     public ObjectProperty<Duration> animationDurationProperty() { return animationDuration; }
+
+    public boolean isScrollable() { return scrollable.get(); }
+    public void setScrollable(boolean scrollable) { this.scrollable.set(scrollable); }
+    public BooleanProperty scrollableProperty() { return scrollable; }
 
     public EventHandler<ActionEvent> getOnOpen() { return onOpen.get(); }
     public void setOnOpen(EventHandler<ActionEvent> handler) { this.onOpen.set(handler); }
