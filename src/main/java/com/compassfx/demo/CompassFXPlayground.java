@@ -86,6 +86,7 @@ public class CompassFXPlayground extends Application {
         // Navigation Drawer
         // ====================================
         navigationDrawer = createNavigationDrawer();
+        navigationDrawer.setScrollable(true);
 
         settingsDrawer = createSettingsDrawer();
 
@@ -156,7 +157,9 @@ public class CompassFXPlayground extends Application {
                 createMenuItem("Breadcrumbs", this::showBreadcrumbsPage),
                 createMenuItem("🔘 Buttons", this::showButtonsPage),
                 createMenuItem("📦 Cards", this::showCardsPage),
+                createMenuItem("Charts", this::showChartsPage),
                 createMenuItem("☑️ Checkboxes", this::showCheckboxPage),
+                createMenuItem("Chips", this::showChipsPage),
                 createMenuItem("📊 Progress", this::showProgressPage),
                 createMenuItem("📝 Text Fields", this::showTextFieldPage),
                 createMenuItem("🎚️ Sliders", this::showSlidersPage),
@@ -1070,7 +1073,14 @@ public class CompassFXPlayground extends Application {
         contentArea.getChildren().add(cardsRow);
     }
 
-    private void showCheckboxPage() {
+    private void showChartsPage() {
+        pageTitle.setText("Charts");
+        contentArea.getChildren().clear();
+        ChartsDemo chartsDemo = new ChartsDemo();
+        chartsDemo.showDemo(pageTitle, contentArea);
+    }
+
+        private void showCheckboxPage() {
         pageTitle.setText("Checkboxes & Radio Buttons");
         contentArea.getChildren().clear();
         CheckboxRadioDemo checkboxRadioDemo = new CheckboxRadioDemo();
@@ -1354,6 +1364,13 @@ public class CompassFXPlayground extends Application {
         );
     }
 
+
+    private void showChipsPage() {
+        pageTitle.setText("Chips");
+        contentArea.getChildren().clear();
+        ChipDemo demo = new ChipDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
     private void showProgressPage() {
         pageTitle.setText("Progress Indicators");
         contentArea.getChildren().clear();
