@@ -253,7 +253,7 @@ public class BreadcrumbDemo extends Application {
         primaryStage.show();
     }
 
-    private Circle createIcon(Color color) {
+    static Circle createIcon(Color color) {
         Circle icon = new Circle(5, color);
         return icon;
     }

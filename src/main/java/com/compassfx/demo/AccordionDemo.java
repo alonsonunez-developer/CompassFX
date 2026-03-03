@@ -207,7 +207,7 @@ public class AccordionDemo extends Application {
         primaryStage.show();
     }
 
-    private VBox createSampleContent(String text) {
+    static VBox createSampleContent(String text) {
         Label label = new Label(text);
         label.setWrapText(true);
         label.setStyle("-fx-font-size: 14px; -fx-text-fill: #616161;");
@@ -217,7 +217,7 @@ public class AccordionDemo extends Application {
         return container;
     }
 
-    private HBox createBulletPoint(String text) {
+    static HBox createBulletPoint(String text) {
         Label bullet = new Label("•");
         bullet.setStyle("-fx-font-size: 16px; -fx-text-fill: #616161; -fx-padding: 0 8 0 0;");
 
@@ -230,7 +230,7 @@ public class AccordionDemo extends Application {
         return box;
     }
 
-    private Circle createCircleIcon(Color color) {
+    static Circle createCircleIcon(Color color) {
         Circle circle = new Circle(6);
         circle.setFill(color);
         return circle;

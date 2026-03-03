@@ -28,8 +28,10 @@ import javafx.util.Duration;
 
 import java.util.List;
 
+import static com.compassfx.demo.AccordionDemo.*;
 import static com.compassfx.demo.AvatarDemo.createLabeledAvatar;
 import static com.compassfx.demo.AvatarDemo.createUserItem;
+import static com.compassfx.demo.BreadcrumbDemo.createIcon;
 import static com.compassfx.demo.DrawerDemo.*;
 
 /**
@@ -150,6 +152,8 @@ public class CompassFXPlayground extends Application {
                 menuTitle,
                 new Separator(),
                 createMenuItem("🏠 Welcome", this::showWelcomePage),
+                createMenuItem("Accordions", this::showAccordionsPage),
+                createMenuItem("Breadcrumbs", this::showBreadcrumbsPage),
                 createMenuItem("🔘 Buttons", this::showButtonsPage),
                 createMenuItem("📦 Cards", this::showCardsPage),
                 createMenuItem("☑️ Checkboxes", this::showCheckboxPage),
@@ -435,7 +439,178 @@ public class CompassFXPlayground extends Application {
         return box;
     }
 
-    private void showButtonsPage() {
+    private void showAccordionsPage() {
+        pageTitle.setText("Accordions");
+        contentArea.getChildren().clear();
+        Label title = new Label("CompassFX Accordion Demo");
+        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #212121;");
+
+        // ====================================
+        // Standard Variant
+        // ====================================
+        Label standardLabel = new Label("Standard Accordion");
+        standardLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXAccordion standardAccordion = new CFXAccordion();
+        standardAccordion.setMaxWidth(600);
+
+        CFXAccordionItem item1 = new CFXAccordionItem("General Information");
+        item1.setContent(createSampleContent(
+                "This is a standard accordion component that follows Material Design principles. " +
+                        "It provides a clean and intuitive way to organize content in collapsible sections."
+        ));
+
+        CFXAccordionItem item2 = new CFXAccordionItem("Features");
+        VBox featuresContent = new VBox(10);
+        featuresContent.getChildren().addAll(
+                createBulletPoint("Smooth animations"),
+                createBulletPoint("Multiple variants and colors"),
+                createBulletPoint("Single or multiple expansion modes"),
+                createBulletPoint("Customizable icons"),
+                createBulletPoint("Dark theme support")
+        );
+        item2.setContent(featuresContent);
+
+        CFXAccordionItem item3 = new CFXAccordionItem("Usage");
+        item3.setContent(createSampleContent(
+                "Simply create a CFXAccordion instance, add CFXAccordionItem objects to it, " +
+                        "and customize the appearance using variants and colors."
+        ));
+
+        standardAccordion.getItems().addAll(item1, item2, item3);
+
+        // ====================================
+        // Outlined Variant
+        // ====================================
+        Label outlinedLabel = new Label("Outlined Accordion");
+        outlinedLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXAccordion outlinedAccordion = new CFXAccordion();
+        outlinedAccordion.setVariant(AccordionVariant.OUTLINED);
+        outlinedAccordion.setMaxWidth(600);
+
+        CFXAccordionItem outItem1 = new CFXAccordionItem("Section 1");
+        outItem1.setContent(createSampleContent("This accordion uses the outlined variant with a border around the container."));
+
+        CFXAccordionItem outItem2 = new CFXAccordionItem("Section 2");
+        outItem2.setContent(createSampleContent("The outlined variant provides better visual separation from the background."));
+
+        outlinedAccordion.getItems().addAll(outItem1, outItem2);
+
+        // ====================================
+        // Filled Variant with Primary Color
+        // ====================================
+        Label filledLabel = new Label("Filled Accordion (Primary Color)");
+        filledLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXAccordion filledAccordion = new CFXAccordion();
+        filledAccordion.setVariant(AccordionVariant.FILLED);
+        filledAccordion.setColor(AccordionColor.PRIMARY);
+        filledAccordion.setMaxWidth(600);
+
+        CFXAccordionItem fillItem1 = new CFXAccordionItem("Configuration");
+        fillItem1.setContent(createSampleContent("The filled variant provides a subtle background color to each accordion item."));
+
+        CFXAccordionItem fillItem2 = new CFXAccordionItem("Advanced Options");
+        fillItem2.setContent(createSampleContent("You can customize colors, enable/disable animations, and control expansion behavior."));
+
+        filledAccordion.getItems().addAll(fillItem1, fillItem2);
+
+        // ====================================
+        // Multiple Expansion Mode
+        // ====================================
+        Label multipleLabel = new Label("Multiple Expansion Allowed");
+        multipleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXAccordion multipleAccordion = new CFXAccordion();
+        multipleAccordion.setAllowMultipleExpanded(true);
+        multipleAccordion.setColor(AccordionColor.SECONDARY);
+        multipleAccordion.setMaxWidth(600);
+
+        CFXAccordionItem multiItem1 = new CFXAccordionItem("Panel A");
+        multiItem1.setContent(createSampleContent("You can expand multiple panels at once in this accordion."));
+
+        CFXAccordionItem multiItem2 = new CFXAccordionItem("Panel B");
+        multiItem2.setContent(createSampleContent("Try expanding both panels simultaneously."));
+
+        CFXAccordionItem multiItem3 = new CFXAccordionItem("Panel C");
+        multiItem3.setContent(createSampleContent("This is useful when you need to compare content across sections."));
+
+        multipleAccordion.getItems().addAll(multiItem1, multiItem2, multiItem3);
+
+        // ====================================
+        // With Icons and Disabled Items
+        // ====================================
+        Label iconsLabel = new Label("With Icons and Disabled State");
+        iconsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXAccordion iconsAccordion = new CFXAccordion();
+        iconsAccordion.setVariant(AccordionVariant.OUTLINED);
+        iconsAccordion.setMaxWidth(600);
+
+        CFXAccordionItem iconItem1 = new CFXAccordionItem("Active Item");
+        iconItem1.setIcon(createCircleIcon(Color.web("#4CAF50")));
+        iconItem1.setContent(createSampleContent("This item has a green icon and is enabled."));
+
+        CFXAccordionItem iconItem2 = new CFXAccordionItem("Disabled Item");
+        iconItem2.setIcon(createCircleIcon(Color.web("#9E9E9E")));
+        iconItem2.setContent(createSampleContent("This content cannot be accessed."));
+        iconItem2.setDisabled(true);
+
+        CFXAccordionItem iconItem3 = new CFXAccordionItem("Another Active Item");
+        iconItem3.setIcon(createCircleIcon(Color.web("#2196F3")));
+        iconItem3.setContent(createSampleContent("This item has a blue icon."));
+
+        iconsAccordion.getItems().addAll(iconItem1, iconItem2, iconItem3);
+
+        // ====================================
+        // Control Buttons
+        // ====================================
+        HBox controls = new HBox(10);
+        controls.setAlignment(Pos.CENTER);
+
+        CFXButton expandAllBtn = new CFXButton("Expand All (Multiple Mode)");
+        expandAllBtn.setVariant(ButtonVariant.OUTLINED);
+        expandAllBtn.setOnAction(e -> multipleAccordion.expandAll());
+
+        CFXButton collapseAllBtn = new CFXButton("Collapse All");
+        collapseAllBtn.setVariant(ButtonVariant.OUTLINED);
+        collapseAllBtn.setOnAction(e -> {
+            standardAccordion.collapseAll();
+            outlinedAccordion.collapseAll();
+            filledAccordion.collapseAll();
+            multipleAccordion.collapseAll();
+            iconsAccordion.collapseAll();
+        });
+
+        controls.getChildren().addAll(expandAllBtn, collapseAllBtn);
+
+        // ====================================
+        // Add all to root
+        // ====================================
+        contentArea.getChildren().addAll(
+                title,
+                new Separator(),
+                standardLabel,
+                standardAccordion,
+                new Separator(),
+                outlinedLabel,
+                outlinedAccordion,
+                new Separator(),
+                filledLabel,
+                filledAccordion,
+                new Separator(),
+                multipleLabel,
+                multipleAccordion,
+                new Separator(),
+                iconsLabel,
+                iconsAccordion,
+                new Separator(),
+                controls
+        );
+    }
+
+        private void showButtonsPage() {
         pageTitle.setText("Buttons");
         contentArea.getChildren().clear();
 
@@ -516,6 +691,220 @@ public class CompassFXPlayground extends Application {
         );
     }
 
+    private void showBreadcrumbsPage() {
+        pageTitle.setText("Breadcrumbs");
+        contentArea.getChildren().clear();
+
+        Label standardLabel = new Label("Standard Breadcrumb");
+        standardLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXBreadcrumb breadcrumb1 = new CFXBreadcrumb();
+        breadcrumb1.setPath("Home", "Products", "Electronics", "Laptops", "MacBook Pro");
+        breadcrumb1.setOnItemClick(event -> {
+            System.out.println("Clicked: " + event.getItem().getText() + " at index " + event.getIndex());
+        });
+
+        // ====================================
+        // With Home Icon
+        // ====================================
+        Label homeIconLabel = new Label("With Home Icon");
+        homeIconLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXBreadcrumb breadcrumb2 = new CFXBreadcrumb();
+        breadcrumb2.setShowHomeIcon(true);
+        breadcrumb2.setPath("Home", "Documents", "Projects", "CompassFX", "src");
+
+        // ====================================
+        // Different Separators
+        // ====================================
+        Label separatorsLabel = new Label("Different Separators");
+        separatorsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        VBox separatorsBox = new VBox(15);
+        separatorsBox.setAlignment(Pos.TOP_LEFT);
+
+        // Chevron (default)
+        Label chevronLabel = new Label("Chevron (›):");
+        chevronLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: 500;");
+        CFXBreadcrumb breadcrumbChevron = new CFXBreadcrumb();
+        breadcrumbChevron.setSeparator(BreadcrumbSeparator.CHEVRON);
+        breadcrumbChevron.setPath("Level 1", "Level 2", "Level 3");
+
+        // Slash
+        Label slashLabel = new Label("Slash (/):");
+        slashLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: 500;");
+        CFXBreadcrumb breadcrumbSlash = new CFXBreadcrumb();
+        breadcrumbSlash.setSeparator(BreadcrumbSeparator.SLASH);
+        breadcrumbSlash.setPath("Users", "Documents", "Photos");
+
+        // Arrow
+        Label arrowLabel = new Label("Arrow (→):");
+        arrowLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: 500;");
+        CFXBreadcrumb breadcrumbArrow = new CFXBreadcrumb();
+        breadcrumbArrow.setSeparator(BreadcrumbSeparator.ARROW);
+        breadcrumbArrow.setPath("Step 1", "Step 2", "Step 3", "Complete");
+
+        // Dot
+        Label dotLabel = new Label("Dot (•):");
+        dotLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: 500;");
+        CFXBreadcrumb breadcrumbDot = new CFXBreadcrumb();
+        breadcrumbDot.setSeparator(BreadcrumbSeparator.DOT);
+        breadcrumbDot.setPath("Category", "Subcategory", "Item");
+
+        separatorsBox.getChildren().addAll(
+                chevronLabel, breadcrumbChevron,
+                slashLabel, breadcrumbSlash,
+                arrowLabel, breadcrumbArrow,
+                dotLabel, breadcrumbDot
+        );
+
+        // ====================================
+        // Variants
+        // ====================================
+        Label variantsLabel = new Label("Breadcrumb Variants");
+        variantsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        VBox variantsBox = new VBox(15);
+        variantsBox.setAlignment(Pos.TOP_LEFT);
+
+        // Standard
+        Label stdVariantLabel = new Label("Standard:");
+        stdVariantLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: 500;");
+        CFXBreadcrumb breadcrumbStd = new CFXBreadcrumb();
+        breadcrumbStd.setVariant(BreadcrumbVariant.STANDARD);
+        breadcrumbStd.setPath("Home", "Shop", "Men", "Shirts");
+
+        // Outlined
+        Label outlinedLabel = new Label("Outlined:");
+        outlinedLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: 500;");
+        CFXBreadcrumb breadcrumbOutlined = new CFXBreadcrumb();
+        breadcrumbOutlined.setVariant(BreadcrumbVariant.OUTLINED);
+        breadcrumbOutlined.setPath("Home", "Shop", "Men", "Shirts");
+
+        // Filled
+        Label filledLabel = new Label("Filled:");
+        filledLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: 500;");
+        CFXBreadcrumb breadcrumbFilled = new CFXBreadcrumb();
+        breadcrumbFilled.setVariant(BreadcrumbVariant.FILLED);
+        breadcrumbFilled.setPath("Home", "Shop", "Men", "Shirts");
+
+        variantsBox.getChildren().addAll(
+                stdVariantLabel, breadcrumbStd,
+                outlinedLabel, breadcrumbOutlined,
+                filledLabel, breadcrumbFilled
+        );
+
+        // ====================================
+        // With Icons
+        // ====================================
+        Label iconsLabel = new Label("Breadcrumb with Icons");
+        iconsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXBreadcrumb breadcrumbWithIcons = new CFXBreadcrumb();
+
+        BreadcrumbItem homeItem = new BreadcrumbItem("Home");
+        homeItem.setIcon(createIcon(Color.web("#2196F3")));
+
+        BreadcrumbItem productsItem = new BreadcrumbItem("Products");
+        productsItem.setIcon(createIcon(Color.web("#4CAF50")));
+
+        BreadcrumbItem categoryItem = new BreadcrumbItem("Category");
+        categoryItem.setIcon(createIcon(Color.web("#FF9800")));
+
+        BreadcrumbItem itemItem = new BreadcrumbItem("Item Details");
+        itemItem.setIcon(createIcon(Color.web("#F44336")));
+
+        breadcrumbWithIcons.getItems().addAll(homeItem, productsItem, categoryItem, itemItem);
+
+        // ====================================
+        // Collapsed (Max Items)
+        // ====================================
+        Label collapsedLabel = new Label("Collapsed Breadcrumb (Max 4 items)");
+        collapsedLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXBreadcrumb breadcrumbCollapsed = new CFXBreadcrumb();
+        breadcrumbCollapsed.setMaxDisplayedItems(4);
+        breadcrumbCollapsed.setPath("Home", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Current Page");
+
+        // ====================================
+        // Interactive Example
+        // ====================================
+        Label interactiveLabel = new Label("Interactive Navigation");
+        interactiveLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        VBox interactiveBox = new VBox(15);
+        interactiveBox.setPadding(new Insets(20));
+        interactiveBox.setStyle(
+                "-fx-background-color: white; " +
+                        "-fx-background-radius: 12px; " +
+                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);"
+        );
+
+        Label navLabel = new Label("Click any breadcrumb item to navigate:");
+        navLabel.setStyle("-fx-font-size: 14px;");
+
+        CFXBreadcrumb interactiveBreadcrumb = new CFXBreadcrumb();
+        interactiveBreadcrumb.setShowHomeIcon(true);
+        interactiveBreadcrumb.setVariant(BreadcrumbVariant.FILLED);
+        interactiveBreadcrumb.setPath("Home", "Account", "Settings", "Privacy");
+
+        Label currentPageLabel = new Label("Current Page: Privacy");
+        currentPageLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2196F3;");
+
+        interactiveBreadcrumb.setOnItemClick(event -> {
+            currentPageLabel.setText("Navigated to: " + event.getItem().getText());
+            System.out.println("Navigation to: " + event.getItem().getText() + " (index: " + event.getIndex() + ")");
+        });
+
+        interactiveBox.getChildren().addAll(navLabel, interactiveBreadcrumb, currentPageLabel);
+
+        // ====================================
+        // Disabled Items
+        // ====================================
+        Label disabledLabel = new Label("With Disabled Items");
+        disabledLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXBreadcrumb breadcrumbDisabled = new CFXBreadcrumb();
+        BreadcrumbItem item1 = new BreadcrumbItem("Home");
+        BreadcrumbItem item2 = new BreadcrumbItem("Restricted");
+        item2.setDisabled(true);
+        BreadcrumbItem item3 = new BreadcrumbItem("Area");
+        item3.setDisabled(true);
+        BreadcrumbItem item4 = new BreadcrumbItem("Current");
+
+        breadcrumbDisabled.getItems().addAll(item1, item2, item3, item4);
+
+        // ====================================
+        // Add all to root
+        // ====================================
+        contentArea.getChildren().addAll(
+                pageTitle,
+                new Separator(),
+                standardLabel,
+                breadcrumb1,
+                new Separator(),
+                homeIconLabel,
+                breadcrumb2,
+                new Separator(),
+                separatorsLabel,
+                separatorsBox,
+                new Separator(),
+                variantsLabel,
+                variantsBox,
+                new Separator(),
+                iconsLabel,
+                breadcrumbWithIcons,
+                new Separator(),
+                collapsedLabel,
+                breadcrumbCollapsed,
+                new Separator(),
+                disabledLabel,
+                breadcrumbDisabled,
+                new Separator(),
+                interactiveLabel,
+                interactiveBox
+        );
+    }
     private void showCardsPage() {
         pageTitle.setText("Cards");
         contentArea.getChildren().clear();
