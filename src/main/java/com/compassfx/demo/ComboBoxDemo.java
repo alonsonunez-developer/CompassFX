@@ -21,23 +21,32 @@ import javafx.stage.Stage;
 /**
  * Demo application showcasing CFXComboBox features
  */
-public class ComboBoxDemo extends Application {
+public class ComboBoxDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
+    public static class User {
+        private final String name;
+        private final String email;
 
-        // Title
-        Label title = new Label("CompassFX ComboBox Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        public User(String name, String email) {
+            this.name = name;
+            this.email = email;
+        }
 
-        // ===== OUTLINED COMBOBOXES SECTION =====
+        public String getName() {
+            return name;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        @Override
+        public String toString() {
+            return name + " <" + email + ">";
+        }
+    }
+
+    public void showDemo(Label title, VBox root){
         Label outlinedLabel = new Label("Outlined ComboBoxes");
         outlinedLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
 
@@ -312,43 +321,6 @@ public class ComboBoxDemo extends Application {
                 formLabel,
                 formSection
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX ComboBox Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
-    /**
-     * Example custom class for ComboBox items
-     */
-    public static class User {
-        private final String name;
-        private final String email;
-
-        public User(String name, String email) {
-            this.name = name;
-            this.email = email;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        @Override
-        public String toString() {
-            return name + " <" + email + ">";
-        }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

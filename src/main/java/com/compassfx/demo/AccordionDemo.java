@@ -20,24 +20,38 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class AccordionDemo extends Application {
+public class AccordionDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FAFAFA;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
+    private VBox createSampleContent(String text) {
+        Label label = new Label(text);
+        label.setWrapText(true);
+        label.setStyle("-fx-font-size: 14px; -fx-text-fill: #616161;");
 
-        Label title = new Label("CompassFX Accordion Demo");
-        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #212121;");
+        VBox container = new VBox(label);
+        container.setPadding(new Insets(0));
+        return container;
+    }
 
-        // ====================================
-        // Standard Variant
-        // ====================================
+    private HBox createBulletPoint(String text) {
+        Label bullet = new Label("•");
+        bullet.setStyle("-fx-font-size: 16px; -fx-text-fill: #616161; -fx-padding: 0 8 0 0;");
+
+        Label content = new Label(text);
+        content.setWrapText(true);
+        content.setStyle("-fx-font-size: 14px; -fx-text-fill: #616161;");
+
+        HBox box = new HBox(bullet, content);
+        box.setAlignment(Pos.TOP_LEFT);
+        return box;
+    }
+
+    private Circle createCircleIcon(Color color) {
+        Circle circle = new Circle(6);
+        circle.setFill(color);
+        return circle;
+    }
+
+    public void showDemo(Label title, VBox root){
         Label standardLabel = new Label("Standard Accordion");
         standardLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
@@ -198,45 +212,5 @@ public class AccordionDemo extends Application {
                 new Separator(),
                 controls
         );
-
-        Scene scene = new Scene(scrollPane, 900, 1000);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Accordion Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    static VBox createSampleContent(String text) {
-        Label label = new Label(text);
-        label.setWrapText(true);
-        label.setStyle("-fx-font-size: 14px; -fx-text-fill: #616161;");
-
-        VBox container = new VBox(label);
-        container.setPadding(new Insets(0));
-        return container;
-    }
-
-    static HBox createBulletPoint(String text) {
-        Label bullet = new Label("•");
-        bullet.setStyle("-fx-font-size: 16px; -fx-text-fill: #616161; -fx-padding: 0 8 0 0;");
-
-        Label content = new Label(text);
-        content.setWrapText(true);
-        content.setStyle("-fx-font-size: 14px; -fx-text-fill: #616161;");
-
-        HBox box = new HBox(bullet, content);
-        box.setAlignment(Pos.TOP_LEFT);
-        return box;
-    }
-
-    static Circle createCircleIcon(Color color) {
-        Circle circle = new Circle(6);
-        circle.setFill(color);
-        return circle;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

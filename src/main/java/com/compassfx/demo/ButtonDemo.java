@@ -16,22 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ButtonDemo extends Application {
+public class ButtonDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        Label title = new Label("CompassFX Button Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
-        // Contained Buttons
+    public void showDemo(Label title, VBox root) {
         Label containedLabel = new Label("Contained Buttons");
         containedLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
 
@@ -127,16 +114,5 @@ public class ButtonDemo extends Application {
                 disabledLabel, disabledButtons, new Separator(),
                 fullWidthLabel, fullWidthBtn
         );
-
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Button Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
