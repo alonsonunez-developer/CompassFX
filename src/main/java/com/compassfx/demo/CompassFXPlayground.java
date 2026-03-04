@@ -160,6 +160,7 @@ public class CompassFXPlayground extends Application {
                 createMenuItem("Charts", this::showChartsPage),
                 createMenuItem("☑️ Checkboxes", this::showCheckboxPage),
                 createMenuItem("Chips", this::showChipsPage),
+                createMenuItem("ComboBoxes", this::showComboBoxesPage),
                 createMenuItem("📊 Progress", this::showProgressPage),
                 createMenuItem("📝 Text Fields", this::showTextFieldPage),
                 createMenuItem("🎚️ Sliders", this::showSlidersPage),
@@ -445,253 +446,16 @@ public class CompassFXPlayground extends Application {
     private void showAccordionsPage() {
         pageTitle.setText("Accordions");
         contentArea.getChildren().clear();
-        Label title = new Label("CompassFX Accordion Demo");
-        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #212121;");
 
-        // ====================================
-        // Standard Variant
-        // ====================================
-        Label standardLabel = new Label("Standard Accordion");
-        standardLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
-
-        CFXAccordion standardAccordion = new CFXAccordion();
-        standardAccordion.setMaxWidth(600);
-
-        CFXAccordionItem item1 = new CFXAccordionItem("General Information");
-        item1.setContent(createSampleContent(
-                "This is a standard accordion component that follows Material Design principles. " +
-                        "It provides a clean and intuitive way to organize content in collapsible sections."
-        ));
-
-        CFXAccordionItem item2 = new CFXAccordionItem("Features");
-        VBox featuresContent = new VBox(10);
-        featuresContent.getChildren().addAll(
-                createBulletPoint("Smooth animations"),
-                createBulletPoint("Multiple variants and colors"),
-                createBulletPoint("Single or multiple expansion modes"),
-                createBulletPoint("Customizable icons"),
-                createBulletPoint("Dark theme support")
-        );
-        item2.setContent(featuresContent);
-
-        CFXAccordionItem item3 = new CFXAccordionItem("Usage");
-        item3.setContent(createSampleContent(
-                "Simply create a CFXAccordion instance, add CFXAccordionItem objects to it, " +
-                        "and customize the appearance using variants and colors."
-        ));
-
-        standardAccordion.getItems().addAll(item1, item2, item3);
-
-        // ====================================
-        // Outlined Variant
-        // ====================================
-        Label outlinedLabel = new Label("Outlined Accordion");
-        outlinedLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
-
-        CFXAccordion outlinedAccordion = new CFXAccordion();
-        outlinedAccordion.setVariant(AccordionVariant.OUTLINED);
-        outlinedAccordion.setMaxWidth(600);
-
-        CFXAccordionItem outItem1 = new CFXAccordionItem("Section 1");
-        outItem1.setContent(createSampleContent("This accordion uses the outlined variant with a border around the container."));
-
-        CFXAccordionItem outItem2 = new CFXAccordionItem("Section 2");
-        outItem2.setContent(createSampleContent("The outlined variant provides better visual separation from the background."));
-
-        outlinedAccordion.getItems().addAll(outItem1, outItem2);
-
-        // ====================================
-        // Filled Variant with Primary Color
-        // ====================================
-        Label filledLabel = new Label("Filled Accordion (Primary Color)");
-        filledLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
-
-        CFXAccordion filledAccordion = new CFXAccordion();
-        filledAccordion.setVariant(AccordionVariant.FILLED);
-        filledAccordion.setColor(AccordionColor.PRIMARY);
-        filledAccordion.setMaxWidth(600);
-
-        CFXAccordionItem fillItem1 = new CFXAccordionItem("Configuration");
-        fillItem1.setContent(createSampleContent("The filled variant provides a subtle background color to each accordion item."));
-
-        CFXAccordionItem fillItem2 = new CFXAccordionItem("Advanced Options");
-        fillItem2.setContent(createSampleContent("You can customize colors, enable/disable animations, and control expansion behavior."));
-
-        filledAccordion.getItems().addAll(fillItem1, fillItem2);
-
-        // ====================================
-        // Multiple Expansion Mode
-        // ====================================
-        Label multipleLabel = new Label("Multiple Expansion Allowed");
-        multipleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
-
-        CFXAccordion multipleAccordion = new CFXAccordion();
-        multipleAccordion.setAllowMultipleExpanded(true);
-        multipleAccordion.setColor(AccordionColor.SECONDARY);
-        multipleAccordion.setMaxWidth(600);
-
-        CFXAccordionItem multiItem1 = new CFXAccordionItem("Panel A");
-        multiItem1.setContent(createSampleContent("You can expand multiple panels at once in this accordion."));
-
-        CFXAccordionItem multiItem2 = new CFXAccordionItem("Panel B");
-        multiItem2.setContent(createSampleContent("Try expanding both panels simultaneously."));
-
-        CFXAccordionItem multiItem3 = new CFXAccordionItem("Panel C");
-        multiItem3.setContent(createSampleContent("This is useful when you need to compare content across sections."));
-
-        multipleAccordion.getItems().addAll(multiItem1, multiItem2, multiItem3);
-
-        // ====================================
-        // With Icons and Disabled Items
-        // ====================================
-        Label iconsLabel = new Label("With Icons and Disabled State");
-        iconsLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
-
-        CFXAccordion iconsAccordion = new CFXAccordion();
-        iconsAccordion.setVariant(AccordionVariant.OUTLINED);
-        iconsAccordion.setMaxWidth(600);
-
-        CFXAccordionItem iconItem1 = new CFXAccordionItem("Active Item");
-        iconItem1.setIcon(createCircleIcon(Color.web("#4CAF50")));
-        iconItem1.setContent(createSampleContent("This item has a green icon and is enabled."));
-
-        CFXAccordionItem iconItem2 = new CFXAccordionItem("Disabled Item");
-        iconItem2.setIcon(createCircleIcon(Color.web("#9E9E9E")));
-        iconItem2.setContent(createSampleContent("This content cannot be accessed."));
-        iconItem2.setDisabled(true);
-
-        CFXAccordionItem iconItem3 = new CFXAccordionItem("Another Active Item");
-        iconItem3.setIcon(createCircleIcon(Color.web("#2196F3")));
-        iconItem3.setContent(createSampleContent("This item has a blue icon."));
-
-        iconsAccordion.getItems().addAll(iconItem1, iconItem2, iconItem3);
-
-        // ====================================
-        // Control Buttons
-        // ====================================
-        HBox controls = new HBox(10);
-        controls.setAlignment(Pos.CENTER);
-
-        CFXButton expandAllBtn = new CFXButton("Expand All (Multiple Mode)");
-        expandAllBtn.setVariant(ButtonVariant.OUTLINED);
-        expandAllBtn.setOnAction(e -> multipleAccordion.expandAll());
-
-        CFXButton collapseAllBtn = new CFXButton("Collapse All");
-        collapseAllBtn.setVariant(ButtonVariant.OUTLINED);
-        collapseAllBtn.setOnAction(e -> {
-            standardAccordion.collapseAll();
-            outlinedAccordion.collapseAll();
-            filledAccordion.collapseAll();
-            multipleAccordion.collapseAll();
-            iconsAccordion.collapseAll();
-        });
-
-        controls.getChildren().addAll(expandAllBtn, collapseAllBtn);
-
-        // ====================================
-        // Add all to root
-        // ====================================
-        contentArea.getChildren().addAll(
-                title,
-                new Separator(),
-                standardLabel,
-                standardAccordion,
-                new Separator(),
-                outlinedLabel,
-                outlinedAccordion,
-                new Separator(),
-                filledLabel,
-                filledAccordion,
-                new Separator(),
-                multipleLabel,
-                multipleAccordion,
-                new Separator(),
-                iconsLabel,
-                iconsAccordion,
-                new Separator(),
-                controls
-        );
+        AccordionDemo demo = new AccordionDemo();
+        demo.showDemo(pageTitle, contentArea);
     }
 
         private void showButtonsPage() {
         pageTitle.setText("Buttons");
         contentArea.getChildren().clear();
-
-        // Contained Buttons
-        Label containedLabel = new Label("Contained Buttons");
-        containedLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
-
-        HBox containedButtons = new HBox(10);
-        containedButtons.setAlignment(Pos.CENTER);
-
-        CFXButton primary = new CFXButton("Primary");
-        CFXButton secondary = new CFXButton("Secondary");
-        secondary.setColor(ButtonColor.SECONDARY);
-        CFXButton success = new CFXButton("Success");
-        success.setColor(ButtonColor.SUCCESS);
-        CFXButton warning = new CFXButton("Warning");
-        warning.setColor(ButtonColor.WARNING);
-        CFXButton error = new CFXButton("Error");
-        error.setColor(ButtonColor.ERROR);
-
-        containedButtons.getChildren().addAll(primary, secondary, success, warning, error);
-
-        // Outlined Buttons
-        Label outlinedLabel = new Label("Outlined Buttons");
-        outlinedLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
-
-        HBox outlinedButtons = new HBox(10);
-        outlinedButtons.setAlignment(Pos.CENTER);
-
-        CFXButton outlined1 = new CFXButton("Primary");
-        outlined1.setVariant(ButtonVariant.OUTLINED);
-        CFXButton outlined2 = new CFXButton("Success");
-        outlined2.setVariant(ButtonVariant.OUTLINED);
-        outlined2.setColor(ButtonColor.SUCCESS);
-
-        outlinedButtons.getChildren().addAll(outlined1, outlined2);
-
-        // Sizes
-        Label sizesLabel = new Label("Button Sizes");
-        sizesLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
-
-        HBox sizeButtons = new HBox(10);
-        sizeButtons.setAlignment(Pos.CENTER);
-
-        CFXButton small = new CFXButton("Small");
-        small.setSize(ButtonSize.SMALL);
-        CFXButton medium = new CFXButton("Medium");
-        CFXButton large = new CFXButton("Large");
-        large.setSize(ButtonSize.LARGE);
-
-        sizeButtons.getChildren().addAll(small, medium, large);
-
-        Label disabledLabel = new Label("Disabled Buttons");
-        disabledLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
-        HBox disabledButtons = new HBox(10);
-        disabledButtons.setAlignment(Pos.CENTER);
-        CFXButton disabledContained = new CFXButton("Disabled");
-        disabledContained.setDisable(true);
-        CFXButton disabledOutlined = new CFXButton("Disabled");
-        disabledOutlined.setVariant(ButtonVariant.OUTLINED);
-        disabledOutlined.setDisable(true);
-
-        disabledButtons.getChildren().addAll(disabledContained, disabledOutlined);
-
-        // Full Width
-        Label fullWidthLabel = new Label("Full Width Button");
-        fullWidthLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
-
-        CFXButton fullWidthBtn = new CFXButton("Full Width Button");
-        fullWidthBtn.setFullWidth(true);
-
-        contentArea.getChildren().addAll(
-                containedLabel, containedButtons, new Separator(),
-                outlinedLabel, outlinedButtons, new Separator(),
-                sizesLabel, sizeButtons, new Separator(),
-                disabledLabel, disabledButtons, new Separator(),
-                fullWidthLabel, fullWidthBtn
-        );
+        ButtonDemo demo = new ButtonDemo();
+        demo.showDemo(pageTitle, contentArea);
     }
 
     private void showBreadcrumbsPage() {
@@ -1369,6 +1133,13 @@ public class CompassFXPlayground extends Application {
         pageTitle.setText("Chips");
         contentArea.getChildren().clear();
         ChipDemo demo = new ChipDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showComboBoxesPage() {
+        pageTitle.setText("ComboBoxes");
+        contentArea.getChildren().clear();
+        ComboBoxDemo demo = new ComboBoxDemo();
         demo.showDemo(pageTitle, contentArea);
     }
     private void showProgressPage() {
