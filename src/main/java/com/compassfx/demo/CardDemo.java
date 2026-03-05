@@ -19,23 +19,9 @@ import javafx.stage.Stage;
 /**
  * Demo application showcasing CFXCard features
  */
-public class CardDemo extends Application {
+public class CardDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX Card Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
-        // ===== ELEVATION LEVELS SECTION =====
+    public void showDemo(Label title, VBox content){
         Label elevationLabel = new Label("Elevation Levels");
         elevationLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
 
@@ -167,7 +153,7 @@ public class CardDemo extends Application {
         dashboardSection.getChildren().addAll(statsCard1, statsCard2, statsCard3, statsCard4);
 
         // Add all sections to root
-        root.getChildren().addAll(
+        content.getChildren().addAll(
                 title,
                 new Separator(),
                 elevationLabel,
@@ -188,20 +174,12 @@ public class CardDemo extends Application {
                 dashboardLabel,
                 dashboardSection
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Card Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
      * Create a simple card with title and description
      */
-    CFXCard createSimpleCard(String titleText, String description) {
+    private CFXCard createSimpleCard(String titleText, String description) {
         CFXCard card = new CFXCard();
         card.setPrefWidth(200);
 
@@ -220,7 +198,7 @@ public class CardDemo extends Application {
     /**
      * Create a card with media (colored rectangle)
      */
-    CFXCard createMediaCard(Color color, String title, String description, String buttonText) {
+    private CFXCard createMediaCard(Color color, String title, String description, String buttonText) {
         CFXCard card = new CFXCard();
         card.setPrefWidth(250);
 
@@ -252,7 +230,7 @@ public class CardDemo extends Application {
     /**
      * Create a hoverable card
      */
-    CFXCard createHoverCard(String title, String price, String description) {
+    private CFXCard createHoverCard(String title, String price, String description) {
         CFXCard card = new CFXCard();
         card.setPrefWidth(250);
         card.setHoverable(true);
@@ -278,7 +256,7 @@ public class CardDemo extends Application {
     /**
      * Create a complex card with all sections
      */
-    CFXCard createComplexCard() {
+    private CFXCard createComplexCard() {
         CFXCard card = new CFXCard();
 
         // Header with title and subtitle
@@ -327,7 +305,7 @@ public class CardDemo extends Application {
     /**
      * Create a stats dashboard card
      */
-    CFXCard createStatsCard(String label, String value, String change, Color accentColor) {
+    private CFXCard createStatsCard(String label, String value, String change, Color accentColor) {
         CFXCard card = new CFXCard();
         card.setPrefWidth(200);
         card.setElevation(CardElevation.LOW);
@@ -352,7 +330,4 @@ public class CardDemo extends Application {
         return card;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
