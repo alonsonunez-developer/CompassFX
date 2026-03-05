@@ -18,23 +18,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class BreadcrumbDemo extends Application {
+public class BreadcrumbDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_LEFT);
-        root.setStyle("-fx-background-color: #FAFAFA;");
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
+    private Circle createIcon(Color color) {
+        Circle icon = new Circle(5, color);
+        return icon;
+    }
 
-        Label title = new Label("CompassFX Breadcrumb Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
-        // ====================================
-        // Standard Breadcrumb
-        // ====================================
+    public void showDemo(Label title, VBox content){
         Label standardLabel = new Label("Standard Breadcrumb");
         standardLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
@@ -217,7 +208,7 @@ public class BreadcrumbDemo extends Application {
         // ====================================
         // Add all to root
         // ====================================
-        root.getChildren().addAll(
+        content.getChildren().addAll(
                 title,
                 new Separator(),
                 standardLabel,
@@ -244,21 +235,5 @@ public class BreadcrumbDemo extends Application {
                 interactiveLabel,
                 interactiveBox
         );
-
-        Scene scene = new Scene(scrollPane, 1000, 1100);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Breadcrumb Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    static Circle createIcon(Color color) {
-        Circle icon = new Circle(5, color);
-        return icon;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
