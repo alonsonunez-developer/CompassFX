@@ -11,9 +11,9 @@
     -fx-background-insets: 0;
     -fx-background-radius: 4px;
     -fx-border-radius: 4px;
-/*    -fx-padding: 16px 12px;*/
     -fx-text-fill: rgba(0, 0, 0, 0.87);
     -fx-prompt-text-fill: rgba(0, 0, 0, 0.38);
+    -fx-border-color: rgba(130, 130, 130, 0.38);
 }
 
 /* Remove default focus border */
@@ -24,14 +24,13 @@
 
 /* ===== OUTLINED VARIANT ===== */
 .cfx-textfield.outlined {
-    -fx-border-color: rgba(0, 0, 0, 0.38);
     -fx-border-width: 1px;
     -fx-border-radius: 4px;
     -fx-background-color: transparent;
 }
 
 .cfx-textfield.outlined:hover {
-    -fx-border-color: rgba(0, 0, 0, 0.87);
+    -fx-border-color: rgba(130, 130, 130, 0.38);
 }
 
 .cfx-textfield.outlined:focused {

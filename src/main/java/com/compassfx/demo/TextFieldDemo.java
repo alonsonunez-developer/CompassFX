@@ -19,23 +19,9 @@ import javafx.stage.Stage;
 /**
  * Demo application showcasing CFXTextField features
  */
-public class TextFieldDemo extends Application {
+public class TextFieldDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX TextField Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
-        // Outlined TextFields Section
+    public void showDemo(Label title, VBox content) {
         Label outlinedLabel = new Label("Outlined TextFields");
         outlinedLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
 
@@ -197,7 +183,7 @@ public class TextFieldDemo extends Application {
         formFields.getChildren().addAll(formName, formEmail, formPhone, formMessage, formButtons);
 
         // Add all sections to root
-        root.getChildren().addAll(
+        content.getChildren().addAll(
                 title,
                 new Separator(),
                 outlinedLabel,
@@ -215,17 +201,5 @@ public class TextFieldDemo extends Application {
                 formLabel,
                 formFields
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX TextField Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
