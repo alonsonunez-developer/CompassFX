@@ -18,22 +18,9 @@ import javafx.stage.Stage;
 /**
  * Demo application showcasing CFXSlider features
  */
-public class SliderDemo extends Application {
+public class SliderDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX Slider Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
+    public void showDemo(Label title, VBox content) {
         // ===== BASIC SLIDERS SECTION =====
         Label basicLabel = new Label("Basic Sliders");
         basicLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
@@ -139,23 +126,27 @@ public class SliderDemo extends Application {
         verticalSection.getChildren().addAll(vertical1, vertical2, vertical3, vertical4);
 
         // ===== DISABLED STATE SECTION =====
-        Label disabledLabel = new Label("Disabled State");
-        disabledLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
+        CFXCard disabledCard = new CFXCard();
+        disabledCard.setPrefWidth(600);
 
         VBox disabledSection = new VBox(20);
         disabledSection.setAlignment(Pos.CENTER_LEFT);
         disabledSection.setMaxWidth(500);
 
-        VBox disabled = new VBox(8);
-        Label disabledLabelText = new Label("Disabled Slider");
-        disabledLabelText.setStyle("-fx-font-weight: 500;");
+        Label disabledLabel = new Label("Disabled State");
+        disabledLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
+
+        VBox disabledContent = new VBox(20);
+        disabledContent.setAlignment(Pos.CENTER_LEFT);
+        disabledContent.setMaxWidth(500);
 
         CFXSlider disabledSlider = new CFXSlider(0, 100, 40);
         disabledSlider.setPrefWidth(500);
         disabledSlider.setDisable(true);
 
-        disabled.getChildren().addAll(disabledLabelText, disabledSlider);
-        disabledSection.getChildren().add(disabled);
+        disabledContent.getChildren().addAll(disabledLabel, disabledSlider);
+        disabledCard.setContent(disabledContent);
+        disabledSection.getChildren().add(disabledCard);
 
         // ===== REAL-WORLD EXAMPLES SECTION =====
         Label examplesLabel = new Label("Real-World Examples");
@@ -244,7 +235,7 @@ public class SliderDemo extends Application {
         examplesSection.getChildren().addAll(volumeCard, brightnessCard);
 
         // Add all sections to root
-        root.getChildren().addAll(
+        content.getChildren().addAll(
                 title,
                 new Separator(),
                 basicLabel,
@@ -265,20 +256,12 @@ public class SliderDemo extends Application {
                 examplesLabel,
                 examplesSection
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 900, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Slider Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
      * Create a labeled slider
      */
-    static VBox createLabeledSlider(String label, double min, double max, double value) {
+    private VBox createLabeledSlider(String label, double min, double max, double value) {
         VBox container = new VBox(8);
 
         Label labelText = new Label(label);
@@ -294,7 +277,7 @@ public class SliderDemo extends Application {
     /**
      * Create a colored slider
      */
-    static VBox createColoredSlider(String label, ProgressColor color, double value) {
+    private VBox createColoredSlider(String label, ProgressColor color, double value) {
         VBox container = new VBox(8);
 
         Label labelText = new Label(label);
@@ -311,7 +294,7 @@ public class SliderDemo extends Application {
     /**
      * Create a vertical slider
      */
-    static VBox createVerticalSlider(String label, ProgressColor color, double value) {
+    private VBox createVerticalSlider(String label, ProgressColor color, double value) {
         VBox container = new VBox(10);
         container.setAlignment(Pos.CENTER);
 
@@ -334,7 +317,4 @@ public class SliderDemo extends Application {
         return container;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
