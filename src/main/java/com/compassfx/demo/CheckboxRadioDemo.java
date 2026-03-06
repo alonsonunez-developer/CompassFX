@@ -20,23 +20,10 @@ import javafx.stage.Stage;
 /**
  * Demo application showcasing CFXCheckbox and CFXRadioButton features
  */
-public class CheckboxRadioDemo extends Application {
+public class CheckboxRadioDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
 
-        // Title
-        Label title = new Label("CompassFX Checkbox & RadioButton Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
-        // ===== CHECKBOX COLOR VARIANTS =====
+    public void showDemo(Label title, VBox content) {
         Label variantsLabel = new Label("Checkbox Color Variants");
         variantsLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
 
@@ -295,7 +282,7 @@ public class CheckboxRadioDemo extends Application {
         );
 
         // Add all sections to root
-        root.getChildren().addAll(
+        content.getChildren().addAll(
                 title,
                 new Separator(),
                 variantsLabel,
@@ -310,14 +297,6 @@ public class CheckboxRadioDemo extends Application {
                 formLabel,
                 formSection
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Checkbox & RadioButton Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
@@ -342,7 +321,4 @@ public class CheckboxRadioDemo extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
