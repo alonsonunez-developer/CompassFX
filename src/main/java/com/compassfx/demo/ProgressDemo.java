@@ -21,23 +21,9 @@ import javafx.util.Duration;
 /**
  * Demo application showcasing CFXProgressBar and CFXProgressSpinner features
  */
-public class ProgressDemo extends Application {
+public class ProgressDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX Progress Indicators Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
-        // ===== PROGRESS BAR - SIZES SECTION =====
+    public void showDemo(Label title, VBox content){
         Label sizeLabel = new Label("ProgressBar - Sizes");
         sizeLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
 
@@ -171,11 +157,11 @@ public class ProgressDemo extends Application {
         HBox spinnerColorSection = new HBox(30);
         spinnerColorSection.setAlignment(Pos.CENTER);
 
-        VBox primarySpinner = createLabeledSpinner("Primary", 0.6, ProgressSize.MEDIUM, ProgressColor.PRIMARY, false);
-        VBox secondarySpinner = createLabeledSpinner("Secondary", 0.6, ProgressSize.MEDIUM, ProgressColor.SECONDARY, false);
-        VBox successSpinner = createLabeledSpinner("Success", 0.6, ProgressSize.MEDIUM, ProgressColor.SUCCESS, false);
-        VBox warningSpinner = createLabeledSpinner("Warning", 0.6, ProgressSize.MEDIUM, ProgressColor.WARNING, false);
-        VBox errorSpinner = createLabeledSpinner("Error", 0.6, ProgressSize.MEDIUM, ProgressColor.ERROR, false);
+        VBox primarySpinner = createLabeledSpinner("Primary", 0.7, ProgressSize.MEDIUM, ProgressColor.PRIMARY, false);
+        VBox secondarySpinner = createLabeledSpinner("Secondary", 0.7, ProgressSize.MEDIUM, ProgressColor.SECONDARY, false);
+        VBox successSpinner = createLabeledSpinner("Success", 0.7, ProgressSize.MEDIUM, ProgressColor.SUCCESS, false);
+        VBox warningSpinner = createLabeledSpinner("Warning", 0.7, ProgressSize.MEDIUM, ProgressColor.WARNING, false);
+        VBox errorSpinner = createLabeledSpinner("Error", 0.7, ProgressSize.MEDIUM, ProgressColor.ERROR, false);
 
         spinnerColorSection.getChildren().addAll(primarySpinner, secondarySpinner, successSpinner, warningSpinner, errorSpinner);
 
@@ -280,7 +266,7 @@ public class ProgressDemo extends Application {
         examplesSection.getChildren().addAll(uploadCard, loadingCard, taskCard);
 
         // Add all sections to root
-        root.getChildren().addAll(
+        content.getChildren().addAll(
                 title,
                 new Separator(),
                 sizeLabel,
@@ -307,16 +293,7 @@ public class ProgressDemo extends Application {
                 examplesLabel,
                 examplesSection
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Progress Indicators Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
-
     /**
      * Create a labeled progress bar
      */
@@ -354,9 +331,5 @@ public class ProgressDemo extends Application {
 
         container.getChildren().addAll(spinner, titleLabel);
         return container;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
