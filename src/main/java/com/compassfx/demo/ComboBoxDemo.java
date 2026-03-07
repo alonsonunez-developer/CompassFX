@@ -1,6 +1,7 @@
 package com.compassfx.demo;
 
 import com.compassfx.CompassFX;
+import com.compassfx.controls.CFXAutocomplete;
 import com.compassfx.controls.CFXButton;
 import com.compassfx.controls.CFXComboBox;
 import com.compassfx.controls.CFXTextField;
@@ -17,6 +18,9 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Demo application showcasing CFXComboBox features
@@ -299,6 +303,132 @@ public class ComboBoxDemo {
                 formButtons
         );
 
+        // ====================================
+        // Countries Autocomplete
+        // ====================================
+        Label countriesLabel = new Label("Search Countries");
+        countriesLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600;");
+
+        CFXAutocomplete<String> countriesAuto = new CFXAutocomplete<>();
+        countriesAuto.setLabel("Country");
+        countriesAuto.setPromptText("Type to search...");
+        countriesAuto.setPrefWidth(400);
+        countriesAuto.setVariant(ComboBoxVariant.OUTLINED);
+
+        List<String> countries = Arrays.asList(
+                "United States", "Canada", "Mexico", "Brazil", "Argentina",
+                "United Kingdom", "France", "Germany", "Italy", "Spain",
+                "Portugal", "Netherlands", "Belgium", "Switzerland", "Austria",
+                "Japan", "China", "South Korea", "India", "Thailand",
+                "Australia", "New Zealand", "Russia", "Poland", "Sweden",
+                "Norway", "Denmark", "Finland", "Greece", "Turkey"
+        );
+        countriesAuto.setAllItems(FXCollections.observableArrayList(countries));
+
+        Label countriesResult = new Label("Selected: None");
+        countriesResult.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;");
+        countriesAuto.valueProperty().addListener((obs, old, newVal) -> {
+            countriesResult.setText("Selected: " + (newVal != null ? newVal : "None"));
+        });
+
+        // ====================================
+        // Programming Languages
+        // ====================================
+        Label languagesLabel = new Label("Search Programming Languages");
+        languagesLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600;");
+
+        CFXAutocomplete<String> languagesAuto = new CFXAutocomplete<>();
+        languagesAuto.setLabel("Programming Language");
+        languagesAuto.setPromptText("Start typing...");
+        languagesAuto.setPrefWidth(400);
+        languagesAuto.setVariant(ComboBoxVariant.FILLED);
+        languagesAuto.setHelperText("Type to filter languages");
+
+        List<String> languages = Arrays.asList(
+                "Java", "JavaScript", "Python", "C++", "C#", "Ruby", "Go",
+                "Rust", "TypeScript", "Swift", "Kotlin", "PHP", "Scala",
+                "Dart", "R", "Perl", "Haskell", "Lua", "Julia", "Elixir",
+                "Clojure", "F#", "OCaml", "Erlang", "Groovy", "COBOL"
+        );
+        languagesAuto.setAllItems(FXCollections.observableArrayList(languages));
+
+        Label languagesResult = new Label("Selected: None");
+        languagesResult.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;");
+        languagesAuto.valueProperty().addListener((obs, old, newVal) -> {
+            languagesResult.setText("Selected: " + (newVal != null ? newVal : "None"));
+        });
+
+        // ====================================
+        // Cities with variant PRIMARY
+        // ====================================
+        Label citiesLabel = new Label("Search Cities (Primary Variant)");
+        citiesLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600;");
+
+        CFXAutocomplete<String> citiesAuto = new CFXAutocomplete<>();
+        citiesAuto.setLabel("City");
+        citiesAuto.setPromptText("Search cities...");
+        citiesAuto.setPrefWidth(400);
+        citiesAuto.setVariant(ComboBoxVariant.PRIMARY);
+        citiesAuto.setMaxSuggestions(5); // Show max 5 results
+
+        List<String> cities = Arrays.asList(
+                "New York", "Los Angeles", "Chicago", "Houston", "Phoenix",
+                "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose",
+                "London", "Paris", "Tokyo", "Berlin", "Madrid", "Rome",
+                "Barcelona", "Amsterdam", "Vienna", "Prague", "Budapest",
+                "Sydney", "Melbourne", "Toronto", "Vancouver", "Montreal"
+        );
+        citiesAuto.setAllItems(FXCollections.observableArrayList(cities));
+
+        Label citiesResult = new Label("Selected: None");
+        citiesResult.setStyle("-fx-font-size: 14px; -fx-text-fill: #666;");
+        citiesAuto.valueProperty().addListener((obs, old, newVal) -> {
+            citiesResult.setText("Selected: " + (newVal != null ? newVal : "None"));
+        });
+
+        // ====================================
+        // Case Sensitive Search
+        // ====================================
+        Label caseSensitiveLabel = new Label("Case Sensitive Search");
+        caseSensitiveLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600;");
+
+        CFXAutocomplete<String> caseSensitiveAuto = new CFXAutocomplete<>();
+        caseSensitiveAuto.setLabel("Brands");
+        caseSensitiveAuto.setPromptText("Case sensitive search...");
+        caseSensitiveAuto.setPrefWidth(400);
+        caseSensitiveAuto.setVariant(ComboBoxVariant.SUCCESS);
+        caseSensitiveAuto.setCaseSensitive(true);
+        caseSensitiveAuto.setHelperText("Search is case-sensitive");
+
+        List<String> brands = Arrays.asList(
+                "Apple", "Microsoft", "Google", "Amazon", "Meta",
+                "Tesla", "NVIDIA", "AMD", "Intel", "IBM",
+                "Oracle", "Salesforce", "Adobe", "Netflix", "Spotify"
+        );
+        caseSensitiveAuto.setAllItems(FXCollections.observableArrayList(brands));
+
+        // ====================================
+        // Email Autocomplete
+        // ====================================
+        Label emailLabel = new Label("Email Autocomplete");
+        emailLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600;");
+
+        CFXAutocomplete<String> emailAuto = new CFXAutocomplete<>();
+        emailAuto.setLabel("Email Domain");
+        emailAuto.setPromptText("@example.com");
+        emailAuto.setPrefWidth(400);
+        emailAuto.setVariant(ComboBoxVariant.OUTLINED);
+        emailAuto.setHelperText("Common email providers");
+
+        List<String> domains = Arrays.asList(
+                "@gmail.com", "@yahoo.com", "@outlook.com", "@hotmail.com",
+                "@icloud.com", "@protonmail.com", "@aol.com", "@mail.com",
+                "@zoho.com", "@yandex.com", "@gmx.com"
+        );
+        emailAuto.setAllItems(FXCollections.observableArrayList(domains));
+
+
+
         // Add all sections to root
         root.getChildren().addAll(
                 title,
@@ -319,7 +449,25 @@ public class ComboBoxDemo {
                 customSection,
                 new Separator(),
                 formLabel,
-                formSection
+                formSection,
+                new Separator(),
+                countriesLabel,
+                countriesAuto,
+                countriesResult,
+                new Separator(),
+                languagesLabel,
+                languagesAuto,
+                languagesResult,
+                new Separator(),
+                citiesLabel,
+                citiesAuto,
+                citiesResult,
+                new Separator(),
+                caseSensitiveLabel,
+                caseSensitiveAuto,
+                new Separator(),
+                emailLabel,
+                emailAuto
         );
     }
 
