@@ -1,0 +1,133 @@
+/* ============================================ */
+/* CFX-TRANSFER-LIST.CSS - Transfer List Styles */
+/* src/main/resources/com/compassfx/controls/cfx-transfer-list.css */
+/* ============================================ */
+
+/* Main Container */
+.cfx-transfer-list {
+    -fx-background-color: transparent;
+}
+
+/* List Containers */
+.transfer-list-container {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 4, 0.2, 0, 2);
+}
+
+/* Title Labels */
+.transfer-list-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #212121;
+}
+
+/* Search Fields */
+.transfer-search {
+    -fx-background-color: #F5F5F5;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.38);
+}
+
+.transfer-search:focused {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-background-color: white;
+}
+
+/* List Views */
+.transfer-list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.transfer-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #424242;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.transfer-list-view .list-cell:hover {
+    -fx-background-color: #F5F5F5;
+}
+
+.transfer-list-view .list-cell:selected {
+    -fx-background-color: #E3F2FD;
+    -fx-text-fill: #1976D2;
+}
+
+.transfer-list-view .list-cell:selected:hover {
+    -fx-background-color: #BBDEFB;
+}
+
+.transfer-list-view .list-cell:empty {
+    -fx-background-color: transparent;
+}
+
+/* Scrollbar */
+.transfer-list-view .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+.transfer-list-view .scroll-bar .thumb {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 4px;
+}
+
+.transfer-list-view .scroll-bar .thumb:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+}
+
+.transfer-list-view .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+/* Buttons Container */
+.transfer-buttons {
+    -fx-spacing: 10px;
+}
+
+/* Transfer Buttons */
+.transfer-button {
+    -fx-background-color: white;
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-text-fill: #2196F3;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 3, 0.2, 0, 1);
+}
+
+.transfer-button:hover {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.3), 4, 0.3, 0, 2);
+}
+
+.transfer-button:pressed {
+    -fx-background-color: #1976D2;
+    -fx-border-color: #1976D2;
+}
+
+.transfer-button:disabled {
+    -fx-opacity: 0.4;
+    -fx-cursor: default;
+}

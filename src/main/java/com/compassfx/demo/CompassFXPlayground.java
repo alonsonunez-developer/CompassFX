@@ -154,6 +154,7 @@ public class CompassFXPlayground extends Application {
                 createMenuItem("🔘 Buttons", this::showButtonsPage),
                 createMenuItem("📦 Cards", this::showCardsPage),
                 createMenuItem("Charts", this::showChartsPage),
+                createMenuItem("Transfer Lists", this::showTransferListPage),
                 createMenuItem("☑️ Checkboxes", this::showCheckboxPage),
                 createMenuItem("Chips", this::showChipsPage),
                 createMenuItem("ComboBoxes", this::showComboBoxesPage),
@@ -515,6 +516,13 @@ public class CompassFXPlayground extends Application {
         contentArea.getChildren().clear();
 
         SliderDemo demo = new SliderDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showTransferListPage() {
+        pageTitle.setText("Transfer List");
+        contentArea.getChildren().clear();
+        TransferListDemo demo = new TransferListDemo();
         demo.showDemo(pageTitle, contentArea);
     }
 
