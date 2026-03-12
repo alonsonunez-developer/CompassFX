@@ -1,0 +1,13 @@
+/* ============================================ */
+/* CFX-MARQUEE.CSS - Marquee Styles */
+/* src/main/resources/com/compassfx/controls/cfx-marquee.css */
+/* ============================================ */
+
+.cfx-marquee {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.cfx-marquee:hover {
+    -fx-cursor: hand;
+}
