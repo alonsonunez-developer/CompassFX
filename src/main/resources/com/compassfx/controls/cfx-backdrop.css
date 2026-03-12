@@ -1,0 +1,31 @@
+/* ============================================ */
+/* CFX-BACKDROP.CSS - Backdrop Styles */
+/* src/main/resources/com/compassfx/controls/cfx-backdrop.css */
+/* ============================================ */
+
+/* Container */
+.cfx-backdrop {
+    -fx-background-color: transparent;
+}
+
+.backdrop-container {
+    -fx-background-color: transparent;
+}
+
+/* Back Layer (Hidden content that slides down) */
+.backdrop-back {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.3, 0, 4);
+    -fx-padding: 20px;
+}
+
+/* Overlay (Darkens the front content) */
+.backdrop-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-cursor: hand;
+}
+
+/* Front Layer (Main content) */
+.backdrop-front {
+    -fx-background-color: white;
+}
