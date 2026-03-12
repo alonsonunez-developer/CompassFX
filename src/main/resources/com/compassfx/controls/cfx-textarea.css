@@ -1,0 +1,120 @@
+/* ============================================ */
+/* CFX-TEXTAREA.CSS - TextArea Styles */
+/* src/main/resources/com/compassfx/controls/cfx-textarea.css */
+/* ============================================ */
+
+/* Base TextArea */
+.cfx-textarea {
+    -fx-font-family: "System";
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.38);
+    -fx-background-color: transparent;
+}
+
+.cfx-textarea .content {
+    -fx-background-color: transparent;
+    -fx-padding: 12px 16px;
+}
+
+/* ===== OUTLINED VARIANT ===== */
+.cfx-textarea.outlined {
+    -fx-border-color: rgba(0, 0, 0, 0.38);
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.cfx-textarea.outlined:hover {
+    -fx-border-color: rgba(0, 0, 0, 0.87);
+}
+
+.cfx-textarea.outlined:focused,
+.cfx-textarea.outlined.focused {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+}
+
+.cfx-textarea.outlined.error {
+    -fx-border-color: #F44336;
+}
+
+.cfx-textarea.outlined.error:focused,
+.cfx-textarea.outlined.error.focused {
+    -fx-border-color: #F44336;
+    -fx-border-width: 2px;
+}
+
+/* ===== FILLED VARIANT ===== */
+.cfx-textarea.filled {
+    -fx-background-color: rgba(0, 0, 0, 0.06);
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.38) transparent;
+    -fx-background-radius: 4px 4px 0 0;
+}
+
+.cfx-textarea.filled:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.09);
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.87) transparent;
+}
+
+.cfx-textarea.filled:focused,
+.cfx-textarea.filled.focused {
+    -fx-background-color: rgba(0, 0, 0, 0.09);
+    -fx-border-color: transparent transparent #2196F3 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.cfx-textarea.filled.error {
+    -fx-border-color: transparent transparent #F44336 transparent;
+}
+
+.cfx-textarea.filled.error:focused,
+.cfx-textarea.filled.error.focused {
+    -fx-border-color: transparent transparent #F44336 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+/* ===== SCROLLBAR ===== */
+.cfx-textarea .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+.cfx-textarea .scroll-bar .thumb {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 4px;
+}
+
+.cfx-textarea .scroll-bar .thumb:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+}
+
+.cfx-textarea .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.cfx-textarea .scroll-bar .increment-button,
+.cfx-textarea .scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+}
+
+/* ===== DISABLED STATE ===== */
+.cfx-textarea:disabled {
+    -fx-opacity: 0.6;
+}
+
+.cfx-textarea.outlined:disabled {
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+}
+
+.cfx-textarea.filled:disabled {
+    -fx-background-color: rgba(0, 0, 0, 0.03);
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.12) transparent;
+}
+
+/* Remove default focus indicator */
+.cfx-textarea:focused {
+    -fx-background-insets: 0;
+}
