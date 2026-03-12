@@ -1,0 +1,86 @@
+/* ============================================ */
+/* CFX-SPEED-DIAL.CSS - Speed Dial Styles */
+/* src/main/resources/com/compassfx/controls/cfx-speed-dial.css */
+/* ============================================ */
+
+/* Container */
+.cfx-speed-dial {
+    -fx-background-color: transparent;
+}
+
+/* Overlay */
+.speed-dial-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Items Container */
+.speed-dial-items {
+    -fx-background-color: transparent;
+}
+
+/* Main Button */
+.speed-dial-main {
+    -fx-background-color: #2196F3;
+    -fx-background-radius: 28px;
+    -fx-min-width: 56px;
+    -fx-min-height: 56px;
+    -fx-pref-width: 56px;
+    -fx-pref-height: 56px;
+    -fx-max-width: 56px;
+    -fx-max-height: 56px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0.4, 0, 2);
+}
+
+.speed-dial-main:hover {
+    -fx-background-color: #1E88E5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 12, 0.5, 0, 4);
+}
+
+.speed-dial-main:pressed {
+    -fx-background-color: #1976D2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.3, 0, 1);
+}
+
+/* Item Buttons */
+.speed-dial-item {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2);
+}
+
+.speed-dial-item:hover {
+    -fx-background-color: #F5F5F5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.4, 0, 3);
+}
+
+.speed-dial-item:pressed {
+    -fx-background-color: #EEEEEE;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.2, 0, 1);
+}
+
+/* Remove default button styling */
+.speed-dial-main > .text,
+.speed-dial-item > .text {
+    -fx-fill: transparent;
+}
+
+.speed-dial-main:focused,
+.speed-dial-item:focused {
+    -fx-background-insets: 0;
+    -fx-background-color: #2196F3;
+}
+
+.speed-dial-item:focused {
+    -fx-background-color: white;
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+}
