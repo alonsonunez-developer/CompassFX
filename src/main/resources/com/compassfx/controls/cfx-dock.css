@@ -1,0 +1,75 @@
+/* ============================================ */
+/* CFX-DOCK.CSS - Dock Styles */
+/* src/main/resources/com/compassfx/controls/cfx-dock.css */
+/* ============================================ */
+
+.cfx-dock {
+    -fx-background-color: transparent;
+}
+
+/* Dock container */
+.dock-container {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 20px;
+    -fx-padding: 10px 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 20, 0.4, 0, 5);
+    -fx-border-color: rgba(200, 200, 200, 0.8);
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-min-width: 100px;
+    -fx-min-height: 100px;
+}
+
+/* Individual dock item */
+.dock-item {
+    -fx-background-color: transparent;
+    -fx-padding: 4px;
+}
+
+/* Icon container */
+.dock-icon-container {
+    -fx-background-color: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(240,240,240,0.8));
+    -fx-background-radius: 12px;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0.3, 0, 2);
+}
+
+.dock-item:hover .dock-icon-container {
+    -fx-background-color: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(245,245,245,0.95));
+    -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.4), 12, 0.5, 0, 3);
+}
+
+/* Badge */
+.dock-badge {
+    -fx-background-color: #F44336;
+    -fx-background-radius: 10px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0.3, 0, 1);
+    -fx-translate-x: 8px;
+    -fx-translate-y: -8px;
+}
+
+.dock-badge-label {
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+/* Dark mode variant */
+.cfx-dock.dark .dock-container {
+    -fx-background-color: rgba(40, 40, 40, 0.95);
+    -fx-border-color: rgba(80, 80, 80, 0.5);
+}
+
+.cfx-dock.dark .dock-icon-container {
+    -fx-background-color: linear-gradient(to bottom, rgba(60,60,60,0.8), rgba(50,50,50,0.8));
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cfx-dock.dark .dock-item:hover .dock-icon-container {
+    -fx-background-color: linear-gradient(to bottom, rgba(70,70,70,0.95), rgba(60,60,60,0.95));
+}
