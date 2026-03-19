@@ -1,0 +1,8 @@
+/* ============================================ */
+/* CFX-FLIP-CARD.CSS - Flip Card Styles */
+/* src/main/resources/com/compassfx/controls/cfx-flip-card.css */
+/* ============================================ */
+
+.cfx-flip-card {
+    -fx-background-color: transparent;
+}

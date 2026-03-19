@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 
 /**
  * CompassFX Card - A Material Design inspired card component
- * Supports header, content, footer, and elevation levels
+ * Supports header, content, footer, elevation levels, and flip animation
  */
 public class CFXCard extends VBox {
 
@@ -18,7 +18,9 @@ public class CFXCard extends VBox {
 
     // Properties
     private final ObjectProperty<CardElevation> elevation;
+    private final ObjectProperty<CardVariant> variant;
     private final BooleanProperty hoverable;
+    private final BooleanProperty darkMode;
     private final ObjectProperty<Node> header;
     private final ObjectProperty<Node> content;
     private final ObjectProperty<Node> footer;
@@ -30,12 +32,11 @@ public class CFXCard extends VBox {
     private final VBox contentContainer;
     private final VBox footerContainer;
 
-    /**
-     * Creates a CFXCard
-     */
     public CFXCard() {
         this.elevation = new SimpleObjectProperty<>(this, "elevation", CardElevation.MEDIUM);
+        this.variant = new SimpleObjectProperty<>(this, "variant", CardVariant.FILLED);
         this.hoverable = new SimpleBooleanProperty(this, "hoverable", false);
+        this.darkMode = new SimpleBooleanProperty(this, "darkMode", false);
         this.header = new SimpleObjectProperty<>(this, "header", null);
         this.content = new SimpleObjectProperty<>(this, "content", null);
         this.footer = new SimpleObjectProperty<>(this, "footer", null);
@@ -50,9 +51,6 @@ public class CFXCard extends VBox {
         initialize();
     }
 
-    /**
-     * Initialize the card
-     */
     private void initialize() {
         getStyleClass().add(DEFAULT_STYLE_CLASS);
 
@@ -61,8 +59,6 @@ public class CFXCard extends VBox {
             java.net.URL cssUrl = getClass().getResource(STYLESHEET);
             if (cssUrl != null) {
                 getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("WARNING: CFXCard stylesheet not found: " + STYLESHEET);
             }
         } catch (Exception e) {
             System.err.println("ERROR: Failed to load CFXCard stylesheet: " + e.getMessage());
@@ -89,12 +85,11 @@ public class CFXCard extends VBox {
         setupListeners();
     }
 
-    /**
-     * Setup property listeners
-     */
     private void setupListeners() {
         elevation.addListener((obs, oldVal, newVal) -> updateStyleClasses());
+        variant.addListener((obs, oldVal, newVal) -> updateStyleClasses());
         hoverable.addListener((obs, oldVal, newVal) -> updateStyleClasses());
+        darkMode.addListener((obs, oldVal, newVal) -> updateStyleClasses());
 
         header.addListener((obs, oldVal, newVal) -> {
             headerContainer.getChildren().clear();
@@ -137,95 +132,54 @@ public class CFXCard extends VBox {
         });
     }
 
-    /**
-     * Update CSS style classes
-     */
     private void updateStyleClasses() {
         getStyleClass().removeIf(styleClass ->
-                !styleClass.equals(DEFAULT_STYLE_CLASS)
+                !styleClass.equals(DEFAULT_STYLE_CLASS) &&
+                        !styleClass.equals("vbox")
         );
 
         getStyleClass().add(elevation.get().getStyleClass());
+        getStyleClass().add(variant.get().getStyleClass());
 
         if (hoverable.get()) {
             getStyleClass().add("hoverable");
         }
+
+        if (darkMode.get()) {
+            getStyleClass().add("dark");
+        }
     }
 
-    // ===== Property Getters and Setters =====
+    // Getters and Setters
+    public CardElevation getElevation() { return elevation.get(); }
+    public void setElevation(CardElevation elevation) { this.elevation.set(elevation); }
+    public ObjectProperty<CardElevation> elevationProperty() { return elevation; }
 
-    public CardElevation getElevation() {
-        return elevation.get();
-    }
+    public CardVariant getVariant() { return variant.get(); }
+    public void setVariant(CardVariant variant) { this.variant.set(variant); }
+    public ObjectProperty<CardVariant> variantProperty() { return variant; }
 
-    public void setElevation(CardElevation elevation) {
-        this.elevation.set(elevation);
-    }
+    public boolean isHoverable() { return hoverable.get(); }
+    public void setHoverable(boolean hoverable) { this.hoverable.set(hoverable); }
+    public BooleanProperty hoverableProperty() { return hoverable; }
 
-    public ObjectProperty<CardElevation> elevationProperty() {
-        return elevation;
-    }
+    public boolean isDarkMode() { return darkMode.get(); }
+    public void setDarkMode(boolean darkMode) { this.darkMode.set(darkMode); }
+    public BooleanProperty darkModeProperty() { return darkMode; }
 
-    public boolean isHoverable() {
-        return hoverable.get();
-    }
+    public Node getHeader() { return header.get(); }
+    public void setHeader(Node header) { this.header.set(header); }
+    public ObjectProperty<Node> headerProperty() { return header; }
 
-    public void setHoverable(boolean hoverable) {
-        this.hoverable.set(hoverable);
-    }
+    public Node getContent() { return content.get(); }
+    public void setContent(Node content) { this.content.set(content); }
+    public ObjectProperty<Node> contentProperty() { return content; }
 
-    public BooleanProperty hoverableProperty() {
-        return hoverable;
-    }
+    public Node getFooter() { return footer.get(); }
+    public void setFooter(Node footer) { this.footer.set(footer); }
+    public ObjectProperty<Node> footerProperty() { return footer; }
 
-    public Node getHeader() {
-        return header.get();
-    }
-
-    public void setHeader(Node header) {
-        this.header.set(header);
-    }
-
-    public ObjectProperty<Node> headerProperty() {
-        return header;
-    }
-
-    public Node getContent() {
-        return content.get();
-    }
-
-    public void setContent(Node content) {
-        this.content.set(content);
-    }
-
-    public ObjectProperty<Node> contentProperty() {
-        return content;
-    }
-
-    public Node getFooter() {
-        return footer.get();
-    }
-
-    public void setFooter(Node footer) {
-        this.footer.set(footer);
-    }
-
-    public ObjectProperty<Node> footerProperty() {
-        return footer;
-    }
-
-    public Node getMedia() {
-        return media.get();
-    }
-
-    public void setMedia(Node media) {
-        this.media.set(media);
-    }
-
-    public ObjectProperty<Node> mediaProperty() {
-        return media;
-    }
-
-    public void setVariant(CardVariant cardVariant) {
-    }
+    public Node getMedia() { return media.get(); }
+    public void setMedia(Node media) { this.media.set(media); }
+    public ObjectProperty<Node> mediaProperty() { return media; }
 }

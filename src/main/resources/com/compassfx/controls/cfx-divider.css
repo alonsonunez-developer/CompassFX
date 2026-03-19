@@ -1,0 +1,32 @@
+/* ============================================ */
+/* CFX-DIVIDER.CSS - Divider Styles */
+/* src/main/resources/com/compassfx/controls/cfx-divider.css */
+/* ============================================ */
+
+.cfx-divider {
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+    -fx-border-width: 1px;
+    -fx-padding: 0;
+}
+
+.cfx-divider:horizontal {
+    -fx-pref-height: 1px;
+    -fx-min-height: 1px;
+    -fx-max-height: 1px;
+}
+
+.cfx-divider:vertical {
+    -fx-pref-width: 1px;
+    -fx-min-width: 1px;
+    -fx-max-width: 1px;
+}
+
+/* Dashed variant */
+.cfx-divider.dashed {
+    -fx-border-style: dashed;
+}
+
+/* Dark mode */
+.cfx-divider.dark {
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+}

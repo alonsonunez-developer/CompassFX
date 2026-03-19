@@ -13,7 +13,34 @@
     -fx-spacing: 0;
 }
 
-/* Elevation Levels - Material Design Shadows */
+/* ===== VARIANTS ===== */
+
+/* Filled Variant (Default) */
+.cfx-card.filled {
+    -fx-background-color: white;
+    -fx-border-width: 0;
+}
+
+/* Outlined Variant */
+.cfx-card.outlined {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0, 0, 0, 0.12);
+    -fx-border-width: 2px;
+    -fx-effect: null;
+}
+
+.cfx-card.outlined:hover {
+    -fx-border-color: rgba(0, 0, 0, 0.24);
+}
+
+/* Elevated Variant */
+.cfx-card.elevated {
+    -fx-background-color: white;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 8, 0.3, 0, 4);
+}
+
+/* ===== ELEVATION LEVELS ===== */
 .cfx-card.elevation-none {
     -fx-effect: null;
 }
@@ -30,16 +57,17 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.20), 10, 0.35, 0, 6);
 }
 
-/* Hoverable Card */
+/* ===== HOVERABLE ===== */
 .cfx-card.hoverable {
     -fx-cursor: hand;
-    -fx-transition: all 200ms ease-in-out;
 }
 
 .cfx-card.hoverable:hover {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 14, 0.4, 0, 8);
     -fx-translate-y: -2px;
 }
+
+/* ===== CARD SECTIONS ===== */
 
 /* Card Header */
 .cfx-card-header {
@@ -53,14 +81,10 @@
     -fx-text-fill: rgba(0, 0, 0, 0.87);
 }
 
-/* Card Media (Images/Graphics) */
+/* Card Media */
 .cfx-card-media {
     -fx-padding: 0;
     -fx-background-color: transparent;
-}
-
-.cfx-card-media .image-view {
-    -fx-background-radius: 8px 8px 0 0;
 }
 
 /* Card Content */
@@ -79,77 +103,36 @@
 .cfx-card-footer {
     -fx-padding: 16px 24px 20px 24px;
     -fx-background-color: transparent;
-    -fx-border-color: #E0E0E0 transparent transparent transparent;
-    -fx-border-width: 1px 0 0 0;
 }
 
-/* Card with media at top */
-.cfx-card.has-media .cfx-card-media {
-    -fx-background-radius: 8px 8px 0 0;
+/* ===== DARK MODE ===== */
+.cfx-card.dark {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* Compact Card */
-.cfx-card.compact .cfx-card-header {
-    -fx-padding: 12px 16px 8px 16px;
+.cfx-card.dark.filled {
+    -fx-background-color: #2D2D2D;
 }
 
-.cfx-card.compact .cfx-card-content {
-    -fx-padding: 8px 16px;
+.cfx-card.dark.outlined {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
 }
 
-.cfx-card.compact .cfx-card-footer {
-    -fx-padding: 8px 16px 12px 16px;
+.cfx-card.dark.elevated {
+    -fx-background-color: #2D2D2D;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 8, 0.4, 0, 4);
 }
 
-/* Outlined Card Variant */
-.cfx-card.outlined {
-    -fx-background-color: white;
-    -fx-border-color: rgba(0, 0, 0, 0.12);
-    -fx-border-width: 1px;
-    -fx-effect: null;
+.cfx-card.dark .cfx-card-header .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.95);
 }
 
-.cfx-card.outlined:hover {
-    -fx-border-color: rgba(0, 0, 0, 0.24);
+.cfx-card.dark .cfx-card-content .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.87);
 }
 
-/* Colored Cards */
-.cfx-card.primary {
-    -fx-background-color: #2196F3;
-}
-
-.cfx-card.primary .label {
-    -fx-text-fill: white;
-}
-
-.cfx-card.secondary {
-    -fx-background-color: #9C27B0;
-}
-
-.cfx-card.secondary .label {
-    -fx-text-fill: white;
-}
-
-.cfx-card.success {
-    -fx-background-color: #4CAF50;
-}
-
-.cfx-card.success .label {
-    -fx-text-fill: white;
-}
-
-.cfx-card.warning {
-    -fx-background-color: #FF9800;
-}
-
-.cfx-card.warning .label {
-    -fx-text-fill: white;
-}
-
-.cfx-card.error {
-    -fx-background-color: #F44336;
-}
-
-.cfx-card.error .label {
-    -fx-text-fill: white;
+.cfx-card.dark .cfx-card-footer {
+    -fx-border-color: rgba(255, 255, 255, 0.12) transparent transparent transparent;
 }
