@@ -19,18 +19,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class CarouselDemo extends Application {
+public class CarouselDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-
-        Label title = new Label("CompassFX Carousel Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
+    public void showDemo(Label title, VBox root){
         // ====================================
         // Basic Text Carousel with Slide Transition
         // ====================================
@@ -251,19 +242,6 @@ public class CarouselDemo extends Application {
                 controlsBox
         );
 
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
-
-        Scene scene = new Scene(scrollPane, 1100, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Carousel Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

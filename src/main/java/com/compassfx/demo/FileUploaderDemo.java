@@ -1,35 +1,17 @@
-// ============================================
-// FileUploaderDemo.java - File Uploader Demo
-// src/main/java/com/compassfx/demo/FileUploaderDemo.java
-// ============================================
 package com.compassfx.demo;
 
-import com.compassfx.CompassFX;
 import com.compassfx.controls.CFXFileUploader;
 import com.compassfx.enums.ButtonColor;
 import com.compassfx.enums.FileType;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class FileUploaderDemo extends Application {
+public class FileUploaderDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-
-        Label title = new Label("CompassFX File Uploader Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Image Uploader
         // ====================================
@@ -147,20 +129,5 @@ public class FileUploaderDemo extends Application {
                 videoLabel,
                 videoUploader
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
-
-        Scene scene = new Scene(scrollPane, 900, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX File Uploader Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

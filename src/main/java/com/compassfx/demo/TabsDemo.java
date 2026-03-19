@@ -24,21 +24,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class TabsDemo extends Application {
+public class TabsDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-
-        Label title = new Label("CompassFX Tabs Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
-        // ====================================
-        // Standard Tabs
-        // ====================================
+    public void showDemo(Label title, VBox root) {
         Label standardLabel = new Label("Standard Tabs");
         standardLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
@@ -240,17 +228,6 @@ public class TabsDemo extends Application {
                 dynamicLabel,
                 dynamicContainer
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
-
-        Scene scene = new Scene(scrollPane, 1000, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Tabs Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     static VBox createContent(String titleText, String description) {
@@ -271,9 +248,5 @@ public class TabsDemo extends Application {
 
         content.getChildren().addAll(title, desc, textArea);
         return content;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

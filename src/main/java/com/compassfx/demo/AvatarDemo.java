@@ -1,41 +1,20 @@
-// ============================================
-// AvatarDemo.java - Avatar Demo Application
-// src/main/java/com/compassfx/demo/AvatarDemo.java
-// ============================================
 package com.compassfx.demo;
 
-import com.compassfx.CompassFX;
 import com.compassfx.controls.CFXAvatar;
 import com.compassfx.enums.AvatarShape;
 import com.compassfx.enums.AvatarSize;
 import com.compassfx.enums.AvatarVariant;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
-public class AvatarDemo extends Application {
+public class AvatarDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-
-        Label title = new Label("CompassFX Avatar Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
-        // ====================================
-        // Sizes
-        // ====================================
+    public void showDemo(Label title, VBox root) {
         Label sizesLabel = new Label("Avatar Sizes");
         sizesLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
 
@@ -288,17 +267,6 @@ public class AvatarDemo extends Application {
                 userListLabel,
                 userList
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
-
-        Scene scene = new Scene(scrollPane, 1000, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Avatar Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     static VBox createLabeledAvatar(String label, String initials, AvatarSize size) {
@@ -334,9 +302,5 @@ public class AvatarDemo extends Application {
 
         userItem.getChildren().addAll(avatar, info);
         return userItem;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

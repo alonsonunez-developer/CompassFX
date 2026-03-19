@@ -1,34 +1,20 @@
 package com.compassfx.demo;
 
-import com.compassfx.CompassFX;
 import com.compassfx.controls.CFXGrid;
 import com.compassfx.controls.CFXRow;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 
-public class GridDemo extends Application {
+public class GridDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-
-        Label title = new Label("CompassFX Grid System Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Basic 12-Column Grid
         // ====================================
@@ -223,17 +209,6 @@ public class GridDemo extends Application {
                 rowLabel,
                 rowContainer
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
-
-        Scene scene = new Scene(scrollPane, 1200, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Grid Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private StackPane createGridItem(String text, Color color) {
@@ -300,9 +275,5 @@ public class GridDemo extends Application {
                 (int)(color.getGreen() * 255),
                 (int)(color.getBlue() * 255)
         );
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
