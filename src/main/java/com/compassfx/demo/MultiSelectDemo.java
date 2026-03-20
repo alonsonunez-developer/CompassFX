@@ -13,20 +13,9 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MultiSelectDemo extends Application {
+public class MultiSelectDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FAFAFA;");
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-
-        Label title = new Label("CompassFX MultiSelect Demo");
-        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Basic MultiSelect
         // ====================================
@@ -155,16 +144,7 @@ public class MultiSelectDemo extends Application {
                 noSelectAllLabel,
                 noSelectAllSelect
         );
-
-        Scene scene = new Scene(scrollPane, 800, 1000);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX MultiSelect Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }

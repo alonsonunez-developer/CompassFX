@@ -1,42 +1,25 @@
 package com.compassfx.demo;
 
-
-import com.compassfx.CompassFX;
 import com.compassfx.controls.*;
 import com.compassfx.enums.SnackbarPosition;
 import com.compassfx.enums.SnackbarType;
-import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
  * Demo application showcasing CFXSnackbar features
  */
-public class SnackbarDemo extends Application {
+public class SnackbarDemo {
 
     private Scene scene;
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX Snackbar Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+    public void showDemo(Label title, VBox root, Scene scene) {
+        this.scene = scene;
 
         Label subtitle = new Label("Click buttons to show snackbar notifications");
         subtitle.setStyle("-fx-font-size: 14px; -fx-text-fill: rgba(0, 0, 0, 0.6);");
@@ -340,17 +323,5 @@ public class SnackbarDemo extends Application {
                 tipsLabel,
                 tipsCard
         );
-
-        // Create scene and apply theme
-        scene = new Scene(scrollPane, 900, 1600);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Snackbar Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

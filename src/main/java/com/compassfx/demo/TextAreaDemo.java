@@ -1,37 +1,19 @@
 package com.compassfx.demo;
 
-import com.compassfx.CompassFX;
 import com.compassfx.controls.CFXButton;
 import com.compassfx.controls.CFXCheckbox;
 import com.compassfx.controls.CFXTextArea;
 import com.compassfx.enums.ButtonVariant;
 import com.compassfx.enums.TextAreaVariant;
-import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class TextAreaDemo extends Application {
+public class TextAreaDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FAFAFA;");
-
-        Label title = new Label("CompassFX TextArea Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold;");
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Auto-Resize Example
         // ====================================
@@ -222,16 +204,5 @@ public class TextAreaDemo extends Application {
                 commentArea,
                 submitBtn
         );
-
-        Scene scene = new Scene(scrollPane, 800, 1400);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX TextArea Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

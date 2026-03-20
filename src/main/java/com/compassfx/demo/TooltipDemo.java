@@ -1,41 +1,22 @@
 package com.compassfx.demo;
 
-import com.compassfx.CompassFX;
 import com.compassfx.controls.*;
 import com.compassfx.enums.ButtonVariant;
 import com.compassfx.enums.TooltipPosition;
-import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
 /**
  * Demo application showcasing CFXTooltip features
  */
-public class TooltipDemo extends Application {
+public class TooltipDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX Tooltip Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
+    public void showDemo(Label title, VBox root) {
         Label subtitle = new Label("Hover over elements to see tooltips");
         subtitle.setStyle("-fx-font-size: 14px; -fx-text-fill: rgba(0, 0, 0, 0.6);");
 
@@ -236,14 +217,6 @@ public class TooltipDemo extends Application {
                 toolbarLabel,
                 toolbar
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Tooltip Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
@@ -270,9 +243,5 @@ public class TooltipDemo extends Application {
 
         container.getChildren().add(iconContainer);
         return container;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

@@ -15,22 +15,12 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class FileTreeDemo extends Application {
+public class FileTreeDemo {
 
     private Label selectedLabel;
     private Label eventLog;
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setStyle("-fx-background-color: #FAFAFA;");
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-
-        Label title = new Label("CompassFX File Tree Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Project Structure Tree
         // ====================================
@@ -144,14 +134,8 @@ public class FileTreeDemo extends Application {
                 comparisonLabel,
                 treesBox
         );
-
-        Scene scene = new Scene(scrollPane, 900, 1200);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX File Tree Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
+
 
     private FileTreeItem createProjectStructure() {
         FileTreeItem root = new FileTreeItem("my-awesome-app", FileTreeItemType.FOLDER);
@@ -261,7 +245,4 @@ public class FileTreeDemo extends Application {
         return root;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

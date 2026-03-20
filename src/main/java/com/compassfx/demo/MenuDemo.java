@@ -1,55 +1,26 @@
 package com.compassfx.demo;
 
-import com.compassfx.CompassFX;
-import com.compassfx.controls.CFXButton;
 import com.compassfx.controls.CFXContextMenu;
 import com.compassfx.controls.CFXMenuBar;
 import com.compassfx.enums.MenuVariant;
 import com.compassfx.models.MenuItem;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 
-public class MenuDemo extends Application {
+public class MenuDemo {
 
     private TextArea logArea;
 
-    @Override
-    public void start(Stage primaryStage) {
-        BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #FAFAFA;");
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToHeight(true);
-
-        // ====================================
-        // Standard MenuBar
-        // ====================================
-        CFXMenuBar menuBar = createStandardMenuBar();
-        root.setTop(menuBar);
-
-        // ====================================
-        // Content Area
-        // ====================================
-        VBox content = new VBox(30);
-        content.setPadding(new Insets(40));
-        content.setAlignment(Pos.TOP_CENTER);
-
-        Label title = new Label("CompassFX Menu Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
+    public void showDemo(Label title, VBox root) {
         // Log area
         Label logLabel = new Label("Action Log:");
         logLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: 600;");
@@ -59,6 +30,15 @@ public class MenuDemo extends Application {
         logArea.setPrefHeight(200);
         logArea.setMaxWidth(600);
         logArea.setPromptText("Menu actions will be logged here...");
+
+        // ====================================
+        // Standard MenuBar
+        // ====================================
+        Label menuBarLabel = new Label("Standard MenuBar");
+        menuBarLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #424242;");
+
+        CFXMenuBar menuBar = createStandardMenuBar();
+        menuBar.setMaxWidth(800);
 
         // Context Menu Demo
         Label contextLabel = new Label("Context Menu Demo");
@@ -113,11 +93,14 @@ public class MenuDemo extends Application {
                 minimalLabel, minimalMenu
         );
 
-        content.getChildren().addAll(
+        root.getChildren().addAll(
                 title,
                 new Separator(),
                 logLabel,
                 logArea,
+                new Separator(),
+                menuBarLabel,
+                menuBar,
                 new Separator(),
                 contextLabel,
                 contextBox,
@@ -125,15 +108,6 @@ public class MenuDemo extends Application {
                 variantsLabel,
                 variantsBox
         );
-
-        root.setCenter(content);
-
-        Scene scene = new Scene(scrollPane, 1000, 800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Menu Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private CFXMenuBar createStandardMenuBar() {
@@ -302,9 +276,5 @@ public class MenuDemo extends Application {
     private void log(String message) {
         logArea.appendText(message + "\n");
         System.out.println(message);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

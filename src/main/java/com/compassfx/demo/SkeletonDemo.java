@@ -25,17 +25,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class SkeletonDemo extends Application {
+public class SkeletonDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-
-        Label title = new Label("CompassFX Skeleton Loader Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
+    public void showDemo(Label title, VBox root) {
 
         // ====================================
         // Basic Variants
@@ -227,17 +219,6 @@ public class SkeletonDemo extends Application {
                 interactiveLabel,
                 interactiveBox
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
-
-        Scene scene = new Scene(scrollPane, 900, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Skeleton Loader Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private VBox createCardSkeleton() {
@@ -287,7 +268,4 @@ public class SkeletonDemo extends Application {
         return item;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

@@ -23,18 +23,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class BadgeDemo extends Application {
+public class BadgeDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FAFAFA;");
-
-        Label title = new Label("CompassFX Badge Demo");
-        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Standalone Pills (números solos)
         // ====================================
@@ -296,17 +287,6 @@ public class BadgeDemo extends Application {
                 interactiveLabel,
                 interactiveBox
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #FAFAFA; -fx-background-color: #FAFAFA;");
-
-        Scene scene = new Scene(scrollPane, 1000, 1200);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Badge Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     // Helper: Create standalone badge pill (just the badge, no content)
@@ -352,7 +332,4 @@ public class BadgeDemo extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

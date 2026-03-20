@@ -8,23 +8,15 @@ import com.compassfx.CompassFX;
 import com.compassfx.controls.*;
 import com.compassfx.enums.*;
 import com.compassfx.models.*;
-import com.compassfx.models.Tab;
-import com.compassfx.models.TableColumn;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import java.util.List;
 
 /**
  * CompassFX Playground - Single Page Application
@@ -40,6 +32,7 @@ public class CompassFXPlayground extends Application {
     private CFXDrawer actionsDrawer;
     private CFXDrawer largeDrawer;
     private Label pageTitle;
+    private Scene scene;
 
     @Override
     public void start(Stage primaryStage) {
@@ -95,7 +88,7 @@ public class CompassFXPlayground extends Application {
         StackPane rootWithDrawer = new StackPane(root, navigationDrawer,
                 settingsDrawer, notificationsDrawer, actionsDrawer, largeDrawer);
 
-        Scene scene = new Scene(rootWithDrawer, 1200, 800);
+        scene = new Scene(rootWithDrawer, 1200, 800);
         CompassFX.applyLightTheme(scene);
 
         primaryStage.setTitle("CompassFX Playground");
@@ -146,25 +139,42 @@ public class CompassFXPlayground extends Application {
                 new Separator(),
                 createMenuItem("🏠 Welcome", this::showWelcomePage),
                 createMenuItem("Accordions", this::showAccordionsPage),
+                createMenuItem("👤 Avatars", this::showAvatarsPage),
+//                createMenuItem("Autocomplete", this::showAutocompletePage),
+                createMenuItem("Backdrop", this::showBackdropPage),
+                createMenuItem("Badges", this::showBadgePage),
                 createMenuItem("Breadcrumbs", this::showBreadcrumbsPage),
                 createMenuItem("🔘 Buttons", this::showButtonsPage),
                 createMenuItem("📦 Cards", this::showCardsPage),
-                createMenuItem("Charts", this::showChartsPage),
-                createMenuItem("Transfer Lists", this::showTransferListPage),
-                createMenuItem("☑️ Checkboxes", this::showCheckboxPage),
-                createMenuItem("Chips", this::showChipsPage),
-                createMenuItem("ComboBoxes", this::showComboBoxesPage),
-                createMenuItem("📊 Progress", this::showProgressPage),
-                createMenuItem("📝 Text Fields", this::showTextFieldPage),
-                createMenuItem("🎚️ Sliders", this::showSlidersPage),
-                createMenuItem("🗂️ Tabs", this::showTabsPage),
-                createMenuItem("🍔 Menus", this::showMenusPage),
-                createMenuItem("📋 Tables", this::showTablesPage),
-                createMenuItem("📐 Grid", this::showGridPage),
+                createMenuItem("Card Flip", this::showCardFlipPage),
                 createMenuItem("🎠 Carousel", this::showCarouselPage),
-                createMenuItem("📤 File Upload", this::showFileUploadPage),
-                createMenuItem("👤 Avatars", this::showAvatarsPage),
+                createMenuItem("Charts", this::showChartsPage),
+                createMenuItem("☑️ Checkboxes", this::showCheckboxPage),
+                createMenuItem("Chips", this::showChipPage),
+                createMenuItem("ComboBoxes", this::showComboBoxesPage),
+                createMenuItem("DateTimePickers", this::showDateTimePickersPage),
+                createMenuItem("Dialog", this::showDialogPage),
+                createMenuItem("Dock", this::showDockPage),
                 createMenuItem("🗄️ Drawer", this::showDrawerPage),
+                createMenuItem("📤 File Upload", this::showFileUploadPage),
+                createMenuItem("FileTree", this::showFileTreePage),
+                createMenuItem("📐 Grid", this::showGridPage),
+                createMenuItem("Marquee", this::showMarqueePage),
+                createMenuItem("🍔 Menus", this::showMenuPage),
+                createMenuItem("MultiSelect", this::showMultiSelectPage),
+                createMenuItem("📊 Progress", this::showProgressPage),
+                createMenuItem("Skeleton", this::showSkeletonPage),
+                createMenuItem("🎚️ Sliders", this::showSlidersPage),
+                createMenuItem("Snackbar", this::showSnackbarPage),
+                createMenuItem("SpeedDial", this::showSpeedDialPage),
+                createMenuItem("Stepper", this::showStepperPage),
+                createMenuItem("🗂️ Tabs", this::showTabsPage),
+                createMenuItem("📋 Tables", this::showTablesPage),
+                createMenuItem("TextArea", this::showTextAreaPage),
+                createMenuItem("📝 Text Fields", this::showTextFieldPage),
+                createMenuItem("Toggle", this::showTogglePage),
+                createMenuItem("Tooltip", this::showTooltipPage),
+                createMenuItem("Transfer Lists", this::showTransferListPage),
                 createMenuItem("🎨 All Components", this::showAllComponents)
         );
 
@@ -411,7 +421,7 @@ public class CompassFXPlayground extends Application {
         HBox stats = new HBox(40);
         stats.setAlignment(Pos.CENTER);
 
-        VBox stat1 = createStatBox("15+", "Components");
+        VBox stat1 = createStatBox("40+", "Components");
         VBox stat2 = createStatBox("100%", "Material Design");
         VBox stat3 = createStatBox("∞", "Possibilities");
 
@@ -439,7 +449,6 @@ public class CompassFXPlayground extends Application {
     private void showAccordionsPage() {
         pageTitle.setText("Accordions");
         contentArea.getChildren().clear();
-
         AccordionDemo demo = new AccordionDemo();
         demo.showDemo(pageTitle, contentArea);
     }
@@ -457,10 +466,10 @@ public class CompassFXPlayground extends Application {
         BreadcrumbDemo demo = new BreadcrumbDemo();
         demo.showDemo(pageTitle, contentArea);
     }
+
     private void showCardsPage() {
         pageTitle.setText("Cards");
         contentArea.getChildren().clear();
-
         CardDemo demo = new CardDemo();
         demo.showDemo(pageTitle, contentArea);
     }
@@ -476,14 +485,6 @@ public class CompassFXPlayground extends Application {
         pageTitle.setText("Checkboxes & Radio Buttons");
         contentArea.getChildren().clear();
         CheckboxRadioDemo demo = new CheckboxRadioDemo();
-        demo.showDemo(pageTitle, contentArea);
-    }
-
-
-    private void showChipsPage() {
-        pageTitle.setText("Chips");
-        contentArea.getChildren().clear();
-        ChipDemo demo = new ChipDemo();
         demo.showDemo(pageTitle, contentArea);
     }
 
@@ -511,7 +512,6 @@ public class CompassFXPlayground extends Application {
     private void showSlidersPage() {
         pageTitle.setText("Sliders");
         contentArea.getChildren().clear();
-
         SliderDemo demo = new SliderDemo();
         demo.showDemo(pageTitle, contentArea);
     }
@@ -528,21 +528,6 @@ public class CompassFXPlayground extends Application {
         contentArea.getChildren().clear();
         TabsDemo demo = new TabsDemo();
         demo.showDemo(pageTitle, contentArea);
-    }
-
-    private void showMenusPage() {
-        pageTitle.setText("Menus & MenuBar");
-        contentArea.getChildren().clear();
-
-        Label info = new Label("Menu functionality is best demonstrated in the navigation drawer!\nCheck the top-left menu button (☰) to see it in action.");
-        info.setStyle("-fx-font-size: 16px; -fx-text-fill: #666;");
-        info.setWrapText(true);
-        info.setMaxWidth(600);
-
-        CFXButton openMenuBtn = new CFXButton("Open Navigation Menu");
-        openMenuBtn.setOnAction(e -> navigationDrawer.open());
-
-        contentArea.getChildren().addAll(info, openMenuBtn);
     }
 
     private void showTablesPage() {
@@ -562,7 +547,6 @@ public class CompassFXPlayground extends Application {
     private void showCarouselPage() {
         pageTitle.setText("Carousel");
         contentArea.getChildren().clear();
-
         CarouselDemo demo = new CarouselDemo();
         demo.showDemo(pageTitle, contentArea);
     }
@@ -608,7 +592,6 @@ public class CompassFXPlayground extends Application {
 
         leftSection.getChildren().addAll(leftLabel, openLeftBtn);
 
-
         VBox rightSection = new VBox(10);
         rightSection.setAlignment(Pos.CENTER);
 
@@ -620,11 +603,6 @@ public class CompassFXPlayground extends Application {
         openRightBtn.setOnAction(e -> settingsDrawer.open());
 
         rightSection.getChildren().addAll(rightLabel, openRightBtn);
-
-        // ====================================
-        // Top Drawer - Notifications
-        // ====================================
-
 
         VBox topSection = new VBox(10);
         topSection.setAlignment(Pos.CENTER);
@@ -638,10 +616,6 @@ public class CompassFXPlayground extends Application {
 
         topSection.getChildren().addAll(topLabel, openTopBtn);
 
-        // ====================================
-        // Bottom Drawer - User Actions
-        // ====================================
-
         VBox bottomSection = new VBox(10);
         bottomSection.setAlignment(Pos.CENTER);
 
@@ -653,10 +627,6 @@ public class CompassFXPlayground extends Application {
         openBottomBtn.setOnAction(e -> actionsDrawer.open());
 
         bottomSection.getChildren().addAll(bottomLabel, openBottomBtn);
-
-        // ====================================
-        // Large Drawer Example
-        // ====================================
 
         VBox largeSection = new VBox(10);
         largeSection.setAlignment(Pos.CENTER);
@@ -670,7 +640,6 @@ public class CompassFXPlayground extends Application {
 
         largeSection.getChildren().addAll(largeLabel, openLargeBtn);
 
-        // Add all sections to content
         HBox row1 = new HBox(40, leftSection, rightSection);
         row1.setAlignment(Pos.CENTER);
 
@@ -688,9 +657,140 @@ public class CompassFXPlayground extends Application {
                 largeSection
         );
 
-        contentArea.getChildren().addAll(
-                content
-        );
+        contentArea.getChildren().addAll(content);
+    }
+
+//    private void showAutocompletePage() {
+//        pageTitle.setText("Autocomplete");
+//        contentArea.getChildren().clear();
+//        AutocompleteDemo demo = new AutocompleteDemo();
+//        demo.showDemo(pageTitle, contentArea);
+//    }
+
+    private void showBackdropPage() {
+        pageTitle.setText("Backdrops");
+        contentArea.getChildren().clear();
+        BackdropDemo demo = new BackdropDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showBadgePage() {
+        pageTitle.setText("Badges");
+        contentArea.getChildren().clear();
+        BadgeDemo demo = new BadgeDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showCardFlipPage() {
+        pageTitle.setText("CardFlip");
+        contentArea.getChildren().clear();
+        CardFlipDemo demo = new CardFlipDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showChipPage() {
+        pageTitle.setText("Chip");
+        contentArea.getChildren().clear();
+        ChipDemo demo = new ChipDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showDateTimePickersPage() {
+        pageTitle.setText("DateTimePickers");
+        contentArea.getChildren().clear();
+        DateTimePickersDemo demo = new DateTimePickersDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showDialogPage() {
+        pageTitle.setText("Dialog");
+        contentArea.getChildren().clear();
+        DialogDemo demo = new DialogDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showDockPage() {
+        pageTitle.setText("Dock");
+        contentArea.getChildren().clear();
+        DockDemo demo = new DockDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showFileTreePage() {
+        pageTitle.setText("FileTree");
+        contentArea.getChildren().clear();
+        FileTreeDemo demo = new FileTreeDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showMarqueePage() {
+        pageTitle.setText("Marquee");
+        contentArea.getChildren().clear();
+        MarqueeDemo demo = new MarqueeDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showMenuPage() {
+        pageTitle.setText("Menu");
+        contentArea.getChildren().clear();
+        MenuDemo demo = new MenuDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showMultiSelectPage() {
+        pageTitle.setText("MultiSelect");
+        contentArea.getChildren().clear();
+        MultiSelectDemo demo = new MultiSelectDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showSkeletonPage() {
+        pageTitle.setText("Skeleton");
+        contentArea.getChildren().clear();
+        SkeletonDemo demo = new SkeletonDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showSnackbarPage() {
+        pageTitle.setText("Snackbar");
+        contentArea.getChildren().clear();
+        SnackbarDemo demo = new SnackbarDemo();
+        demo.showDemo(pageTitle, contentArea, scene);
+    }
+
+    private void showSpeedDialPage() {
+        pageTitle.setText("SpeedDial");
+        contentArea.getChildren().clear();
+        SpeedDialDemo demo = new SpeedDialDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showStepperPage() {
+        pageTitle.setText("Stepper");
+        contentArea.getChildren().clear();
+        StepperDemo demo = new StepperDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showTextAreaPage() {
+        pageTitle.setText("TextArea");
+        contentArea.getChildren().clear();
+        TextAreaDemo demo = new TextAreaDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showTogglePage() {
+        pageTitle.setText("Toggle");
+        contentArea.getChildren().clear();
+        ToggleDemo demo = new ToggleDemo();
+        demo.showDemo(pageTitle, contentArea);
+    }
+
+    private void showTooltipPage() {
+        pageTitle.setText("Tooltip");
+        contentArea.getChildren().clear();
+        TooltipDemo demo = new TooltipDemo();
+        demo.showDemo(pageTitle, contentArea);
     }
 
     private void showAllComponents() {
@@ -704,22 +804,45 @@ public class CompassFXPlayground extends Application {
         componentsList.setMaxWidth(600);
 
         String[] components = {
+                "✓ Accordions - Expandable content panels",
+                "✓ Autocomplete - Smart text suggestions",
+                "✓ Avatars - User profile images",
+                "✓ Backdrop - Modal overlays",
+                "✓ Badges - Notification indicators",
+                "✓ Breadcrumbs - Navigation trails",
                 "✓ Buttons - Multiple variants and colors",
                 "✓ Cards - Elevated, outlined, filled",
+                "✓ Card Flip - 3D flip animations",
+                "✓ Carousel - Image/content carousel",
+                "✓ Charts - Data visualization",
                 "✓ Checkboxes - Material Design checkboxes",
-                "✓ Radio Buttons - Grouped selections",
+                "✓ Chips - Compact information",
+                "✓ ComboBoxes - Dropdown selections",
+                "✓ DateTimePickers - Date and time selection",
+                "✓ Dialogs - Modal dialogs",
+                "✓ Dock - macOS-style dock",
+                "✓ Drawer - Sliding navigation panel",
+                "✓ File Upload - Drag and drop upload",
+                "✓ FileTree - Directory tree view",
+                "✓ Grid - Responsive layout system",
+                "✓ Marquee - Scrolling text",
+                "✓ Menus - Navigation and context menus",
+                "✓ MultiSelect - Multiple item selection",
                 "✓ Progress Bars - Linear progress indicators",
                 "✓ Progress Spinners - Circular loading",
-                "✓ Text Fields - Input components",
+                "✓ Radio Buttons - Grouped selections",
+                "✓ Skeleton - Loading placeholders",
                 "✓ Sliders - Value selection",
-                "✓ Tabs - Tabbed navigation",
-                "✓ Menus - Navigation and context menus",
+                "✓ Snackbar - Toast notifications",
+                "✓ SpeedDial - Quick action menu",
+                "✓ Stepper - Step-by-step navigation",
                 "✓ Tables - Data tables with sorting",
-                "✓ Grid - Responsive layout system",
-                "✓ Carousel - Image/content carousel",
-                "✓ File Upload - Drag and drop upload",
-                "✓ Avatars - User profile images",
-                "✓ Drawer - Sliding navigation panel"
+                "✓ Tabs - Tabbed navigation",
+                "✓ TextArea - Multi-line text input",
+                "✓ Text Fields - Input components",
+                "✓ Toggle - Switch controls",
+                "✓ Tooltip - Helpful hints",
+                "✓ Transfer List - Item transfer between lists"
         };
 
         for (String component : components) {

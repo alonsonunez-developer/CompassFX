@@ -14,17 +14,10 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class MarqueeDemo extends Application {
+public class MarqueeDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setStyle("-fx-background-color: #FAFAFA;");
 
-        Label title = new Label("CompassFX Marquee Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Cards Marquee (Right to Left)
         // ====================================
@@ -173,17 +166,6 @@ public class MarqueeDemo extends Application {
                 controlsLabel,
                 controls
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #FAFAFA; -fx-background-color: #FAFAFA;");
-
-        Scene scene = new Scene(scrollPane, 1000, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Marquee Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private CFXCard createProductCard(String name, String price, String color) {
@@ -321,7 +303,4 @@ public class MarqueeDemo extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

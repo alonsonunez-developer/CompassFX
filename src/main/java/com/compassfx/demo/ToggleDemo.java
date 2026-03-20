@@ -18,22 +18,8 @@ import javafx.stage.Stage;
 /**
  * Demo application showcasing CFXToggle features
  */
-public class ToggleDemo extends Application {
-
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(20);
-        root.setPadding(new Insets(30));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FFFFFF;");
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX Toggle/Switch Demo");
-        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
+public class ToggleDemo {
+    public void showDemo(Label title, VBox root) {
         // ===== BASIC TOGGLES SECTION =====
         Label basicLabel = new Label("Basic Toggles");
         basicLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: 600;");
@@ -271,17 +257,5 @@ public class ToggleDemo extends Application {
                 settingsLabel,
                 settingsSection
         );
-
-        // Create scene and apply theme
-        Scene scene = new Scene(scrollPane, 1200, 1800);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Toggle Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

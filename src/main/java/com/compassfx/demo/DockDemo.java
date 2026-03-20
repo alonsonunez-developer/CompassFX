@@ -17,21 +17,11 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class DockDemo extends Application {
+public class DockDemo {
 
     private Label eventLog;
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(40));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: linear-gradient(to bottom, #E3F2FD, #BBDEFB);");
-        root.setMinHeight(900);
-
-        Label title = new Label("CompassFX Dock Demo");
-        title.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #1976D2;");
-
+    public void showDemo(Label title, VBox root) {
         // Event log
         eventLog = new Label("Click on dock items to see actions");
         eventLog.setStyle(
@@ -168,17 +158,6 @@ public class DockDemo extends Application {
                 controlsLabel,
                 controls
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #E3F2FD; -fx-background-color: #E3F2FD;");
-
-        Scene scene = new Scene(scrollPane, 1100, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Dock Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private void log(String message) {
@@ -212,7 +191,4 @@ public class DockDemo extends Application {
         return container;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

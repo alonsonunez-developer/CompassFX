@@ -19,21 +19,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class DateTimePickersDemo extends Application {
+public class DateTimePickersDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(40);
-        root.setPadding(new Insets(50));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-
-
-        Label title = new Label("CompassFX Date & Time Pickers");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // DATE PICKERS
         // ====================================
@@ -214,16 +202,6 @@ public class DateTimePickersDemo extends Application {
                 combinedLabel,
                 combinedSection
         );
-
-        Scene scene = new Scene(scrollPane, 900, 1000);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Date & Time Pickers Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

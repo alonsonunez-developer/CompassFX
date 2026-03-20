@@ -16,25 +16,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 
-public class SpeedDialDemo extends Application {
+public class SpeedDialDemo {
 
     private CFXSpeedDial speedDial;
     private Label statusLabel;
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FAFAFA;");
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-
-        // Title
-        Label title = new Label("CompassFX SpeedDial Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #212121;");
-
+    public void showDemo(Label title, VBox root) {
         // Description
         Label description = new Label("Select a direction and click the blue button");
         description.setStyle("-fx-font-size: 16px; -fx-text-fill: #666;");
@@ -95,13 +82,6 @@ public class SpeedDialDemo extends Application {
                 speedDialContainer,
                 instructions
         );
-
-        Scene scene = new Scene(scrollPane, 900, 1100);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX SpeedDial Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private VBox createDirectionSelector() {
@@ -286,7 +266,4 @@ public class SpeedDialDemo extends Application {
         return icon;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

@@ -13,19 +13,9 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class BackdropDemo extends Application {
+public class BackdropDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #FAFAFA;");
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-
-        Label title = new Label("CompassFX Backdrop Demo");
-        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+    public void showDemo(Label title, VBox root) {
 
         Label description = new Label("Click on any card below to reveal the backdrop");
         description.setStyle("-fx-font-size: 16px; -fx-text-fill: #666;");
@@ -71,15 +61,7 @@ public class BackdropDemo extends Application {
                 searchLabel,
                 searchBackdrop
         );
-
-        Scene scene = new Scene(scrollPane, 800, 1400);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CompassFX Backdrop Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
-
     private CFXBackdrop createFilterBackdrop() {
         CFXBackdrop backdrop = new CFXBackdrop();
         backdrop.setBackHeight(250);
@@ -281,7 +263,4 @@ public class BackdropDemo extends Application {
         return card;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

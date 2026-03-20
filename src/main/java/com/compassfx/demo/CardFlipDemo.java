@@ -14,18 +14,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class CardFlipDemo extends Application {
+public class CardFlipDemo {
 
-    @Override
-    public void start(Stage primaryStage) {
-        VBox root = new VBox(30);
-        root.setPadding(new Insets(40));
-        root.setAlignment(Pos.TOP_CENTER);
-        root.setStyle("-fx-background-color: #F5F5F5;");
-
-        Label title = new Label("CFXCard & CFXFlipCard Demo");
-        title.setStyle("-fx-font-size: 32px; -fx-font-weight: bold;");
-
+    public void showDemo(Label title, VBox root) {
         // ====================================
         // Card Variants
         // ====================================
@@ -168,17 +159,6 @@ public class CardFlipDemo extends Application {
                 controlledFlip,
                 controlButtons
         );
-
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
-
-        Scene scene = new Scene(scrollPane, 1000, 900);
-        CompassFX.applyLightTheme(scene);
-
-        primaryStage.setTitle("CFXCard & CFXFlipCard Demo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private CFXCard createSimpleCard(String title, String description) {
@@ -306,9 +286,5 @@ public class CardFlipDemo extends Application {
         card.setContent(content);
 
         return card;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
