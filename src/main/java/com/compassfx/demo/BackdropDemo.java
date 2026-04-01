@@ -130,7 +130,7 @@ public class BackdropDemo {
 
     private CFXBackdrop createSettingsBackdrop() {
         CFXBackdrop backdrop = new CFXBackdrop();
-        backdrop.setBackHeight(200);
+        backdrop.setBackHeight(250);
 
         // Front content
         VBox frontContent = new VBox(20);
