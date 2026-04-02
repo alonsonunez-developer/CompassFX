@@ -20,38 +20,40 @@
 /* Badge Indicator - BEAUTIFUL PILL DESIGN */
 .badge-indicator {
     -fx-alignment: center;
-    -fx-background-radius: 12px;
-    -fx-min-width: 24px;
-    -fx-min-height: 24px;
-    -fx-padding: 4px 10px;
+    -fx-background-radius: 10px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-padding: 2px 6px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.2, 0, 1);
 }
 
 /* Badge Label */
 .badge-label {
     -fx-text-fill: white;
-    -fx-font-size: 12px;
+    -fx-font-size: 10px;
     -fx-font-weight: 600;
     -fx-font-family: "System";
 }
 
 /* ===== VARIANT: STANDARD (Pill shape) ===== */
 .cfx-badge.standard .badge-indicator {
-    -fx-background-radius: 12px;
-    -fx-min-width: 24px;
-    -fx-min-height: 24px;
-    -fx-padding: 4px 10px;
+    -fx-background-radius: 10px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-max-width: 60px;
+    -fx-max-height: 20px;
+    -fx-padding: 2px 6px;
 }
 
 /* ===== VARIANT: DOT (Small circle) ===== */
 .cfx-badge.dot .badge-indicator {
     -fx-background-radius: 50%;
-    -fx-min-width: 12px;
-    -fx-min-height: 12px;
-    -fx-max-width: 12px;
-    -fx-max-height: 12px;
-    -fx-pref-width: 12px;
-    -fx-pref-height: 12px;
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+    -fx-pref-width: 10px;
+    -fx-pref-height: 10px;
     -fx-padding: 0;
 }
 

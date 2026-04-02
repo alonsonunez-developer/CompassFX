@@ -4,8 +4,6 @@ import com.compassfx.controls.CFXBadge;
 import com.compassfx.enums.BadgePosition;
 import com.compassfx.enums.BadgeVariant;
 import javafx.geometry.Bounds;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.SkinBase;
 import javafx.scene.layout.StackPane;
@@ -34,6 +32,7 @@ public class CFXBadgeSkin extends SkinBase<CFXBadge> {
         this.badgeContainer = new StackPane();
         badgeContainer.getStyleClass().add("badge-indicator");
         badgeContainer.setMouseTransparent(true);
+        badgeContainer.setPickOnBounds(false);  // Don't let badge affect layout
 
         // Badge label
         this.badgeLabel = new Label();
@@ -152,21 +151,25 @@ public class CFXBadgeSkin extends SkinBase<CFXBadge> {
 
     @Override
     protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
-        return container.minWidth(height) + leftInset + rightInset;
+        // Only size based on content, not the badge
+        return contentContainer.minWidth(height) + leftInset + rightInset;
     }
 
     @Override
     protected double computeMinHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
-        return container.minHeight(width) + topInset + bottomInset;
+        // Only size based on content, not the badge
+        return contentContainer.minHeight(width) + topInset + bottomInset;
     }
 
     @Override
     protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
-        return container.prefWidth(height) + leftInset + rightInset;
+        // Only size based on content, not the badge
+        return contentContainer.prefWidth(height) + leftInset + rightInset;
     }
 
     @Override
     protected double computePrefHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
-        return container.prefHeight(width) + topInset + bottomInset;
+        // Only size based on content, not the badge
+        return contentContainer.prefHeight(width) + topInset + bottomInset;
     }
 }
