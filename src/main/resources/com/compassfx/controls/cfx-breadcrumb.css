@@ -90,9 +90,6 @@
     -fx-background-color: rgba(33, 150, 243, 0.05);
 }
 
-.cfx-breadcrumb.outlined .breadcrumb-item .breadcrumb-text.current {
-    -fx-border-color: #2196F3;
-}
 
 /* Filled Variant */
 .cfx-breadcrumb.filled .breadcrumb-item {
@@ -105,6 +102,8 @@
 
 .cfx-breadcrumb.filled .breadcrumb-item .breadcrumb-text.current {
     -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-padding: 4px 8px;
 }
 
 .cfx-breadcrumb.filled .breadcrumb-home-icon {
